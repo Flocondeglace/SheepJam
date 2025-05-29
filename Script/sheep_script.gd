@@ -10,7 +10,7 @@ var speed_modifier = 1.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
-	print("move")
+	# print("move")
 	# Add the gravity
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -28,7 +28,7 @@ func die():
 	#make it fall
 	speed_modifier = 0.0
 	velocity.y = gravity 
-	sheep_collider.disabled = true
+	# sheep_collider.disabled = true
 	#wait 1 second
 	await get_tree().create_timer(1.0).timeout
 	#remove the sheep
