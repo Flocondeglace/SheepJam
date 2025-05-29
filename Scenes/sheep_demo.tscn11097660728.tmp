@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://1c64rheyt7y0"]
+[gd_scene load_steps=8 format=4 uid="uid://1c64rheyt7y0"]
 
 [ext_resource type="PackedScene" uid="uid://b312ryghuk0ic" path="res://Scenes/sheep.tscn" id="1_xs48q"]
 [ext_resource type="PackedScene" uid="uid://c43yvvh5n2mnw" path="res://test.tscn" id="2_wuw3u"]
@@ -34,20 +34,11 @@ position = Vector2(99, -230)
 
 [node name="RoundManager" type="Node" parent="."]
 script = ExtResource("3_kv5x6")
-sheep_scene = ExtResource("1_xs48q")
 
 [node name="TrapLayer" type="TileMapLayer" parent="RoundManager"]
+tile_map_data = PackedByteArray("AAAEAPv/AAAAAAAAAQAEAPz/AAAAAAAAAQAEAP3/AAAAAAAAAQAFAP3/AAAAAAAAAQAGAP3/AAAAAAAAAQAHAP3/AAAAAAAAAQAIAP3/AAAAAAAAAQAJAP3/AAAAAAAAAQAEAP7/AAAAAAAAAQAFAP7/AAAAAAAAAQAGAP7/AAAAAAAAAQAHAP7/AAAAAAAAAQAIAP7/AAAAAAAAAQAJAP7/AAAAAAAAAQAKAP7/AAAAAAAAAQADAP//AAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQAJAP//AAAAAAAAAQABAPn/AAAAAAAAAQACAPn/AAAAAAAAAQADAPn/AAAAAAAAAQAEAPn/AAAAAAAAAQAFAPn/AAAAAAAAAQAGAPn/AAAAAAAAAQAHAPn/AAAAAAAAAQAIAPn/AAAAAAAAAQAJAPn/AAAAAAAAAQAKAPn/AAAAAAAAAQAKAPj/AAAAAAAAAQAKAPr/AAAAAAAAAQAHAPj/AAAAAAAAAQAGAPf/AAAAAAAAAQAFAPf/AAAAAAAAAQAEAPf/AAAAAAAAAQAEAPj/AAAAAAAAAQADAPr/AAAAAAAAAQADAPv/AAAAAAAAAQADAPz/AAAAAAAAAQAFAPz/AAAAAAAAAQAGAPv/AAAAAAAAAQAGAPr/AAAAAAAAAQAHAPr/AAAAAAAAAQAHAPv/AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_xs48q")
 script = ExtResource("3_wuw3u")
 
 [node name="SpawnPointSheep" type="Marker2D" parent="RoundManager"]
 position = Vector2(-33, -10)
-
-[node name="TimerBetweenSheep" type="Timer" parent="RoundManager"]
-one_shot = true
-
-[node name="TimerRound" type="Timer" parent="RoundManager"]
-one_shot = true
-
-[connection signal="timeout" from="RoundManager/TimerBetweenSheep" to="RoundManager" method="_on_timer_between_sheep_timeout"]
-[connection signal="timeout" from="RoundManager/TimerRound" to="RoundManager" method="_on_timer_round_timeout"]
