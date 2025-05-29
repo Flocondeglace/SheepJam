@@ -29,11 +29,13 @@ func next_round():
 	current_round += 1
 	if current_round < round_sheep_numbers.size():
 		current_sheep_number = 0
+		set_traps_for_round()
 		timer_between_sheep.start(between_sheep_duration)
 	else:
 		reset_round()
 
 func set_traps_for_round():
+	print("Setting traps")
 	for trap in trap_layer.get_children():
 		if trap is Trap:
 			trap.on_next_round_begin()

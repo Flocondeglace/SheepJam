@@ -34,10 +34,8 @@ func die():
 	#make it fall
 	speed_modifier = 0.0
 	last_trap_floor.change_sheep_action_next_round()
-	await get_tree().create_timer(1.0).timeout
 	#remove the sheep
 	queue_free()
 
 func set_trap(trap: Trap):
-	print("Trap set")
 	last_trap = trap

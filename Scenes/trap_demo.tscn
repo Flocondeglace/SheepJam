@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckkjm18t2aj7e"]
+
+[ext_resource type="PackedScene" uid="uid://cceakoj7kiufj" path="res://Scenes/sheep.tscn" id="1_cgtsd"]
+[ext_resource type="Texture2D" uid="uid://cuddvskyxondn" path="res://icon.svg" id="2_7834d"]
+[ext_resource type="PackedScene" uid="uid://dwuxfx8f44d2e" path="res://Scenes/Traps/spike.tscn" id="3_5hr63"]
+[ext_resource type="PackedScene" uid="uid://b5cv0gqaaafqp" path="res://Scenes/Traps/hole.tscn" id="4_fc87p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i04dx"]
+size = Vector2(684, 33)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sheep" parent="." instance=ExtResource("1_cgtsd")]
+position = Vector2(5, -6)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(297, 21)
+shape = SubResource("RectangleShape2D_i04dx")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(301, -114)
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(157, -172)
+texture = ExtResource("2_7834d")
+
+[node name="Peak" parent="." instance=ExtResource("3_5hr63")]
+position = Vector2(291, -10)
+scale = Vector2(2, 2)
+
+[node name="Hole" parent="." instance=ExtResource("4_fc87p")]
+position = Vector2(426, -1)
+scale = Vector2(2, 2)

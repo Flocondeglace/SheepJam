@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0a4li6n32lfv"]
+
+[ext_resource type="Script" uid="uid://bxlsq3qlyfqt3" path="res://Script/sheep_2.gd" id="1_0a23y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yltbf"]
+
+[node name="Sheep2" type="RigidBody2D"]
+input_pickable = true
+script = ExtResource("1_0a23y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yltbf")
+debug_color = Color(0, 0.639034, 0.370408, 0.42)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

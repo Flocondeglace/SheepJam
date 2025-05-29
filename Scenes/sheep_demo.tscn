@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://1c64rheyt7y0"]
+[gd_scene load_steps=9 format=3 uid="uid://1c64rheyt7y0"]
 
-[ext_resource type="PackedScene" uid="uid://b312ryghuk0ic" path="res://Scenes/sheep.tscn" id="1_xs48q"]
+[ext_resource type="PackedScene" uid="uid://cceakoj7kiufj" path="res://Scenes/sheep.tscn" id="1_xs48q"]
 [ext_resource type="PackedScene" uid="uid://c43yvvh5n2mnw" path="res://test.tscn" id="2_wuw3u"]
 [ext_resource type="Script" uid="uid://ch8h3rdtscoow" path="res://Script/round_manager.gd" id="3_kv5x6"]
 [ext_resource type="Script" uid="uid://b5rygtop42bvf" path="res://Script/trap_layer.gd" id="3_wuw3u"]
+[ext_resource type="PackedScene" uid="uid://b5cv0gqaaafqp" path="res://Scenes/Traps/hole.tscn" id="6_sd377"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i04dx"]
-size = Vector2(684, 33)
+size = Vector2(338, 33)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_wuw3u"]
 scenes/1/scene = ExtResource("1_xs48q")
@@ -17,15 +18,14 @@ sources/0 = SubResource("TileSetScenesCollectionSource_wuw3u")
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Sheep" parent="." instance=ExtResource("1_xs48q")]
-position = Vector2(5, -6)
-speed = null
-jump_velocity = null
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(507, 22)
+shape = SubResource("RectangleShape2D_i04dx")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(297, 21)
+position = Vector2(124, 21)
 shape = SubResource("RectangleShape2D_i04dx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -37,13 +37,15 @@ position = Vector2(99, -230)
 [node name="RoundManager" type="Node" parent="."]
 script = ExtResource("3_kv5x6")
 sheep_scene = ExtResource("1_xs48q")
-round_sheep_numbers = null
-between_sheep_duration = null
-round_duration = null
+round_duration = 5.0
 
 [node name="TrapLayer" type="TileMapLayer" parent="RoundManager"]
 tile_set = SubResource("TileSet_xs48q")
 script = ExtResource("3_wuw3u")
+
+[node name="Hole" parent="RoundManager/TrapLayer" instance=ExtResource("6_sd377")]
+position = Vector2(315, 18)
+scale = Vector2(2, 2)
 
 [node name="SpawnPointSheep" type="Marker2D" parent="RoundManager"]
 position = Vector2(-33, -10)
