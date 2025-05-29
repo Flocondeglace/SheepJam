@@ -39,4 +39,5 @@ func die():
 	queue_free()
 
 func set_trap(trap: Trap):
+	print("Trap set")
 	last_trap = trap

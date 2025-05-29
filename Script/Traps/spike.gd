@@ -18,6 +18,7 @@ func on_next_round_begin():
 		first_time = false
 	
 func change_sheep_action_next_round():
+	print("Changin sheep action next round")
 	next_should_jump = !should_jump
 
 func set_helper(should: bool):
@@ -34,10 +35,10 @@ func _on_area_detectable_body_entered(body: Node2D) -> void:
 	print("Area detectable entered")
 	if body is Sheep:
 		var sheep: Sheep = body
+		sheep.set_trap(self)
 		if should_jump:
 			print("A Sheep is jumping")
 			sheep.jump()
-			sheep.set_trap(self)
 
 
 func _on_area_death_body_entered(body: Node2D) -> void:
