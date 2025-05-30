@@ -1,6 +1,6 @@
 extends Node2D
 
-const sheep_scene = preload("res://sheep.tscn") # Ensure path is correct
+const sheep_scene = preload("res://Scenes/sheep.tscn") # Ensure path is correct
 var highest_sheep_y = 0
 
 var sheep_count = 0

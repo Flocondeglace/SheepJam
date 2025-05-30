@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c1m7xa56kaexk"]
 
-[ext_resource type="Script" uid="uid://cgvjpn6btim8h" path="res://sheep.gd" id="1_xqjq8"]
-[ext_resource type="Texture2D" uid="uid://cuddvskyxondn" path="res://icon.svg" id="2_qhocy"]
+[ext_resource type="Script" uid="uid://cgvjpn6btim8h" path="res://Scripts/sheep.gd" id="1_35w1j"]
+[ext_resource type="Texture2D" uid="uid://cuddvskyxondn" path="res://Sprites/icon.svg" id="2_okt0m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0e48y"]
 radius = 49.0102
@@ -13,7 +13,7 @@ radius = 53.0377
 mass = 0.1
 contact_monitor = true
 max_contacts_reported = 4
-script = ExtResource("1_xqjq8")
+script = ExtResource("1_35w1j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0e48y")
@@ -21,7 +21,7 @@ shape = SubResource("CircleShape2D_0e48y")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1.90735e-06, -9.53674e-07)
 scale = Vector2(0.0667539, 0.0667539)
-texture = ExtResource("2_qhocy")
+texture = ExtResource("2_okt0m")
 
 [node name="spheredetection" type="Area2D" parent="."]
 
