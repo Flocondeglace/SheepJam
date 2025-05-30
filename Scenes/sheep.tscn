@@ -8,11 +8,11 @@ friction = 0.8
 bounce = 0.22
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35w1j"]
-radius = 16.0
-height = 40.0
+radius = 74.0
+height = 148.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_veubm"]
-radius = 23.0
+radius = 85.0
 
 [sub_resource type="Animation" id="Animation_0hol4"]
 length = 0.1
@@ -145,10 +145,11 @@ shape = SubResource("CircleShape2D_veubm")
 
 [node name="Mouton" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -23.275)
+position = Vector2(6, -57)
+scale = Vector2(4, 4)
 texture = ExtResource("3_okt0m")
 hframes = 81
-frame = 72
+frame = 80
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
