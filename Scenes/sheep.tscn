@@ -174,4 +174,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_dlixe")
 }
 
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="area_entered" from="spheredetection" to="." method="_on_spheredetection_area_entered"]
