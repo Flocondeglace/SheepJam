@@ -38,7 +38,18 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_qy3sg")
 
 [node name="SheepsContainer" type="Node2D" parent="."]
-script = ExtResource("3_3856g")
+
+[node name="Sheep" parent="SheepsContainer" instance=ExtResource("2_qy3sg")]
+position = Vector2(149, 541)
+
+[node name="Sheep2" parent="SheepsContainer" instance=ExtResource("2_qy3sg")]
+position = Vector2(864, 531)
+
+[node name="Sheep3" parent="SheepsContainer" instance=ExtResource("2_qy3sg")]
+position = Vector2(1021, 519)
+
+[node name="Sheep4" parent="SheepsContainer" instance=ExtResource("2_qy3sg")]
+position = Vector2(312, 535)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(568, 322)
