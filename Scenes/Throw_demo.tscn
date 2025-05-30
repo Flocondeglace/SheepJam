@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_d0d3y"]
 [ext_resource type="PackedScene" uid="uid://c0tqb21y7mr1e" path="res://Scenes/DraggingManager.tscn" id="1_qy3sg"]
-[ext_resource type="PackedScene" uid="uid://c1m7xa56kaexk" path="res://Scenes/sheep.tscn" id="2_qy3sg"]
+[ext_resource type="Script" uid="uid://dluh6uggtp7mr" path="res://Scenes/sheeps_container.gd" id="3_3856g"]
 [ext_resource type="Script" uid="uid://d1d1cxst2asrv" path="res://Scripts/camera_2d.gd" id="4_yltbf"]
 [ext_resource type="Script" uid="uid://siey8tpwfjar" path="res://Scenes/gluing_zone.gd" id="5_3856g"]
 
@@ -37,18 +37,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_qy3sg")
 
 [node name="SheepsContainer" type="Node2D" parent="."]
-
-[node name="Sheep" parent="SheepsContainer" instance=ExtResource("2_qy3sg")]
-position = Vector2(149, 541)
-
-[node name="Sheep2" parent="SheepsContainer" instance=ExtResource("2_qy3sg")]
-position = Vector2(864, 531)
-
-[node name="Sheep3" parent="SheepsContainer" instance=ExtResource("2_qy3sg")]
-position = Vector2(1021, 519)
-
-[node name="Sheep4" parent="SheepsContainer" instance=ExtResource("2_qy3sg")]
-position = Vector2(312, 535)
+script = ExtResource("3_3856g")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(568, 322)
@@ -61,12 +50,4 @@ script = ExtResource("5_3856g")
 position = Vector2(963, 315)
 shape = SubResource("RectangleShape2D_12shr")
 
-[connection signal="mouse_entered" from="SheepsContainer/Sheep" to="SheepsContainer/Sheep" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="SheepsContainer/Sheep" to="SheepsContainer/Sheep" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="SheepsContainer/Sheep2" to="SheepsContainer/Sheep2" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="SheepsContainer/Sheep2" to="SheepsContainer/Sheep2" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="SheepsContainer/Sheep3" to="SheepsContainer/Sheep3" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="SheepsContainer/Sheep3" to="SheepsContainer/Sheep3" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="SheepsContainer/Sheep4" to="SheepsContainer/Sheep4" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="SheepsContainer/Sheep4" to="SheepsContainer/Sheep4" method="_on_mouse_exited"]
 [connection signal="body_entered" from="GluingZone" to="GluingZone" method="_on_body_entered"]

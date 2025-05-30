@@ -95,14 +95,14 @@ func _on_spheredetection_area_entered(area: Area2D) -> void:
 	if not can_be_glued:
 		return
 
-	have_collided = true
-
-	# Get the parent of the area (which should be the other sphere)
 	var other_sphere = area.get_parent()
 	
 	# Check if the detected body is another sphere and is a RigidBody2D
 	if not other_sphere is Sheep:
 		return
+
+	have_collided = true
+
 
 	# Check if we've already created a joint with this other_sphere
 	if other_sphere in jointed_bodies:
