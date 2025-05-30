@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dluh6uggtp7mr" path="res://Scenes/sheeps_container.gd" id="3_12shr"]
 [ext_resource type="Script" uid="uid://d1d1cxst2asrv" path="res://Scripts/camera_2d.gd" id="4_yltbf"]
 [ext_resource type="Script" uid="uid://siey8tpwfjar" path="res://Scenes/gluing_zone.gd" id="5_3856g"]
-[ext_resource type="Script" uid="uid://cpp8bwic6stw8" path="res://Scripts/sheep_manager.gd" id="6_12shr"]
+[ext_resource type="Script" path="res://Scripts/sheep_manager.gd" id="6_12shr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qy3sg"]
 size = Vector2(1154, 27)
@@ -15,6 +15,9 @@ size = Vector2(363.5, 652)
 
 [node name="ThrowDemo" type="Node2D"]
 script = ExtResource("1_d0d3y")
+camera_freeze_height = 300.0
+score_to_meters = 50.0
+loosing_height = 60.0
 
 [node name="DraggingManager" parent="." node_paths=PackedStringArray("sheeps_container") instance=ExtResource("1_qy3sg")]
 position = Vector2(415, 3)
@@ -64,5 +67,16 @@ position = Vector2(120, 593)
 
 [node name="Marker2D3" type="Marker2D" parent="SheepManager/SpawningPositions"]
 position = Vector2(181, 593)
+
+[node name="Score" type="Label" parent="."]
+offset_left = 398.0
+offset_top = 6.0
+offset_right = 503.0
+offset_bottom = 29.0
+theme_override_font_sizes/font_size = 41
+text = "Lorem IPSUM"
+
+[node name="GroundMarker" type="Marker2D" parent="."]
+position = Vector2(536, 602)
 
 [connection signal="body_entered" from="GluingZone" to="GluingZone" method="_on_body_entered"]
