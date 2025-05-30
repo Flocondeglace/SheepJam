@@ -11,8 +11,6 @@ size = Vector2(1154, 27)
 [node name="Player" parent="." node_paths=PackedStringArray("sheeps_container") instance=ExtResource("1_qy3sg")]
 position = Vector2(10, 0)
 sheeps_container = NodePath("../SheepsContainer")
-throwing_force = 20.0
-max_force = 500.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(275, 632)

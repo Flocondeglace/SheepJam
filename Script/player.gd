@@ -4,8 +4,8 @@ var holding_sheep : Sheep2 = null
 var mouse_positions : Array[Vector2] = []
 
 @export var sheeps_container: Node2D
-@export var throwing_force : float = 1.0
-@export var max_force : float = 1000
+@export var throwing_force : float = 20.0
+@export var max_force : float = 500
 @export var number_mouse_positions_considered : int = 10
 
 func _physics_process(_delta: float) -> void:
