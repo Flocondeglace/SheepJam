@@ -7,13 +7,15 @@ const SHEEP = preload("res://Scenes/sheep.tscn")
 @export var start_pos_balloon : float = -100
 @export var epsilon_pos_balloon : float = 1
 @export var speed_balloon : float = 2
+@export var colors_balloon : Array[Color] = []
 
 @onready var spawning_positions_container: Node2D = $Balloon/SpawningPositionsContainer
 @onready var balloon: StaticBody2D = $Balloon
 @onready var camera_2d: Camera2D = $"../Camera2D"
 @onready var marker_2d_left: Marker2D = $BalloonPosX/Marker2DLeft
 @onready var marker_2d_right: Marker2D = $BalloonPosX/Marker2DRight
-
+@onready var sprites: Node2D = $Balloon/Sprites
+@onready var back_balloon_sprite: Sprite2D = $Balloon/Sprites/Back
 
 var spawning_positions : Array[Node]
 var sheep_in_spawning_area : Array[Sheep] = []
@@ -23,8 +25,7 @@ var camera_left : bool = true
 func _ready() -> void:
 	spawning_positions = spawning_positions_container.get_children()
 	balloon_appear()
-	
-	
+
 
 func _process(delta: float) -> void:
 	if balloon_arrived && !check_still_sheep_in_spawn():
@@ -33,6 +34,15 @@ func _process(delta: float) -> void:
 			camera_2d.swipe_left()
 		else :
 			camera_2d.swipe_right()
+		var list_sprite = sprites.get_children()
+		for sprite in list_sprite:
+			sprite.flip_h = camera_left
+			var s: Sprite2D = sprite
+			if camera_left:
+				sprite.position.x -= sprite.get_rect().size.x/2
+			else:
+				sprite.position.x += sprite.get_rect().size.x/2
+		
 		balloon_appear()
 	move_balloon()
 
@@ -43,6 +53,7 @@ func check_still_sheep_in_spawn():
 	return false
 
 func balloon_appear():
+	back_balloon_sprite.modulate = colors_balloon.pick_random()
 	balloon_arrived = false
 	print("Balloon appear")
 	if camera_left:
@@ -59,6 +70,7 @@ func balloon_appear():
 		sheeps_container.add_child(sheep)
 		sheep_in_spawning_area.append(sheep)
 		sheep.should_respawn.connect(_on_sheep_should_respawn)
+		sheep.look_left(!camera_left)
 
 func move_balloon():
 	var pos_cam : Vector2 = camera_2d.get_screen_center_position()

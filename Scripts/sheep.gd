@@ -193,4 +193,6 @@ func force_position(pos: Vector2):
 	# Reset Force
 	self.linear_velocity = Vector2.ZERO
 	self.angular_velocity = 0.0
-	
+
+func look_left(b:bool):
+	sprite_2d.flip_h = b
