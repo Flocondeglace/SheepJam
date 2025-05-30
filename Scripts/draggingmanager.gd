@@ -20,7 +20,6 @@ func _physics_process(_delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("click"):
-		print("click")
 		holding_sheep = select_sheep()
 		if holding_sheep:
 			mouse_positions = []
@@ -32,9 +31,7 @@ func _process(_delta: float) -> void:
 func select_sheep() -> Node2D:
 	var sheeps = sheeps_container.get_children()
 	for sheep : Sheep in sheeps:
-		print("sheep tested",sheep.is_under_mouse())
 		if sheep.is_under_mouse():
-			print("mouse")
 			sheep.start_player_holding()
 			return sheep
 	return null

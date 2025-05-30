@@ -9,7 +9,12 @@ class_name Sheep
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D # Adjust path if named differently
 @onready var sphere_detection: Area2D = $spheredetection
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+# Sheep animation
+@onready var sprite_2d: Sprite2D = $Mouton
+@onready var animation_player_sprite: AnimationPlayer = $Mouton/AnimationSpriteMouton
+@onready var animation_effect_mouton: AnimationPlayer = $Mouton/AnimationEffectMouton
+
+
 # Dictionary to keep track of bodies we've already created a joint with
 # Key: the other Sheep, Value: the PinJoint2D created by this sphere
 var jointed_bodies: Dictionary = {}
@@ -28,6 +33,7 @@ var max_time_sickness : float = 5
 
 
 func _ready():
+	animation_player_sprite.play("Idle")
 
 	# If we have a CollisionShape2D with a CircleShape, use its radius
 	if collision_shape and collision_shape.shape is CircleShape2D:
@@ -58,12 +64,19 @@ func calculate_intersection_point(other_sphere: Sheep) -> Vector2:
 
 func _process(delta: float) -> void:
 	if is_hold:
+		# Animation
 		time_sickness += delta
 		time_sickness = clamp(time_sickness, 0, max_time_sickness)
 		var color_sheep = lerp(Color(1,1,1), Color(0,1,0), time_sickness/max_time_sickness)
 		sprite_2d.modulate = color_sheep
+		if abs(time_sickness - max_time_sickness) < 0.01:
+			animation_player_sprite.play("Dead")
+			
+		
+		# Reset Force
 		self.linear_velocity = Vector2.ZERO
 		self.angular_velocity = 0.0
+		
 
 func launch(direction: Vector2):
 	self.apply_impulse(direction)
@@ -73,18 +86,19 @@ func is_under_mouse():
 	return mouse_hovering
 
 func _on_mouse_entered() -> void:
-	print("mousein")
 	mouse_hovering = true
 
 func _on_mouse_exited() -> void:
-	print("mouseout")
 	mouse_hovering = false
 
 func start_player_holding() -> void:
 	time_sickness = 0
+	animation_player_sprite.play("Dragged")
+	animation_effect_mouton.play("Sickness")
 	is_hold = true
 	
 func end_player_holding() -> void :
+	animation_player_sprite.play("Idle")
 	is_hold = false
 
 func _on_spheredetection_area_entered(area: Area2D) -> void:
