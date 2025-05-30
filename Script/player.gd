@@ -1,15 +1,12 @@
 extends Node2D
 
-var start_mouse : Vector2
-var start_mouse_time : float
-var end_mouse : Vector2
-var end_mouse_time : float
 var holding_sheep : Sheep2 = null
 var mouse_positions : Array[Vector2] = []
 
 @export var sheeps_container: Node2D
 @export var throwing_force : float = 1.0
 @export var max_force : float = 1000
+@export var number_mouse_positions_considered : int = 10
 
 func _physics_process(_delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
@@ -22,22 +19,14 @@ func _physics_process(_delta: float) -> void:
 		mouse_positions.append(mouse_pos)
 
 func _process(_delta: float) -> void:
-	var mouse_pos = get_global_mouse_position()
-		
 	if Input.is_action_just_pressed("click"):
 		holding_sheep = select_sheep()
 		if holding_sheep:
-			start_mouse = mouse_pos
-			start_mouse_time = Time.get_ticks_msec()
 			mouse_positions = []
 	if holding_sheep:
 		if Input.is_action_just_released("click"):
-			end_mouse = mouse_pos
-			end_mouse_time = Time.get_ticks_msec()
 			launch_sheep()
-			holding_sheep = null
 			
-	
 
 func select_sheep() -> Node2D:
 	var sheeps = sheeps_container.get_children()
@@ -63,14 +52,18 @@ func clip_vector2(vec: Vector2, minv: Vector2, maxv: Vector2) -> Vector2:
 		)
 
 func launch_sheep():
-	var mouse_positions_to_consider : Array[Vector2] = mouse_positions.slice(-10, mouse_positions.size()-1)
-	var direction: Vector2 = mean_speed(mouse_positions_to_consider)
-	var direction_2: Vector2 = Vector2(sign(direction.x)*direction.x**2, sign(direction.y)*direction.y**2)
-	holding_sheep.linear_velocity = Vector2.ZERO
-	holding_sheep.angular_velocity = 0.0
-	var force : Vector2 = clip_vector2(direction_2*throwing_force, Vector2(-max_force, -max_force), Vector2(max_force, max_force))
-	print(force)
-	holding_sheep.move(force)
-	
-	
-	
+	if mouse_positions.size() > number_mouse_positions_considered:
+		var mouse_positions_to_consider : Array[Vector2] = mouse_positions.slice(-10, mouse_positions.size()-1)
+		var direction: Vector2 = mean_speed(mouse_positions_to_consider)
+		var direction_2: Vector2 = Vector2(sign(direction.x)*direction.x**2, sign(direction.y)*direction.y**2)
+		holding_sheep.linear_velocity = Vector2.ZERO
+		holding_sheep.angular_velocity = 0.0
+		var force : Vector2 = clip_vector2(direction_2*throwing_force, Vector2(-max_force, -max_force), Vector2(max_force, max_force))
+		print(force)
+		holding_sheep.move(force)
+	holding_sheep = null
+
+
+func _on_throwing_zone_mouse_exited() -> void:
+	if holding_sheep:
+		launch_sheep()

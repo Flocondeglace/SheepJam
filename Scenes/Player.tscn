@@ -1,6 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0tqb21y7mr1e"]
+[gd_scene load_steps=3 format=3 uid="uid://c0tqb21y7mr1e"]
 
 [ext_resource type="Script" uid="uid://ca5l8j5057s2g" path="res://Script/player.gd" id="1_rpqav"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpqav"]
+size = Vector2(379, 650)
+
 [node name="Player" type="Node2D"]
 script = ExtResource("1_rpqav")
+
+[node name="ThrowingZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ThrowingZone"]
+position = Vector2(179.5, 315)
+shape = SubResource("RectangleShape2D_rpqav")
+debug_color = Color(0.848153, 0.258465, 0.684285, 0.42)
+
+[node name="ThrowingZone2" type="Area2D" parent="."]
+position = Vector2(799, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ThrowingZone2"]
+position = Vector2(179.5, 315)
+shape = SubResource("RectangleShape2D_rpqav")
+debug_color = Color(0.848153, 0.258465, 0.684285, 0.42)
+
+[connection signal="mouse_exited" from="ThrowingZone" to="." method="_on_throwing_zone_mouse_exited"]
+[connection signal="mouse_exited" from="ThrowingZone2" to="." method="_on_throwing_zone_mouse_exited"]

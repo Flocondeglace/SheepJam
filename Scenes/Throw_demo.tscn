@@ -9,6 +9,7 @@ size = Vector2(1154, 27)
 [node name="ThrowDemo" type="Node2D"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("sheeps_container") instance=ExtResource("1_qy3sg")]
+position = Vector2(10, 0)
 sheeps_container = NodePath("../SheepsContainer")
 throwing_force = 20.0
 max_force = 500.0
