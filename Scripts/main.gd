@@ -29,7 +29,8 @@ func _process(delta):
 func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			spawn_sheep(get_global_mouse_position())
+			#spawn_sheep(get_global_mouse_position())
+			return
 
 
 

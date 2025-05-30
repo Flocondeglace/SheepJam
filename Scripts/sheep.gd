@@ -13,7 +13,7 @@ class_name Sheep
 # Dictionary to keep track of bodies we've already created a joint with
 # Key: the other Sheep, Value: the PinJoint2D created by this sphere
 var jointed_bodies: Dictionary = {}
-
+var can_be_glued = false
 var have_collided = false
 
 # Sheep throwing logic
@@ -32,6 +32,10 @@ func _ready():
 	# If we have a CollisionShape2D with a CircleShape, use its radius
 	if collision_shape and collision_shape.shape is CircleShape2D:
 		sphere_radius = collision_shape.shape.radius
+
+	#freeze after 5 seconds
+	#await get_tree().create_timer(5.0).timeout
+	#freeze = true
 
 # Calculate the intersection point between two circles
 func calculate_intersection_point(other_sphere: Sheep) -> Vector2:
@@ -88,6 +92,9 @@ func end_player_holding() -> void :
 	is_hold = false
 
 func _on_spheredetection_area_entered(area: Area2D) -> void:
+	if not can_be_glued:
+		return
+
 	have_collided = true
 
 	# Get the parent of the area (which should be the other sphere)

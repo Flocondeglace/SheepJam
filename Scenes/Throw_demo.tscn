@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3wtsk3ghnykj"]
+[gd_scene load_steps=8 format=3 uid="uid://b3wtsk3ghnykj"]
 
 [ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_d0d3y"]
 [ext_resource type="PackedScene" uid="uid://c0tqb21y7mr1e" path="res://Scenes/DraggingManager.tscn" id="1_qy3sg"]
 [ext_resource type="PackedScene" uid="uid://c1m7xa56kaexk" path="res://Scenes/sheep.tscn" id="2_qy3sg"]
+[ext_resource type="Script" uid="uid://d1d1cxst2asrv" path="res://Scripts/camera_2d.gd" id="4_yltbf"]
+[ext_resource type="Script" uid="uid://siey8tpwfjar" path="res://Scenes/gluing_zone.gd" id="5_3856g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qy3sg"]
 size = Vector2(1154, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12shr"]
+size = Vector2(363.5, 652)
 
 [node name="ThrowDemo" type="Node2D"]
 script = ExtResource("1_d0d3y")
@@ -47,6 +52,14 @@ position = Vector2(312, 535)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(568, 322)
+script = ExtResource("4_yltbf")
+
+[node name="GluingZone" type="Area2D" parent="."]
+script = ExtResource("5_3856g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GluingZone"]
+position = Vector2(963, 315)
+shape = SubResource("RectangleShape2D_12shr")
 
 [connection signal="mouse_entered" from="SheepsContainer/Sheep" to="SheepsContainer/Sheep" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="SheepsContainer/Sheep" to="SheepsContainer/Sheep" method="_on_mouse_exited"]
@@ -56,3 +69,4 @@ position = Vector2(568, 322)
 [connection signal="mouse_exited" from="SheepsContainer/Sheep3" to="SheepsContainer/Sheep3" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="SheepsContainer/Sheep4" to="SheepsContainer/Sheep4" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="SheepsContainer/Sheep4" to="SheepsContainer/Sheep4" method="_on_mouse_exited"]
+[connection signal="body_entered" from="GluingZone" to="GluingZone" method="_on_body_entered"]
