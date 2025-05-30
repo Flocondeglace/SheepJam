@@ -1,6 +1,8 @@
 extends RigidBody2D
 class_name Sheep
 
+signal should_respawn(Sheep)
+
 # Sheep gluing logic variable
 
 # Export a variable for radius so it's easily accessible and can be set if not using CircleShape2D
@@ -103,6 +105,7 @@ func start_player_holding() -> void:
 	
 func end_player_holding() -> void :
 	animation_player_sprite.play("Idle")
+	animation_effect_mouton.stop()
 	is_hold = false
 
 func _on_spheredetection_area_entered(area: Area2D) -> void:
@@ -176,3 +179,18 @@ func create_reciprocal_joint(initiator_body: Sheep, anchor_local_pos_on_me: Vect
 # Optional: A getter for external checks
 func get_jointed_bodies() -> Dictionary:
 	return jointed_bodies
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	if !have_collided:
+		should_respawn.emit(self)
+
+func force_position(pos: Vector2):
+	PhysicsServer2D.body_set_state(
+		self.get_rid(),
+		PhysicsServer2D.BODY_STATE_TRANSFORM,
+		Transform2D.IDENTITY.translated(pos)
+	)
+	# Reset Force
+	self.linear_velocity = Vector2.ZERO
+	self.angular_velocity = 0.0
+	

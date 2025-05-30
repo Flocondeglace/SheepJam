@@ -58,7 +58,6 @@ func launch_sheep():
 		var direction: Vector2 = mean_speed(mouse_positions_to_consider)
 		var direction_2: Vector2 = Vector2(sign(direction.x)*direction.x**2, sign(direction.y)*direction.y**2)
 		var force : Vector2 = clip_vector2(direction_2*throwing_force, Vector2(-max_force, -max_force), Vector2(max_force, max_force))
-		print(force)
 		holding_sheep.launch(force)
 	holding_sheep = null
 
