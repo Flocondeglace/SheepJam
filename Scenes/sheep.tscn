@@ -10,7 +10,7 @@ radius = 49.0102
 radius = 53.0377
 
 [node name="Sheep" type="RigidBody2D"]
-mass = 0.1
+input_pickable = true
 contact_monitor = true
 max_contacts_reported = 4
 script = ExtResource("1_35w1j")

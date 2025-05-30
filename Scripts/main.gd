@@ -50,7 +50,3 @@ func get_highest_sheep_y():
 			if sheep.global_position.y < highest_sheep_y:
 				highest_sheep_y = sheep.global_position.y
 	return highest_sheep_y
-
-func _on_timer_timeout() -> void:
-	#spawn_sheep(get_global_mouse_position())
-	return

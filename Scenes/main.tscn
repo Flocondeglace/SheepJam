@@ -14,12 +14,3 @@ position = Vector2(529, 648)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_epypp")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.3
-autostart = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(568, 322)
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

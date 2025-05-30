@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3wtsk3ghnykj"]
+
+[ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_d0d3y"]
+[ext_resource type="PackedScene" uid="uid://c0tqb21y7mr1e" path="res://Scenes/DraggingManager.tscn" id="1_qy3sg"]
+[ext_resource type="PackedScene" uid="uid://c1m7xa56kaexk" path="res://Scenes/sheep.tscn" id="2_qy3sg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qy3sg"]
+size = Vector2(1154, 27)
+
+[node name="ThrowDemo" type="Node2D"]
+script = ExtResource("1_d0d3y")
+
+[node name="DraggingManager" parent="." node_paths=PackedStringArray("sheeps_container") instance=ExtResource("1_qy3sg")]
+position = Vector2(415, 3)
+sheeps_container = NodePath("../SheepsContainer")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(275, 632)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(301, 3.5)
+shape = SubResource("RectangleShape2D_qy3sg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(865, -154)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_qy3sg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-279, -124)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_qy3sg")
+
+[node name="SheepsContainer" type="Node2D" parent="."]
+
+[node name="Sheep" parent="SheepsContainer" instance=ExtResource("2_qy3sg")]
+position = Vector2(149, 541)
+
+[node name="Sheep2" parent="SheepsContainer" instance=ExtResource("2_qy3sg")]
+position = Vector2(864, 531)
+
+[node name="Sheep3" parent="SheepsContainer" instance=ExtResource("2_qy3sg")]
+position = Vector2(1021, 519)
+
+[node name="Sheep4" parent="SheepsContainer" instance=ExtResource("2_qy3sg")]
+position = Vector2(312, 535)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(568, 322)
+
+[connection signal="mouse_entered" from="SheepsContainer/Sheep" to="SheepsContainer/Sheep" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SheepsContainer/Sheep" to="SheepsContainer/Sheep" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="SheepsContainer/Sheep2" to="SheepsContainer/Sheep2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SheepsContainer/Sheep2" to="SheepsContainer/Sheep2" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="SheepsContainer/Sheep3" to="SheepsContainer/Sheep3" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SheepsContainer/Sheep3" to="SheepsContainer/Sheep3" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="SheepsContainer/Sheep4" to="SheepsContainer/Sheep4" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SheepsContainer/Sheep4" to="SheepsContainer/Sheep4" method="_on_mouse_exited"]

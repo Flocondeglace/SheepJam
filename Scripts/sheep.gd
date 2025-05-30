@@ -1,17 +1,31 @@
 extends RigidBody2D
 class_name Sheep
 
+# Sheep gluing logic variable
+
 # Export a variable for radius so it's easily accessible and can be set if not using CircleShape2D
 @export var sphere_radius: float = 25.0
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D # Adjust path if named differently
-@onready var sphere_detection: Area2D = $SphereDetection # Area for detecting other sheep
+@onready var sphere_detection: Area2D = $spheredetection
 
+@onready var sprite_2d: Sprite2D = $Sprite2D
 # Dictionary to keep track of bodies we've already created a joint with
 # Key: the other Sheep, Value: the PinJoint2D created by this sphere
 var jointed_bodies: Dictionary = {}
 
 var have_collided = false
+
+# Sheep throwing logic
+
+signal behh
+
+var mouse_hovering : bool = false
+var is_hold : bool = false
+var time_sickness : float = 5.0
+var max_time_sickness : float = 5
+
+
 
 func _ready():
 
@@ -39,6 +53,39 @@ func calculate_intersection_point(other_sphere: Sheep) -> Vector2:
 	var y3 = P2.y - h * (other_sphere.global_position.x - global_position.x) / d
 	
 	return Vector2(x3, y3)
+
+
+
+func _process(delta: float) -> void:
+	if is_hold:
+		time_sickness += delta
+		time_sickness = clamp(time_sickness, 0, max_time_sickness)
+		var color_sheep = lerp(Color(1,1,1), Color(0,1,0), time_sickness/max_time_sickness)
+		sprite_2d.modulate = color_sheep
+		self.linear_velocity = Vector2.ZERO
+		self.angular_velocity = 0.0
+
+func launch(direction: Vector2):
+	self.apply_impulse(direction)
+	end_player_holding()
+
+func is_under_mouse():
+	return mouse_hovering
+
+func _on_mouse_entered() -> void:
+	print("mousein")
+	mouse_hovering = true
+
+func _on_mouse_exited() -> void:
+	print("mouseout")
+	mouse_hovering = false
+
+func start_player_holding() -> void:
+	time_sickness = 0
+	is_hold = true
+	
+func end_player_holding() -> void :
+	is_hold = false
 
 func _on_spheredetection_area_entered(area: Area2D) -> void:
 	have_collided = true

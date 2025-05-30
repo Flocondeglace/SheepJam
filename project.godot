@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="SheepJam"
-run/main_scene="uid://cv4hfb8fwin8n"
+run/main_scene="uid://b3wtsk3ghnykj"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Sprites/icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/softbody2d/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 
@@ -25,4 +25,12 @@ folder_colors={
 "res://Scenes/": "yellow",
 "res://Scripts/": "red",
 "res://Sprites/": "teal"
+}
+
+[input]
+
+click={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(118, 22),"global_position":Vector2(127, 70),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":true,"script":null)
+]
 }
