@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1m7xa56kaexk"]
+
+[ext_resource type="Script" uid="uid://cgvjpn6btim8h" path="res://sheep.gd" id="1_xqjq8"]
+[ext_resource type="Texture2D" uid="uid://cuddvskyxondn" path="res://icon.svg" id="2_qhocy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0e48y"]
+radius = 49.0102
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_veubm"]
+radius = 53.0377
+
+[node name="Sheep" type="RigidBody2D"]
+mass = 0.1
+contact_monitor = true
+max_contacts_reported = 4
+script = ExtResource("1_xqjq8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0e48y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, -9.53674e-07)
+scale = Vector2(0.0667539, 0.0667539)
+texture = ExtResource("2_qhocy")
+
+[node name="spheredetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spheredetection"]
+shape = SubResource("CircleShape2D_veubm")
+
+[connection signal="area_entered" from="spheredetection" to="." method="_on_spheredetection_area_entered"]

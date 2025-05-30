@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="SheepJam"
+run/main_scene="uid://cv4hfb8fwin8n"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/softbody2d/plugin.cfg")
