@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://h0gqb2357037"]
+
+[ext_resource type="Script" uid="uid://cpp8bwic6stw8" path="res://Scripts/sheep_manager.gd" id="1_jpygx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptiwi"]
+size = Vector2(351, 20)
+
+[node name="SheepManager" type="Node" node_paths=PackedStringArray("sheeps_container")]
+script = ExtResource("1_jpygx")
+sheeps_container = NodePath("")
+
+[node name="Balloon" type="StaticBody2D" parent="."]
+position = Vector2(14, 820)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Balloon"]
+position = Vector2(165.5, 0)
+shape = SubResource("RectangleShape2D_ptiwi")
+
+[node name="SpawningPositionsContainer" type="Node2D" parent="Balloon"]
+
+[node name="Marker2D" type="Marker2D" parent="Balloon/SpawningPositionsContainer"]
+position = Vector2(56, -51)
+
+[node name="Marker2D2" type="Marker2D" parent="Balloon/SpawningPositionsContainer"]
+position = Vector2(120, -51)
+
+[node name="Marker2D3" type="Marker2D" parent="Balloon/SpawningPositionsContainer"]
+position = Vector2(181, -51)
+
+[node name="BalloonPosX" type="Node" parent="."]
+
+[node name="Marker2DLeft" type="Marker2D" parent="BalloonPosX"]
+position = Vector2(50, 600)
+
+[node name="Marker2DRight" type="Marker2D" parent="BalloonPosX"]
+position = Vector2(1625, 600)
