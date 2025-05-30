@@ -17,13 +17,13 @@ func _process(delta):
 		highest_sheep_y = get_highest_sheep_y()
 		if highest_sheep_y < initial_camera_y:
 			camera_2d.position.y = lerp(camera_2d.position.y, highest_sheep_y, 0.1)
-			print("Lerping camera y: ", camera_2d.position.y)
+			# print("Lerping camera y: ", camera_2d.position.y)
 		else:
 			camera_2d.position.y = lerp(camera_2d.position.y, initial_camera_y, 0.1)
-			print("Lerping camera y: ", camera_2d.position.y)
+			# print("Lerping camera y: ", camera_2d.position.y)
 
-	print("Camera y: ", camera_2d.position.y)
-	print("Highest sheep y: ", highest_sheep_y)
+	# print("Camera y: ", camera_2d.position.y)
+	# print("Highest sheep y: ", highest_sheep_y)
 
 
 func _unhandled_input(event: InputEvent):

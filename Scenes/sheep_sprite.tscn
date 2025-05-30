@@ -1,14 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1m7xa56kaexk"]
+[gd_scene load_steps=7 format=4 uid="uid://d7tdpk76f7ou"]
 
-[ext_resource type="Script" uid="uid://cgvjpn6btim8h" path="res://Scripts/sheep.gd" id="1_35w1j"]
-[ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="3_okt0m"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35w1j"]
-radius = 16.0
-height = 40.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_veubm"]
-radius = 23.0
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_y32ns"]
+_data = PackedByteArray("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")
+size_override = Vector2(5184, 64)
 
 [sub_resource type="Animation" id="Animation_0hol4"]
 length = 0.1
@@ -82,68 +76,12 @@ _data = {
 &"Walking": SubResource("Animation_0e48y")
 }
 
-[sub_resource type="Animation" id="Animation_okt0m"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_35w1j"]
-resource_name = "Sickness"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 0.831373, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_dlixe"]
-resource_name = "Coming"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dlixe"]
-_data = {
-&"Coming": SubResource("Animation_dlixe"),
-&"RESET": SubResource("Animation_okt0m"),
-&"Sickness": SubResource("Animation_35w1j")
-}
-
-[node name="Sheep" type="RigidBody2D"]
-input_pickable = true
-contact_monitor = true
-max_contacts_reported = 4
-script = ExtResource("1_35w1j")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_35w1j")
-
-[node name="spheredetection" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spheredetection"]
-shape = SubResource("CircleShape2D_veubm")
+[node name="SheepSprite" type="Node2D"]
 
 [node name="Mouton" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -23.275)
-texture = ExtResource("3_okt0m")
+texture = SubResource("PortableCompressedTexture2D_y32ns")
 hframes = 81
-frame = 72
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -163,15 +101,8 @@ metadata/_aseprite_wizard_config_ = {
 }
 metadata/_aseprite_wizard_source_file_hash_ = "a651a94b4d889d5aaaf4312c673a2447"
 
-[node name="AnimationSpriteMouton" type="AnimationPlayer" parent="Mouton"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Mouton"]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_q6r6c")
 }
-
-[node name="AnimationEffectMouton" type="AnimationPlayer" parent="Mouton"]
-libraries = {
-&"": SubResource("AnimationLibrary_dlixe")
-}
-
-[connection signal="area_entered" from="spheredetection" to="." method="_on_spheredetection_area_entered"]
