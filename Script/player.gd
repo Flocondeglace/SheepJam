@@ -32,6 +32,7 @@ func select_sheep() -> Node2D:
 	var sheeps = sheeps_container.get_children()
 	for sheep : Sheep2 in sheeps:
 		if sheep.is_under_mouse():
+			sheep.start_player_holding()
 			return sheep
 	return null
 
@@ -56,11 +57,9 @@ func launch_sheep():
 		var mouse_positions_to_consider : Array[Vector2] = mouse_positions.slice(-10, mouse_positions.size()-1)
 		var direction: Vector2 = mean_speed(mouse_positions_to_consider)
 		var direction_2: Vector2 = Vector2(sign(direction.x)*direction.x**2, sign(direction.y)*direction.y**2)
-		holding_sheep.linear_velocity = Vector2.ZERO
-		holding_sheep.angular_velocity = 0.0
 		var force : Vector2 = clip_vector2(direction_2*throwing_force, Vector2(-max_force, -max_force), Vector2(max_force, max_force))
 		print(force)
-		holding_sheep.move(force)
+		holding_sheep.launch(force)
 	holding_sheep = null
 
 

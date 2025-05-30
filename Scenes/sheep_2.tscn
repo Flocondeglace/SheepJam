@@ -1,8 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0a4li6n32lfv"]
+[gd_scene load_steps=5 format=3 uid="uid://d0a4li6n32lfv"]
 
 [ext_resource type="Script" uid="uid://bxlsq3qlyfqt3" path="res://Script/sheep_2.gd" id="1_0a23y"]
+[ext_resource type="Texture2D" uid="uid://chxee6nyrrr8k" path="res://Sprites/sheep.png" id="2_0f6cv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yltbf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0f6cv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0f6cv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Sheep2" type="RigidBody2D"]
 input_pickable = true
@@ -11,6 +23,15 @@ script = ExtResource("1_0a23y")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_yltbf")
 debug_color = Color(0, 0.639034, 0.370408, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_0f6cv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_0f6cv")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
