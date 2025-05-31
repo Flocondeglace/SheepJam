@@ -25,6 +25,7 @@ func _process(_delta: float) -> void:
 			mouse_positions = []
 	if holding_sheep:
 		if Input.is_action_just_released("click"):
+			print("Releasing sheep due to click release")
 			launch_sheep()
 			
 
@@ -65,4 +66,5 @@ func launch_sheep():
 
 func _on_throwing_zone_mouse_exited() -> void:
 	if holding_sheep:
+		print("Launching sheep due to mouse exited the throwing zone")
 		launch_sheep()
