@@ -46,12 +46,10 @@ var color_balloon
 func _process(_delta: float) -> void:
 	if !using_balloon:
 		if camera_2d.position.y < -200 :
-			print("Switch to balloon")
 			using_balloon = true
 	
 	if sheeps_arrived && !check_still_sheep_in_spawn():
 		is_spawning_left = !is_spawning_left
-		print("New Spawn")
 		if using_balloon:
 			make_balloon_disappear()
 			balloon_appear()
@@ -87,7 +85,6 @@ func balloon_appear():
 	color_balloon = colors_balloon.pick_random()
 	back_balloon_sprite.modulate = color_balloon
 	sheeps_arrived = false
-	print("Balloon appear")
 	if is_spawning_left:
 		balloon.position.x = camera_2d.position.x - camera_2d.get_viewport_rect().size.x*space_border_balloon
 	else:
@@ -128,14 +125,12 @@ func move_balloon():
 	var pos_cam : Vector2 = camera_2d.get_screen_center_position()
 	var size_viewport : Vector2 = camera_2d.get_viewport_rect().size
 	var goal_pos_balloon_global = pos_cam.y - size_viewport.y/2 + goal_pos_balloon
-	print(pos_cam.y)
-	print(balloon.position.y)
+
 	if !sheeps_arrived:
 		if abs(goal_pos_balloon_global - balloon.position.y) < epsilon_pos:
 			sheeps_arrived = true
 			for sheep in sheep_in_spawning_area:
 				sheep.on_arrived()
-			print("sheep arrived")
 		
 	if sheeps_arrived:
 		balloon.position.y = lerp(balloon.position.y, goal_pos_balloon_global, 0.1)

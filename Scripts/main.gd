@@ -57,31 +57,36 @@ func update_progress_percentage():
 
 
 func update_camera_zoom_and_y_pos():
-	var center_pos = (current_highest_sheep_y - 300 + ground_y + 20) / 2
+
+
+	if progress_percentage > 1 :
+		camera_2d.zoom = lerp(camera_2d.zoom, Vector2(1,1), 0.1)
+		camera_2d.position.y = lerp(camera_2d.position.y, -3280.0, 0.1)
+		return
+
+	var center_pos = (current_highest_sheep_y - 150 + ground_y + 20) / 2
 	var camera_view_size = camera_2d.get_viewport_rect().size
 
 	#calculate the zoom to fit the camera view between up_pos and down_pos
 	# we know that camera_real_size = camera_view_size / camera_zoom 
 	
-	var zoom = camera_view_size.y / (ground_y+ 20-(current_highest_sheep_y-300))
+	var zoom = camera_view_size.y / (ground_y+ 20-(current_highest_sheep_y-150))
 
 	if zoom < 1 and zoom > max_zoom :
 
 		#set camera y pos
 		if center_pos > initial_camera_y:
 			center_pos = initial_camera_y
-		camera_2d.position.y = center_pos
+		camera_2d.position.y = lerp(camera_2d.position.y, center_pos, 0.1)
 
 		#set camera zoom
 		if zoom < 1:
-			camera_2d.zoom = Vector2(zoom,zoom)
+			camera_2d.zoom = lerp(camera_2d.zoom, Vector2(zoom,zoom), 0.1)
 	# D
-	elif zoom < 1 :
+	elif zoom < 1 and progress_percentage < 1 :
 		zoom = max_zoom
-		camera_2d.zoom = Vector2(zoom,zoom) 
-		camera_2d.position.y = lerp(camera_2d.position.y, current_highest_sheep_y-250, 0.1)
-
-
+		camera_2d.zoom = lerp(camera_2d.zoom, Vector2(zoom,zoom), 0.1)
+		camera_2d.position.y = lerp(camera_2d.position.y, current_highest_sheep_y+150, 0.1)
 
 
 func update_score():
