@@ -153,7 +153,7 @@ size = Vector2(3000, 27.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12shr"]
 size = Vector2(363.5, 6426)
 
-[node name="ThrowDemo" type="Node2D"]
+[node name="Menu" type="Node2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -4216.0
