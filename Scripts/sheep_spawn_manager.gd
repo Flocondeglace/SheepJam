@@ -168,16 +168,20 @@ func _on_sheep_should_respawn(sheep:Sheep):
 				
 func _on_area_goal_pos_w_body_entered_left(body: Node2D) -> void:
 	if is_spawning_left:
-		if body is Sheep:
-			sheeps_arrived = true
-			respawning_position = body.position
-			for sheep in sheep_in_spawning_area:
-				sheep.on_arrived()
+		for s in sheep_in_spawning_area:
+			if s == body:
+				sheeps_arrived = true
+				respawning_position = body.position
+				for sheep in sheep_in_spawning_area:
+					sheep.on_arrived()
+				return
 
 func _on_area_goal_pos_w_body_entered_right(body: Node2D) -> void:
 	if !is_spawning_left:
-		if body is Sheep:
-			sheeps_arrived = true
-			respawning_position = body.position
-			for sheep in sheep_in_spawning_area:
-				sheep.on_arrived()
+		for s in sheep_in_spawning_area:
+			if s == body:
+				sheeps_arrived = true
+				respawning_position = body.position
+				for sheep in sheep_in_spawning_area:
+					sheep.on_arrived()
+				return
