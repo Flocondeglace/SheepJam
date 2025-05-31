@@ -8,6 +8,14 @@ class_name Sheep
 
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D # Adjust path if named differently
 @onready var sphere_detection: Area2D = $spheredetection
+@onready var collision_shape_gluing: CollisionShape2D = $spheredetection/CollisionShape2D
+
+const BIGSHEEPCOLID = preload("res://Scenes/bigsheepcolid.tres")
+const SMALLSHEEPCOLID = preload("res://Scenes/smallsheepcolid.tres")
+var big_sheep_col_glue_size = Vector2(16,-128)
+var normal_sheep_col_glue_size = Vector2(8,-64)
+
+@export var is_big_sheep: bool = false
 
 # Sheep animation
 @onready var sprite_2d: Sprite2D = $Mouton
@@ -40,6 +48,25 @@ func _ready():
 	if collision_shape and collision_shape.shape is CircleShape2D:
 		sphere_radius = collision_shape.shape.radius
 
+	#load the collision shape size from the normal_sheep_col_glue_size or big_sheep_col_glue_size
+	if is_big_sheep:
+		collision_shape.shape = BIGSHEEPCOLID
+		#create new shape capsule
+		var capsule_shape = CapsuleShape2D.new()
+		#get value of bigsheepcolid
+		capsule_shape.radius = BIGSHEEPCOLID.radius + 10
+		capsule_shape.height = BIGSHEEPCOLID.height + 10
+		collision_shape_gluing.shape = capsule_shape
+		sprite_2d.position = big_sheep_col_glue_size
+		sprite_2d.scale = Vector2(8,8)
+	else:
+		collision_shape.shape = SMALLSHEEPCOLID
+		var capsule_shape = CapsuleShape2D.new()
+		capsule_shape.radius = SMALLSHEEPCOLID.radius + 10
+		capsule_shape.height = SMALLSHEEPCOLID.height + 10
+		collision_shape_gluing.shape = capsule_shape
+		sprite_2d.position = normal_sheep_col_glue_size
+		sprite_2d.scale = Vector2(4,4)
 	#freeze after 5 seconds
 	#await get_tree().create_timer(5.0).timeout
 	#freeze = true
@@ -170,6 +197,7 @@ func create_reciprocal_joint(initiator_body: Sheep, anchor_local_pos_on_me: Vect
 	if initiator_body in jointed_bodies:
 		return
 
+	have_collided = true
 	var reciprocal_joint = PinJoint2D.new()
 	reciprocal_joint.name = "JointTo" + initiator_body.name
 	

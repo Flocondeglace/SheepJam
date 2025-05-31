@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://3phxlpjqww50"]
+
+[ext_resource type="Shader" uid="uid://dti7bu50ccyyh" path="res://Scenes/sheep.gdshader" id="1_o516x"]
+
+[resource]
+shader = ExtResource("1_o516x")
+shader_parameter/pal_source_1 = Color(1, 0.929, 0.894, 1)
+shader_parameter/pal_source_2 = Color(0.957, 0.855, 0.804, 1)
+shader_parameter/pal_source_3 = Color(0.894, 0.769, 0.706, 1)
+shader_parameter/pal_source_4 = Color(1, 0.969, 0.929, 1)
+shader_parameter/pal_swap_1 = Color(1, 0, 0, 1)
+shader_parameter/pal_swap_2 = Color(0, 1, 0, 1)
+shader_parameter/pal_swap_3 = Color(1, 1, 0, 1)
+shader_parameter/pal_swap_4 = Color(0, 0, 0, 1)
