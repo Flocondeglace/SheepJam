@@ -1,4 +1,4 @@
-[gd_scene load_steps=765 format=3 uid="uid://b3wtsk3ghnykj"]
+[gd_scene load_steps=766 format=3 uid="uid://b3wtsk3ghnykj"]
 
 [ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_4f4ik"]
 [ext_resource type="PackedScene" uid="uid://b2ik8irb8x17y" path="res://Scenes/mouton_master.tscn" id="2_0iyqm"]
@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://cw4lcwt06y62s" path="res://Sprites/03.png" id="31_dwhu0"]
 [ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="32_nojon"]
 [ext_resource type="Shader" uid="uid://06goe1dyyb13" path="res://Shaders/Menu.gdshader" id="33_khs3t"]
+[ext_resource type="Theme" uid="uid://ufalnbio1xiu" path="res://theme.tres" id="34_jn8rg"]
 
 [sub_resource type="Gradient" id="Gradient_38qqd"]
 offsets = PackedFloat32Array(0, 0.541667, 0.809524, 1)
@@ -5488,7 +5489,8 @@ colors_balloon = Array[Color]([Color(0.912263, 0.504888, 0.307493, 1), Color(0.5
 space_between_spawned_sheep = 150.0
 number_spawn_sheep_walking = 2
 number_spawn_sheep_flying = 2
-proba_big_sheep = 0.5
+space_border_balloon = 0.9
+proba_big_sheep = 0.9
 
 [node name="SpawningPositionWalkingRight" type="Marker2D" parent="SheepSpawnManager"]
 position = Vector2(1694, 556)
@@ -5646,12 +5648,14 @@ position = Vector2(1231, 569)
 position = Vector2(1231, 44)
 
 [node name="Score" type="Label" parent="CanvasLayer"]
-offset_left = 398.0
-offset_top = 6.0
-offset_right = 665.0
-offset_bottom = 63.0
+offset_left = 36.0
+offset_top = 32.0
+offset_right = 632.0
+offset_bottom = 89.0
+theme = ExtResource("34_jn8rg")
 theme_override_font_sizes/font_size = 41
-text = "Lorem IPSUM"
+text = "Launch a sheep !"
+vertical_alignment = 1
 
 [node name="Transition" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_krje8")

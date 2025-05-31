@@ -89,9 +89,9 @@ func balloon_appear():
 	sheeps_arrived = false
 	print("Balloon appear")
 	if is_spawning_left:
-		balloon.position.x = camera_2d.position.x - camera_2d.get_viewport_rect().size.x/2 + space_border_balloon
+		balloon.position.x = camera_2d.position.x - camera_2d.get_viewport_rect().size.x*space_border_balloon
 	else:
-		balloon.position.x = camera_2d.position.x + camera_2d.get_viewport_rect().size.x/2 - space_border_balloon
+		balloon.position.x = camera_2d.position.x + camera_2d.get_viewport_rect().size.x*space_border_balloon
 
 	balloon.position.y = camera_2d.position.y - camera_2d.get_viewport_rect().size.y/2 - start_pos_balloon
 	# Sheep appear

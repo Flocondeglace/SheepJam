@@ -226,7 +226,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	is_in_screen = false
 	if !have_collided:
 		# si le mouton est sorti pendant trop longtemps, il ne reviendra pas
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(2.0).timeout
 		if !is_in_screen:
 			should_respawn.emit(self)
 
