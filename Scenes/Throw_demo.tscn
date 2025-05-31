@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b3wtsk3ghnykj"]
+[gd_scene load_steps=29 format=3 uid="uid://b3wtsk3ghnykj"]
 
 [ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_d0d3y"]
 [ext_resource type="PackedScene" uid="uid://c0tqb21y7mr1e" path="res://Scenes/DraggingManager.tscn" id="1_qy3sg"]
@@ -45,9 +45,21 @@ size = Vector2(411, 24)
 
 [sub_resource type="Theme" id="Theme_jpea4"]
 
+[sub_resource type="Gradient" id="Gradient_epud0"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cyrjx"]
+gradient = SubResource("Gradient_epud0")
+width = 1
+
+[sub_resource type="Gradient" id="Gradient_jpea4"]
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_epud0"]
+gradient = SubResource("Gradient_jpea4")
+
 [node name="ThrowDemo" type="Node2D"]
 script = ExtResource("1_d0d3y")
-camera_freeze_height = 20.0
+camera_freeze_height = 200.0
 score_to_meters = 50.0
 loosing_height = 999.0
 
@@ -326,15 +338,37 @@ theme = SubResource("Theme_jpea4")
 texture = ExtResource("17_kgxgr")
 stretch_mode = 1
 
-[node name="Mouton" type="Sprite2D" parent="CanvasLayer/SheepScore"]
+[node name="TextureRect5" type="TextureRect" parent="CanvasLayer/Control"]
+clip_children = 1
+layout_mode = 2
+offset_left = 1219.0
+offset_top = 592.0
+offset_right = 1772.0
+offset_bottom = 616.0
+rotation = -1.5708
+texture = SubResource("GradientTexture1D_cyrjx")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/TextureRect5"]
+modulate = Color(1, 1, 1, 0.670588)
+layout_mode = 2
+offset_right = 553.0
+offset_bottom = 24.0
+texture = SubResource("GradientTexture1D_epud0")
+
+[node name="Container" type="Container" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Mouton" type="Sprite2D" parent="CanvasLayer/Control"]
 texture_filter = 1
 position = Vector2(1241, 547)
 scale = Vector2(2, 2)
 texture = ExtResource("16_v6834")
 hframes = 74
 
-[node name="basslidder" type="Marker2D" parent="CanvasLayer/SheepScore"]
-position = Vector2(1230, 582)
+[node name="basslidder" type="Marker2D" parent="CanvasLayer/Control"]
+position = Vector2(1231, 569)
 
 [node name="hautslider" type="Marker2D" parent="CanvasLayer/SheepScore"]
 position = Vector2(1231, 44)

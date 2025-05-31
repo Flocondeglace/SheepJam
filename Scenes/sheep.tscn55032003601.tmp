@@ -136,7 +136,6 @@ physics_material_override = SubResource("PhysicsMaterial_35w1j")
 contact_monitor = true
 max_contacts_reported = 4
 script = ExtResource("1_35w1j")
-is_big_sheep = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
@@ -187,13 +186,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_dlixe")
 }
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(-23, -47)
-scale = Vector2(2.3, 2.1)
-rect = Rect2(0, 0, 20, 20)
-
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="area_entered" from="spheredetection" to="." method="_on_spheredetection_area_entered"]
-[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

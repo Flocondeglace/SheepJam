@@ -3,6 +3,7 @@ extends Control
 @onready var basslidder: Marker2D = $basslidder
 @onready var hautslider: Marker2D = $hautslider
 @onready var root: Node2D = $"../.."
+@onready var mask: TextureRect = $TextureRect5
 
 var y_max = 100
 var y_min = 0
@@ -14,8 +15,5 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	var progress_percentage = root.progress_percentage
 	var y_progress = y_min + (y_max - y_min) * progress_percentage
-	# print("Le y min est ",y_min)
-	# print("Le y max est ",y_max)
-	# print("Le progress percentage est ",progress_percentage)
-	# print("Le y progress est ",y_progress)
 	mouton.position.y = y_progress
+	mask.size.x = abs((y_max - y_min) * progress_percentage)-10

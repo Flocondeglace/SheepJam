@@ -37,28 +37,23 @@ func _process(_delta):
 	
 	#if current_highest_sheep_y+120 < initial_camera_y:
 		
-	#	
-	#else:
-	#	camera_2d.position.y = lerp(camera_2d.position.y, initial_camera_y, 0.1)
-	
-	sheeps_container.freeze_sheep_under_height(current_highest_sheep_y+camera_freeze_height)
-
-	update_score()
-	update_camera_zoom_and_y_pos()
-
-	update_progress_percentage()
+		#if current_highest_sheep_y+120 < initial_camera_y:
+			
+		#	
+		#else:
+		#	camera_2d.position.y = lerp(camera_2d.position.y, initial_camera_y, 0.1)
+		if highest_sheep_y != 9999:
+			sheeps_container.freeze_sheep_under_height(current_highest_sheep_y+camera_freeze_height)
+			update_score()
+			update_camera_zoom_and_y_pos()
+			update_progress_percentage()
 
 func update_progress_percentage():
-	#print("current_highest_sheep_y",current_highest_sheep_y)
-	#print("max_height",max_height)
 	var progress_distance = current_highest_sheep_y - ground_y
 	progress_percentage = progress_distance / max_height
-	#print("progress_percentage",progress_percentage)
 
 
 func update_camera_zoom_and_y_pos():
-	if current_highest_sheep_y == 9999 :
-		return
 	var center_pos = (current_highest_sheep_y - 300 + ground_y + 20) / 2
 	var camera_view_size = camera_2d.get_viewport_rect().size
 
