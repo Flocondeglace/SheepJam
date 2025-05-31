@@ -1,11 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://b3wtsk3ghnykj"]
+[gd_scene load_steps=36 format=3 uid="uid://b3wtsk3ghnykj"]
 
 [ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_d0d3y"]
 [ext_resource type="PackedScene" uid="uid://c0tqb21y7mr1e" path="res://Scenes/DraggingManager.tscn" id="1_qy3sg"]
 [ext_resource type="Script" uid="uid://dluh6uggtp7mr" path="res://Scripts/sheeps_container.gd" id="3_12shr"]
 [ext_resource type="Script" uid="uid://d1d1cxst2asrv" path="res://Scripts/camera_2d.gd" id="4_yltbf"]
 [ext_resource type="Script" uid="uid://siey8tpwfjar" path="res://Scripts/gluing_zone.gd" id="5_3856g"]
-[ext_resource type="Script" uid="uid://cpp8bwic6stw8" path="res://Scripts/sheep_spawn_manager.gd" id="6_12shr"]
+[ext_resource type="Script" path="res://Scripts/sheep_spawn_manager.gd" id="6_12shr"]
 [ext_resource type="Texture2D" uid="uid://gjtt7l5abf4d" path="res://Sprites/Mongolfiere_Front.png" id="7_5g068"]
 [ext_resource type="Texture2D" uid="uid://75px3fbphgn0" path="res://Sprites/Background_0.png" id="7_38qqd"]
 [ext_resource type="AudioStream" uid="uid://nwwhfjl3lma0" path="res://Sounds/background_music.mp3" id="7_ptiwi"]
@@ -17,13 +17,13 @@
 [ext_resource type="Texture2D" uid="uid://dd7qd4e4b14n1" path="res://Sprites/Background_5.png" id="12_kgxgr"]
 [ext_resource type="Texture2D" uid="uid://cg40vgqvisog5" path="res://Sprites/Background_6.png" id="13_jpea4"]
 [ext_resource type="PackedScene" uid="uid://c1m7xa56kaexk" path="res://Scenes/sheep.tscn" id="13_k884u"]
-[ext_resource type="Script" path="res://Scripts/cosmonautespawner.gd" id="15_hnjg8"]
+[ext_resource type="Script" uid="uid://beyvq0jkoygay" path="res://Scripts/cosmonautespawner.gd" id="15_hnjg8"]
 [ext_resource type="Script" uid="uid://bykhpgeyvwslo" path="res://Scenes/control.gd" id="16_jpea4"]
 [ext_resource type="Script" uid="uid://c6b2heb0t0rs4" path="res://Scenes/mongolfiere_spawner.gd" id="16_tms0s"]
 [ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="16_v6834"]
 [ext_resource type="Texture2D" uid="uid://cw4lcwt06y62s" path="res://Sprites/03.png" id="17_kgxgr"]
 [ext_resource type="Texture2D" uid="uid://c5sbgbunrllf4" path="res://Sprites/00.png" id="17_v6834"]
-[ext_resource type="Script" uid="uid://dl0jyqc4qj0n3" path="res://Scripts/balloon_disappear.gd" id="19_djyfy"]
+[ext_resource type="Script" path="res://Scripts/balloon_disappear.gd" id="19_djyfy"]
 
 [sub_resource type="Gradient" id="Gradient_38qqd"]
 offsets = PackedFloat32Array(0, 0.541667, 0.809524, 1)
@@ -60,6 +60,7 @@ gradient = SubResource("Gradient_jpea4")
 [node name="ThrowDemo" type="Node2D"]
 script = ExtResource("1_d0d3y")
 camera_freeze_height = 200.0
+max_height = -4000
 score_to_meters = 50.0
 loosing_height = 999.0
 
@@ -216,6 +217,7 @@ colors_balloon = Array[Color]([Color(0.912263, 0.504888, 0.307493, 1), Color(0.5
 space_between_spawned_sheep = 150.0
 number_spawn_sheep_walking = 2
 number_spawn_sheep_flying = 2
+proba_big_sheep = 0.5
 
 [node name="SpawningPositionWalkingRight" type="Marker2D" parent="SheepSpawnManager"]
 position = Vector2(1694, 556)
@@ -293,7 +295,7 @@ position = Vector2(131, 448)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="SheepScore" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1278.0
@@ -301,7 +303,7 @@ offset_bottom = 722.0
 mouse_filter = 2
 script = ExtResource("16_jpea4")
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/SheepScore"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 1263.0
@@ -313,7 +315,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("17_v6834")
 stretch_mode = 1
 
-[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/SheepScore"]
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Control"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 1263.0
@@ -325,7 +327,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("17_v6834")
 stretch_mode = 1
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/SheepScore"]
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 1263.0
@@ -370,7 +372,7 @@ hframes = 74
 [node name="basslidder" type="Marker2D" parent="CanvasLayer/Control"]
 position = Vector2(1231, 569)
 
-[node name="hautslider" type="Marker2D" parent="CanvasLayer/SheepScore"]
+[node name="hautslider" type="Marker2D" parent="CanvasLayer/Control"]
 position = Vector2(1231, 44)
 
 [node name="Score" type="Label" parent="CanvasLayer"]

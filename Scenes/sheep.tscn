@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cgvjpn6btim8h" path="res://Scripts/sheep.gd" id="1_35w1j"]
 [ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="3_okt0m"]
-[ext_resource type="Script" uid="uid://bmuqxikw3aa4x" path="res://Scenes/spritesheep.gd" id="4_dlixe"]
+[ext_resource type="Script" path="res://Scenes/spritesheep.gd" id="4_dlixe"]
 [ext_resource type="Texture2D" uid="uid://cx7nbef4uiqn7" path="res://Sprites/Palettes.png" id="5_nqg6p"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_35w1j"]
@@ -136,7 +136,6 @@ physics_material_override = SubResource("PhysicsMaterial_35w1j")
 contact_monitor = true
 max_contacts_reported = 4
 script = ExtResource("1_35w1j")
-is_big_sheep = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
