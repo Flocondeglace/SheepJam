@@ -7,7 +7,7 @@ func _ready() -> void:
 	var random_color:Color=color_list[randi()%color_list.size()]
 	$MongolfiereBack.modulate=random_color
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	position.y -= 2
 
 

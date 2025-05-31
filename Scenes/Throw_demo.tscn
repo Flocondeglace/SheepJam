@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3wtsk3ghnykj"]
+[gd_scene load_steps=31 format=3 uid="uid://b3wtsk3ghnykj"]
 
 [ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_d0d3y"]
 [ext_resource type="PackedScene" uid="uid://c0tqb21y7mr1e" path="res://Scenes/DraggingManager.tscn" id="1_qy3sg"]
@@ -6,20 +6,20 @@
 [ext_resource type="Script" uid="uid://d1d1cxst2asrv" path="res://Scripts/camera_2d.gd" id="4_yltbf"]
 [ext_resource type="Script" uid="uid://siey8tpwfjar" path="res://Scripts/gluing_zone.gd" id="5_3856g"]
 [ext_resource type="Script" uid="uid://cpp8bwic6stw8" path="res://Scripts/sheep_spawn_manager.gd" id="6_12shr"]
-[ext_resource type="Texture2D" uid="uid://dq3lceq2ey3to" path="res://Sprites/Mongolfiere_Front.png" id="7_5g068"]
-[ext_resource type="AudioStream" uid="uid://nwwhfjl3lma0" path="res://Sounds/background_music.mp3" id="7_ptiwi"]
-[ext_resource type="Texture2D" uid="uid://bv8u2rpk2cbyr" path="res://Sprites/Mongolfiere_Back.png" id="8_6bgn6"]
-[ext_resource type="Script" path="res://Scripts/sheep_manager.gd" id="6_12shr"]
+[ext_resource type="Texture2D" uid="uid://gjtt7l5abf4d" path="res://Sprites/Mongolfiere_Front.png" id="7_5g068"]
 [ext_resource type="Texture2D" uid="uid://75px3fbphgn0" path="res://Sprites/Background_0.png" id="7_38qqd"]
+[ext_resource type="AudioStream" uid="uid://nwwhfjl3lma0" path="res://Sounds/background_music.mp3" id="7_ptiwi"]
+[ext_resource type="Texture2D" uid="uid://kr1u01c5yy6m" path="res://Sprites/Mongolfiere_Back.png" id="8_6bgn6"]
 [ext_resource type="Texture2D" uid="uid://10d7ndfe2535" path="res://Sprites/Background_1.png" id="8_u4wn8"]
 [ext_resource type="Texture2D" uid="uid://pghyxw5ftdi6" path="res://Sprites/Background_2.png" id="9_hnjg8"]
 [ext_resource type="Texture2D" uid="uid://cgj2b6a0ly8ov" path="res://Sprites/Background_3.png" id="10_tms0s"]
 [ext_resource type="Texture2D" uid="uid://dpwxyj87g6ig4" path="res://Sprites/Background_4.png" id="11_v6834"]
 [ext_resource type="Texture2D" uid="uid://dd7qd4e4b14n1" path="res://Sprites/Background_5.png" id="12_kgxgr"]
 [ext_resource type="Texture2D" uid="uid://cg40vgqvisog5" path="res://Sprites/Background_6.png" id="13_jpea4"]
-[ext_resource type="Script" uid="uid://beyvq0jkoygay" path="res://Scripts/cosmonautespawner.gd" id="15_hnjg8"]
+[ext_resource type="PackedScene" uid="uid://c1m7xa56kaexk" path="res://Scenes/sheep.tscn" id="13_k884u"]
+[ext_resource type="Script" path="res://Scripts/cosmonautespawner.gd" id="15_hnjg8"]
 [ext_resource type="Script" uid="uid://bykhpgeyvwslo" path="res://Scenes/control.gd" id="16_jpea4"]
-[ext_resource type="Script" uid="uid://c6b2heb0t0rs4" path="res://Scenes/mongolfiere_spawner.gd" id="16_tms0s"]
+[ext_resource type="Script" path="res://Scenes/mongolfiere_spawner.gd" id="16_tms0s"]
 [ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="16_v6834"]
 [ext_resource type="Texture2D" uid="uid://cw4lcwt06y62s" path="res://Sprites/03.png" id="17_kgxgr"]
 [ext_resource type="Texture2D" uid="uid://c5sbgbunrllf4" path="res://Sprites/00.png" id="17_v6834"]
@@ -32,17 +32,17 @@ colors = PackedColorArray(0.286488, 0.498043, 0.989517, 1, 0.169946, 0.100255, 0
 gradient = SubResource("Gradient_38qqd")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qy3sg"]
-size = Vector2(1979, 27)
+size = Vector2(3000, 27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12shr"]
 size = Vector2(363.5, 6426)
-
-[sub_resource type="Theme" id="Theme_jpea4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g068"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptiwi"]
 size = Vector2(246, 20)
+
+[sub_resource type="Theme" id="Theme_jpea4"]
 
 [node name="ThrowDemo" type="Node2D"]
 script = ExtResource("1_d0d3y")
@@ -168,7 +168,7 @@ sheeps_container = NodePath("../SheepsContainer")
 position = Vector2(272, 600)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(301, 3.5)
+position = Vector2(591.75, 3.5)
 shape = SubResource("RectangleShape2D_qy3sg")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
@@ -178,6 +178,14 @@ shape = SubResource("RectangleShape2D_qy3sg")
 
 [node name="SheepsContainer" type="Node2D" parent="."]
 script = ExtResource("3_12shr")
+
+[node name="Sheep" parent="SheepsContainer" instance=ExtResource("13_k884u")]
+position = Vector2(872, 540)
+freeze = true
+
+[node name="Sheep2" parent="SheepsContainer" instance=ExtResource("13_k884u")]
+position = Vector2(1034, 540)
+freeze = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(956, 363)
@@ -193,18 +201,15 @@ shape = SubResource("RectangleShape2D_12shr")
 [node name="SheepSpawnManager" type="Node" parent="." node_paths=PackedStringArray("sheeps_container")]
 script = ExtResource("6_12shr")
 sheeps_container = NodePath("../SheepsContainer")
-start_pos_balloon = 0.0
-goal_pos_walk = 50.0
-start_pos_walk = -500.0
-colors_balloon = Array[Color]([Color(1, 0.387955, 0.319725, 1), Color(0.286691, 0.501014, 1, 1), Color(0.223491, 1, 0.201554, 1)])
+colors_balloon = Array[Color]([Color(0.912263, 0.504888, 0.307493, 1), Color(0.563667, 0.232462, 0.637818, 1), Color(0.22889, 0.578916, 0.872933, 1)])
 space_between_spawned_sheep = 100.0
-number_spawn_sheep_walking = 2.0
+number_spawn_sheep_walking = 2
 
 [node name="SpawningPositionWalkingRight" type="Marker2D" parent="SheepSpawnManager"]
-position = Vector2(1931, 601)
+position = Vector2(1982, 556)
 
 [node name="GoalPositionWalkingRight" type="Marker2D" parent="SheepSpawnManager"]
-position = Vector2(1669, 601)
+position = Vector2(1669, 556)
 
 [node name="AreaGoalPosW" type="Area2D" parent="SheepSpawnManager/GoalPositionWalkingRight"]
 
@@ -212,10 +217,10 @@ position = Vector2(1669, 601)
 shape = SubResource("RectangleShape2D_5g068")
 
 [node name="SpawningPositionWalkingLeft" type="Marker2D" parent="SheepSpawnManager"]
-position = Vector2(-49, 601)
+position = Vector2(-139, 556)
 
 [node name="GoalPositionWalkingLeft" type="Marker2D" parent="SheepSpawnManager"]
-position = Vector2(171, 601)
+position = Vector2(636, 556)
 
 [node name="AreaGoalPosW" type="Area2D" parent="SheepSpawnManager/GoalPositionWalkingLeft"]
 
@@ -256,14 +261,6 @@ stream = ExtResource("7_ptiwi")
 autoplay = true
 parameters/looping = true
 
-[node name="Score" type="Label" parent="."]
-offset_left = 398.0
-offset_top = 6.0
-offset_right = 503.0
-offset_bottom = 29.0
-theme_override_font_sizes/font_size = 41
-text = "Lorem IPSUM"
-
 [node name="GroundMarker" type="Marker2D" parent="."]
 position = Vector2(536, 602)
 
@@ -272,7 +269,7 @@ position = Vector2(131, 448)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="SheepScore" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1278.0
@@ -280,7 +277,7 @@ offset_bottom = 722.0
 mouse_filter = 2
 script = ExtResource("16_jpea4")
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/SheepScore"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 1263.0
@@ -292,7 +289,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("17_v6834")
 stretch_mode = 1
 
-[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer/SheepScore"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 1263.0
@@ -304,7 +301,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("17_v6834")
 stretch_mode = 1
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/SheepScore"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 1263.0
@@ -317,31 +314,30 @@ theme = SubResource("Theme_jpea4")
 texture = ExtResource("17_kgxgr")
 stretch_mode = 1
 
-[node name="Mouton" type="Sprite2D" parent="CanvasLayer/Control"]
+[node name="Mouton" type="Sprite2D" parent="CanvasLayer/SheepScore"]
 texture_filter = 1
 position = Vector2(1241, 547)
 scale = Vector2(2, 2)
 texture = ExtResource("16_v6834")
 hframes = 74
 
-[node name="basslidder" type="Marker2D" parent="CanvasLayer/Control"]
+[node name="basslidder" type="Marker2D" parent="CanvasLayer/SheepScore"]
 position = Vector2(1230, 582)
 
-[node name="hautslider" type="Marker2D" parent="CanvasLayer/Control"]
+[node name="hautslider" type="Marker2D" parent="CanvasLayer/SheepScore"]
 position = Vector2(1231, 44)
 
-[node name="00" type="Sprite2D" parent="."]
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(978, -1784)
-scale = Vector2(2.65152, 1)
-texture = ExtResource("17_v6834")
-region_enabled = true
-region_rect = Rect2(8.75567, 0, 33.5124, 16)
+[node name="Score" type="Label" parent="CanvasLayer"]
+offset_left = 398.0
+offset_top = 6.0
+offset_right = 665.0
+offset_bottom = 63.0
+theme_override_font_sizes/font_size = 41
+text = "Lorem IPSUM"
 
 [connection signal="timeout" from="cosmonautespawner/Timer" to="cosmonautespawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="MongolfiereSpawner/Timer" to="MongolfiereSpawner" method="_on_timer_timeout"]
 [connection signal="body_entered" from="GluingZone" to="GluingZone" method="_on_body_entered"]
+[connection signal="body_exited" from="GluingZone" to="GluingZone" method="_on_body_exited"]
 [connection signal="body_entered" from="SheepSpawnManager/GoalPositionWalkingRight/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_body_entered"]
 [connection signal="body_entered" from="SheepSpawnManager/GoalPositionWalkingLeft/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_body_entered"]
-[connection signal="body_exited" from="GluingZone" to="GluingZone" method="_on_body_exited"]

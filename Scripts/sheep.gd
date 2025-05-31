@@ -25,11 +25,11 @@ var have_collided = false
 var is_free = false
 
 # Sheep throwing logic
-
 var mouse_hovering : bool = false
 var is_hold : bool = false
 var time_sickness : float = 5.0
 var max_time_sickness : float = 5
+var is_pickable : bool = false
 
 
 
@@ -98,7 +98,7 @@ func free_sheep():
 			joint.queue_free()
 	
 func is_under_mouse():
-	return mouse_hovering
+	return mouse_hovering && is_pickable && !have_collided
 
 func _on_mouse_entered() -> void:
 	mouse_hovering = true
@@ -206,3 +206,7 @@ func force_position(pos: Vector2):
 
 func look_left(b:bool):
 	sprite_2d.flip_h = b
+
+func on_arrived():
+	self.animation_player_sprite.play("Idle")
+	self.is_pickable = true

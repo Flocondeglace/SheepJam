@@ -9,10 +9,10 @@ bounce = 0.22
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35w1j"]
 radius = 65.0
-height = 170.0
+height = 132.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_veubm"]
-radius = 106.075
+radius = 80.0999
 
 [sub_resource type="Animation" id="Animation_0hol4"]
 length = 0.1
@@ -135,12 +135,14 @@ max_contacts_reported = 4
 script = ExtResource("1_35w1j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -25)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_35w1j")
 
 [node name="spheredetection" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spheredetection"]
+position = Vector2(0, -23)
 shape = SubResource("CircleShape2D_veubm")
 
 [node name="Mouton" type="Sprite2D" parent="."]
@@ -149,7 +151,6 @@ position = Vector2(1, -89)
 scale = Vector2(4, 4)
 texture = ExtResource("3_okt0m")
 hframes = 81
-frame = 80
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }

@@ -1,6 +1,6 @@
 extends Sprite2D
 var can_be_destroyed:bool=false
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	position.x+=2
 
 

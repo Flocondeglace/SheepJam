@@ -19,7 +19,7 @@ var highest_score = 0
 var progress_percentage = 0
 @export var max_height = -2000
 @export var score_to_meters: float = 100
-@onready var score: Label = $Score
+@onready var score: Label = $CanvasLayer/Score
 @onready var ground_marker: Marker2D = $GroundMarker
 
 @export var loosing_height: float = 100
@@ -96,7 +96,7 @@ func update_score():
 	
 	if score_meters > highest_score:
 		highest_score = score_meters
-		score.text = str(highest_score / score_to_meters)+" m"
+		score.text = str("%0.2f" % (highest_score / score_to_meters)," m")
 	
 	if is_loosing():
 		score.text = "You are losing"
