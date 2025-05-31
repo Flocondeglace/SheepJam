@@ -1,0 +1,174 @@
+[gd_scene load_steps=5 format=3 uid="uid://kjrgap4v14km"]
+
+[ext_resource type="Script" uid="uid://dojrp6meshxwq" path="res://Scenes/mongolfiere.gd" id="1_740xg"]
+[ext_resource type="Texture2D" uid="uid://kr1u01c5yy6m" path="res://Sprites/Mongolfiere_Back.png" id="2_cooti"]
+[ext_resource type="Texture2D" uid="uid://gjtt7l5abf4d" path="res://Sprites/Mongolfiere_Front.png" id="3_ms76c"]
+[ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="4_cooti"]
+
+[node name="Mongolfiere" type="Node2D"]
+modulate = Color(0.462745, 0.462745, 0.462745, 0.756863)
+script = ExtResource("1_740xg")
+color_list = Array[Color]([Color(1, 0, 0, 1), Color(0, 1, 0, 1)])
+
+[node name="MongolfiereBack" type="Sprite2D" parent="."]
+texture = ExtResource("2_cooti")
+
+[node name="Mouton" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-112, 202)
+scale = Vector2(4, 4)
+texture = ExtResource("4_cooti")
+hframes = 81
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Mouton/AnimationPlayer",
+"slice": "",
+"source": "res://Mouton.aseprite",
+"source_uid": 5591409678646711431
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a651a94b4d889d5aaaf4312c673a2447"
+
+[node name="Mouton2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-111, 101)
+scale = Vector2(4, 4)
+texture = ExtResource("4_cooti")
+hframes = 81
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Mouton/AnimationPlayer",
+"slice": "",
+"source": "res://Mouton.aseprite",
+"source_uid": 5591409678646711431
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a651a94b4d889d5aaaf4312c673a2447"
+
+[node name="Mouton3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(35, 209)
+scale = Vector2(4, 4)
+texture = ExtResource("4_cooti")
+hframes = 81
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Mouton/AnimationPlayer",
+"slice": "",
+"source": "res://Mouton.aseprite",
+"source_uid": 5591409678646711431
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a651a94b4d889d5aaaf4312c673a2447"
+
+[node name="Mouton4" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(43, 108)
+scale = Vector2(4, 4)
+texture = ExtResource("4_cooti")
+hframes = 81
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Mouton/AnimationPlayer",
+"slice": "",
+"source": "res://Mouton.aseprite",
+"source_uid": 5591409678646711431
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a651a94b4d889d5aaaf4312c673a2447"
+
+[node name="Mouton5" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(172, 200)
+scale = Vector2(4, 4)
+texture = ExtResource("4_cooti")
+hframes = 81
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Mouton/AnimationPlayer",
+"slice": "",
+"source": "res://Mouton.aseprite",
+"source_uid": 5591409678646711431
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a651a94b4d889d5aaaf4312c673a2447"
+
+[node name="Mouton6" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(175, 97)
+scale = Vector2(4, 4)
+texture = ExtResource("4_cooti")
+hframes = 81
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Mouton/AnimationPlayer",
+"slice": "",
+"source": "res://Mouton.aseprite",
+"source_uid": 5591409678646711431
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a651a94b4d889d5aaaf4312c673a2447"
+
+[node name="MongolfiereFront" type="Sprite2D" parent="."]
+texture = ExtResource("3_ms76c")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-17, 21)
+scale = Vector2(30.65, 40.2)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

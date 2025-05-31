@@ -20,6 +20,7 @@ class_name Sheep
 var jointed_bodies: Dictionary = {}
 var can_be_glued = false
 var have_collided = false
+var is_free = false
 
 # Sheep throwing logic
 
@@ -86,6 +87,16 @@ func launch(direction: Vector2):
 	self.apply_impulse(direction)
 	end_player_holding()
 
+func free_sheep():
+	is_free = true
+	freeze = false
+	jointed_bodies.clear()
+	jointed_bodies = {}
+	#remove all joints
+	for joint in get_children():
+		if joint is PinJoint2D:
+			joint.queue_free()
+	
 func is_under_mouse():
 	return mouse_hovering
 
@@ -106,7 +117,7 @@ func end_player_holding() -> void :
 	is_hold = false
 
 func _on_spheredetection_area_entered(area: Area2D) -> void:
-	if not can_be_glued:
+	if not can_be_glued or is_free:
 		return
 
 	var other_sphere = area.get_parent()
