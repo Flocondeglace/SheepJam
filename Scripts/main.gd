@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var animation_transition: AnimationPlayer = $Transition/AnimationPlayer
+@onready var animation_transition: AnimationPlayer = $CanvasLayer/Transition/AnimationPlayer
 
 @onready var sheeps_container: Node2D = $SheepsContainer
 
@@ -28,6 +28,8 @@ var progress_percentage = 0
 var has_game_ended = false
 
 @export var loosing_height: float = 100
+
+@onready var count_sheep_end: Label = $CanvasLayer/CountSheepEnd
 
 
 func _ready():
@@ -152,6 +154,10 @@ func _on_game_finished():
 	print("Game finished")
 	var sheeps = sheeps_container.get_children()
 	sheeps.reverse()
+	count_sheep_end.visible = true
 	for i in range(0,sheeps.size()):
+		count_sheep_end.text = str(i+1)
 		sheeps[i].play_animation_count()
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(min(0.5-float(i)/(2*sheeps.size()),0.3)).timeout
+	count_sheep_end.text = str(sheeps.size()) + " sheeps !"
+		

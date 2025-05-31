@@ -1,7 +1,5 @@
 extends Control
 
-@onready var anim = $AnimationPlayer
-
 @onready var dialogue = $Dialogue
 
 @onready var animation_player: AnimationPlayer = $"../Dieu/AnimationPlayer"

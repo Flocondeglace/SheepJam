@@ -34,7 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://c5sbgbunrllf4" path="res://Sprites/00.png" id="30_8ekww"]
 [ext_resource type="Texture2D" uid="uid://cw4lcwt06y62s" path="res://Sprites/03.png" id="31_dwhu0"]
 [ext_resource type="AudioStream" uid="uid://bnar1soyo1n1e" path="res://Sounds/mouton jam epique.mp3" id="31_pti6k"]
-[ext_resource type="Script" uid="uid://bdnunf4ymph31" path="res://Scenes/musicplayer.gd" id="32_lmarx"]
+[ext_resource type="Script" path="res://Scenes/musicplayer.gd" id="32_lmarx"]
 [ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="32_nojon"]
 [ext_resource type="Shader" uid="uid://06goe1dyyb13" path="res://Shaders/Menu.gdshader" id="33_khs3t"]
 [ext_resource type="Theme" uid="uid://ufalnbio1xiu" path="res://theme.tres" id="34_jn8rg"]
@@ -5196,6 +5196,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_khs3t"]
 resource_name = "transition"
@@ -5210,6 +5222,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.05]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jn8rg"]
@@ -5266,6 +5290,7 @@ autoplay = "hover"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Dieu"]
 stream = ExtResource("5_4eqlp")
+bus = &"SFX"
 
 [node name="Planete1" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.695503, 0.695503, 0.695503, 1)
@@ -5536,6 +5561,7 @@ position = Vector2(1423, 600)
 [node name="musicplayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamSynchronized_lmarx")
 autoplay = true
+bus = &"Music"
 script = ExtResource("32_lmarx")
 
 [node name="GroundMarker" type="Marker2D" parent="."]
@@ -5563,6 +5589,7 @@ offset_right = 1312.0
 offset_bottom = 29.0
 rotation = 1.5708
 scale = Vector2(4, 4)
+mouse_filter = 2
 texture = ExtResource("30_8ekww")
 stretch_mode = 1
 
@@ -5575,6 +5602,7 @@ offset_right = 1312.0
 offset_bottom = 428.0
 rotation = 1.5708
 scale = Vector2(4, 4)
+mouse_filter = 2
 texture = ExtResource("30_8ekww")
 stretch_mode = 1
 
@@ -5587,6 +5615,7 @@ offset_right = 1381.0
 offset_bottom = 73.0
 rotation = 1.5708
 scale = Vector2(4, 4)
+mouse_filter = 2
 theme = SubResource("Theme_jpea4")
 texture = ExtResource("31_dwhu0")
 stretch_mode = 1
@@ -5599,6 +5628,7 @@ offset_top = 592.0
 offset_right = 1772.0
 offset_bottom = 616.0
 rotation = -1.5708
+mouse_filter = 2
 texture = SubResource("GradientTexture1D_cyrjx")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/TextureRect5"]
@@ -5606,12 +5636,8 @@ modulate = Color(1, 1, 1, 0.670588)
 layout_mode = 2
 offset_right = 553.0
 offset_bottom = 24.0
+mouse_filter = 2
 texture = SubResource("GradientTexture1D_epud0")
-
-[node name="Container" type="Container" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="Mouton" type="Sprite2D" parent="CanvasLayer/Control"]
 texture_filter = 1
@@ -5632,20 +5658,29 @@ offset_top = 32.0
 offset_right = 632.0
 offset_bottom = 89.0
 theme = ExtResource("34_jn8rg")
-theme_override_font_sizes/font_size = 41
 text = "Launch a sheep !"
 vertical_alignment = 1
 
-[node name="Transition" type="ColorRect" parent="."]
+[node name="CountSheepEnd" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 166.0
+offset_top = 366.0
+offset_right = 206.0
+offset_bottom = 389.0
+theme = ExtResource("34_jn8rg")
+text = "0"
+
+[node name="Transition" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_krje8")
-offset_left = 101.0
+offset_left = -200.0
 offset_top = -162.0
-offset_right = 1831.0
+offset_right = 1530.0
 offset_bottom = 873.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Transition"]
 libraries = {
 &"": SubResource("AnimationLibrary_jn8rg")
 }
@@ -5661,6 +5696,7 @@ offset_right = 605.0
 offset_bottom = 533.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("37_pti6k")
 
 [node name="Dialogue" type="RichTextLabel" parent="DialogueManager"]

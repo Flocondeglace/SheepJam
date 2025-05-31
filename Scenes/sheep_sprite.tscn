@@ -4,7 +4,7 @@
 _data = PackedByteArray("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")
 size_override = Vector2(5184, 64)
 
-[sub_resource type="Animation" id="Animation_0hol4"]
+[sub_resource type="Animation" id="Animation_o00om"]
 length = 0.1
 loop_mode = 1
 tracks/0/type = "value"
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "values": [80]
 }
 
-[sub_resource type="Animation" id="Animation_epypp"]
+[sub_resource type="Animation" id="Animation_ka6xg"]
 length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
@@ -36,7 +36,7 @@ tracks/0/keys = {
 "values": [72, 73, 74, 75, 76, 77, 78, 79]
 }
 
-[sub_resource type="Animation" id="Animation_wtcfe"]
+[sub_resource type="Animation" id="Animation_cdx8w"]
 length = 6.4
 loop_mode = 1
 tracks/0/type = "value"
@@ -52,7 +52,7 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]
 }
 
-[sub_resource type="Animation" id="Animation_0e48y"]
+[sub_resource type="Animation" id="Animation_08kpj"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -68,12 +68,12 @@ tracks/0/keys = {
 "values": [64, 65, 66, 67, 68, 69, 70, 71]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_q6r6c"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qwkn0"]
 _data = {
-&"Dead": SubResource("Animation_0hol4"),
-&"Dragged": SubResource("Animation_epypp"),
-&"Idle": SubResource("Animation_wtcfe"),
-&"Walking": SubResource("Animation_0e48y")
+&"Dead": SubResource("Animation_o00om"),
+&"Dragged": SubResource("Animation_ka6xg"),
+&"Idle": SubResource("Animation_cdx8w"),
+&"Walking": SubResource("Animation_08kpj")
 }
 
 [node name="SheepSprite" type="Node2D"]
@@ -104,5 +104,5 @@ metadata/_aseprite_wizard_source_file_hash_ = "a651a94b4d889d5aaaf4312c673a2447"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Mouton"]
 root_node = NodePath("../..")
 libraries = {
-&"": SubResource("AnimationLibrary_q6r6c")
+&"": SubResource("AnimationLibrary_qwkn0")
 }

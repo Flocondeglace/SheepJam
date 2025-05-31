@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c1m7xa56kaexk"]
+[gd_scene load_steps=28 format=3 uid="uid://c1m7xa56kaexk"]
 
 [ext_resource type="Script" uid="uid://cgvjpn6btim8h" path="res://Scripts/sheep.gd" id="1_35w1j"]
 [ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="3_okt0m"]
@@ -9,19 +9,18 @@
 [ext_resource type="AudioStream" uid="uid://bglcs2gxqcsfn" path="res://Sounds/sheep3.mp3" id="8_c2gec"]
 [ext_resource type="AudioStream" uid="uid://dfwj5jfpc6t84" path="res://Sounds/sheep4.mp3" id="9_0qsrn"]
 [ext_resource type="AudioStream" uid="uid://ce7vsiad44com" path="res://Sounds/splat.mp3" id="10_8x3hd"]
-[ext_resource type="Texture2D" uid="uid://rx5y8efmr1y5" path="res://Sprites/Mouton_Cosmique.png" id="10_jgge2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_35w1j"]
 friction = 0.8
 bounce = 0.22
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dlixe"]
-radius = 43.0
-height = 138.0
+radius = 39.0
+height = 78.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nqg6p"]
-radius = 89.0
-height = 280.0
+radius = 78.9999
+height = 158.0
 
 [sub_resource type="Animation" id="Animation_0hol4"]
 length = 0.1
@@ -231,14 +230,12 @@ _data = {
 [sub_resource type="Gradient" id="Gradient_jgge2"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.149847)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+colors = PackedColorArray(0.955963, 0.955963, 0.955963, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_isq17"]
 gradient = SubResource("Gradient_jgge2")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c2gec"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_45la8"]
 random_pitch = 1.2
@@ -313,21 +310,6 @@ visible = false
 position = Vector2(-2, 16)
 texture = SubResource("GradientTexture2D_isq17")
 
-[node name="CountingEffect" type="CPUParticles2D" parent="Mouton"]
-material = SubResource("CanvasItemMaterial_c2gec")
-position = Vector2(-2, 16)
-scale = Vector2(0.25, 0.25)
-emitting = false
-texture = ExtResource("10_jgge2")
-one_shot = true
-explosiveness = 0.04
-randomness = 0.08
-direction = Vector2(0, 0)
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 50.0
-initial_velocity_max = 100.0
-
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-23, -47)
 scale = Vector2(2.3, 2.1)
@@ -335,12 +317,15 @@ rect = Rect2(0, 0, 20, 20)
 
 [node name="Grab" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_bvhs2")
+bus = &"SFX"
 
 [node name="Splat" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_45la8")
+bus = &"SFX"
 
 [node name="Meh" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_jgge2")
+bus = &"SFX"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

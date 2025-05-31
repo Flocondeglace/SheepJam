@@ -23,7 +23,6 @@ var normal_sheep_col_glue_size = Vector2(8,-64)
 @onready var sprite_2d: Sprite2D = $Mouton
 @onready var animation_player_sprite: AnimationPlayer = $Mouton/AnimationSpriteMouton
 @onready var animation_effect_mouton: AnimationPlayer = $Mouton/AnimationEffectMouton
-@onready var counting_effect: CPUParticles2D = $Mouton/CountingEffect
 
 
 # Dictionary to keep track of bodies we've already created a joint with

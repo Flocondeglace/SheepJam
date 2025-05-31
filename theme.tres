@@ -1,6 +1,23 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ufalnbio1xiu"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://ufalnbio1xiu"]
 
 [ext_resource type="FontFile" uid="uid://bi0a5ceiekjjy" path="res://Font/Early GameBoy.ttf" id="1_e1x85"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1x85"]
+bg_color = Color(0.0253638, 0.0253638, 0.0253638, 0.862745)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e1x85"]
+content_margin_left = 64.0
+content_margin_top = 32.0
+content_margin_right = 64.0
+content_margin_bottom = 0.0
+
 [resource]
 default_font = ExtResource("1_e1x85")
+default_font_size = 32
+Button/colors/font_color = Color(0.0728427, 0.0728426, 0.0728425, 1)
+Button/colors/font_focus_color = Color(0.194348, 0.19435, 0.194349, 1)
+Button/colors/font_hover_color = Color(0.277526, 0.277528, 0.277528, 1)
+Button/font_sizes/font_size = 24
+Panel/styles/panel = SubResource("StyleBoxFlat_e1x85")
+PanelContainer/styles/panel = SubResource("StyleBoxEmpty_e1x85")
+VBoxContainer/constants/separation = 100
