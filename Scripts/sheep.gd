@@ -30,6 +30,7 @@ var is_hold : bool = false
 var time_sickness : float = 5.0
 var max_time_sickness : float = 5
 var is_pickable : bool = false
+var is_in_screen : bool = true
 
 
 
@@ -170,7 +171,9 @@ func _on_spheredetection_area_entered(area: Area2D) -> void:
 func create_reciprocal_joint(initiator_body: Sheep, anchor_local_pos_on_me: Vector2):
 	if initiator_body in jointed_bodies:
 		return
-
+	
+	have_collided = true
+	
 	var reciprocal_joint = PinJoint2D.new()
 	reciprocal_joint.name = "JointTo" + initiator_body.name
 	
@@ -190,8 +193,15 @@ func get_jointed_bodies() -> Dictionary:
 	return jointed_bodies
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	is_in_screen = false
 	if !have_collided:
-		should_respawn.emit(self)
+		# si le mouton est sorti pendant trop longtemps, il ne reviendra pas
+		await get_tree().create_timer(1.0).timeout
+		if !is_in_screen:
+			should_respawn.emit(self)
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	is_in_screen = true
 
 func force_position(pos: Vector2):
 	# Reset Force

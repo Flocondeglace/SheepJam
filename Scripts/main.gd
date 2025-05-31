@@ -31,30 +31,29 @@ func _ready():
 
 
 func _process(_delta):
-	if sheep_count > 0:
-		current_highest_sheep_y = sheeps_container.get_current_highest_sheep_y()
-		if current_highest_sheep_y < highest_sheep_y:
-			highest_sheep_y = current_highest_sheep_y
+	current_highest_sheep_y = sheeps_container.get_current_highest_sheep_y()
+	if current_highest_sheep_y < highest_sheep_y:
+		highest_sheep_y = current_highest_sheep_y
+	
+	#if current_highest_sheep_y+120 < initial_camera_y:
 		
-		#if current_highest_sheep_y+120 < initial_camera_y:
-			
-		#	
-		#else:
-		#	camera_2d.position.y = lerp(camera_2d.position.y, initial_camera_y, 0.1)
-		
-		sheeps_container.freeze_sheep_under_height(current_highest_sheep_y+camera_freeze_height)
+	#	
+	#else:
+	#	camera_2d.position.y = lerp(camera_2d.position.y, initial_camera_y, 0.1)
+	
+	sheeps_container.freeze_sheep_under_height(current_highest_sheep_y+camera_freeze_height)
 
-		update_score()
-		update_camera_zoom_and_y_pos()
+	update_score()
+	update_camera_zoom_and_y_pos()
 
-		update_progress_percentage()
+	update_progress_percentage()
 
 func update_progress_percentage():
-	print("current_highest_sheep_y",current_highest_sheep_y)
-	print("max_height",max_height)
+	#print("current_highest_sheep_y",current_highest_sheep_y)
+	#print("max_height",max_height)
 	var progress_distance = current_highest_sheep_y - ground_y
 	progress_percentage = progress_distance / max_height
-	print("progress_percentage",progress_percentage)
+	#print("progress_percentage",progress_percentage)
 
 
 func update_camera_zoom_and_y_pos():

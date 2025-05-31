@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b3wtsk3ghnykj"]
+[gd_scene load_steps=32 format=3 uid="uid://b3wtsk3ghnykj"]
 
 [ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_d0d3y"]
 [ext_resource type="PackedScene" uid="uid://c0tqb21y7mr1e" path="res://Scenes/DraggingManager.tscn" id="1_qy3sg"]
@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://c1m7xa56kaexk" path="res://Scenes/sheep.tscn" id="13_k884u"]
 [ext_resource type="Script" path="res://Scripts/cosmonautespawner.gd" id="15_hnjg8"]
 [ext_resource type="Script" uid="uid://bykhpgeyvwslo" path="res://Scenes/control.gd" id="16_jpea4"]
-[ext_resource type="Script" path="res://Scenes/mongolfiere_spawner.gd" id="16_tms0s"]
+[ext_resource type="Script" uid="uid://c6b2heb0t0rs4" path="res://Scenes/mongolfiere_spawner.gd" id="16_tms0s"]
 [ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="16_v6834"]
 [ext_resource type="Texture2D" uid="uid://cw4lcwt06y62s" path="res://Sprites/03.png" id="17_kgxgr"]
 [ext_resource type="Texture2D" uid="uid://c5sbgbunrllf4" path="res://Sprites/00.png" id="17_v6834"]
@@ -44,11 +44,14 @@ size = Vector2(411, 24)
 
 [sub_resource type="Theme" id="Theme_jpea4"]
 
+[sub_resource type="Theme" id="Theme_k884u"]
+HSlider/styles/grabber_area = null
+
 [node name="ThrowDemo" type="Node2D"]
 script = ExtResource("1_d0d3y")
-camera_freeze_height = 999.0
+camera_freeze_height = 20.0
 score_to_meters = 50.0
-loosing_height = 200.0
+loosing_height = 999.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -4216.0
@@ -171,11 +174,6 @@ position = Vector2(272, 600)
 position = Vector2(591.75, 3.5)
 shape = SubResource("RectangleShape2D_qy3sg")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-279, -124)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_qy3sg")
-
 [node name="SheepsContainer" type="Node2D" parent="."]
 script = ExtResource("3_12shr")
 
@@ -201,15 +199,17 @@ shape = SubResource("RectangleShape2D_12shr")
 [node name="SheepSpawnManager" type="Node" parent="." node_paths=PackedStringArray("sheeps_container")]
 script = ExtResource("6_12shr")
 sheeps_container = NodePath("../SheepsContainer")
+speed_walking_sheep = 6.0
 colors_balloon = Array[Color]([Color(0.912263, 0.504888, 0.307493, 1), Color(0.563667, 0.232462, 0.637818, 1), Color(0.22889, 0.578916, 0.872933, 1)])
-space_between_spawned_sheep = 100.0
+space_between_spawned_sheep = 150.0
 number_spawn_sheep_walking = 2
+number_spawn_sheep_flying = 2
 
 [node name="SpawningPositionWalkingRight" type="Marker2D" parent="SheepSpawnManager"]
-position = Vector2(1982, 556)
+position = Vector2(1694, 556)
 
 [node name="GoalPositionWalkingRight" type="Marker2D" parent="SheepSpawnManager"]
-position = Vector2(1669, 556)
+position = Vector2(1267, 556)
 
 [node name="AreaGoalPosW" type="Area2D" parent="SheepSpawnManager/GoalPositionWalkingRight"]
 
@@ -217,7 +217,7 @@ position = Vector2(1669, 556)
 shape = SubResource("RectangleShape2D_5g068")
 
 [node name="SpawningPositionWalkingLeft" type="Marker2D" parent="SheepSpawnManager"]
-position = Vector2(-139, 556)
+position = Vector2(-92, 556)
 
 [node name="GoalPositionWalkingLeft" type="Marker2D" parent="SheepSpawnManager"]
 position = Vector2(636, 556)
@@ -228,7 +228,7 @@ position = Vector2(636, 556)
 shape = SubResource("RectangleShape2D_5g068")
 
 [node name="Balloon" type="StaticBody2D" parent="SheepSpawnManager"]
-position = Vector2(498, -129)
+position = Vector2(-153, -207)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SheepSpawnManager/Balloon"]
 position = Vector2(-13.5, 63)
@@ -245,8 +245,11 @@ flip_h = true
 texture = ExtResource("8_6bgn6")
 flip_h = true
 
-[node name="SpawningPositionFlying" type="Marker2D" parent="SheepSpawnManager/Balloon"]
-position = Vector2(119, -36)
+[node name="SpawningPositionFlyingLeft" type="Marker2D" parent="SheepSpawnManager/Balloon"]
+position = Vector2(95, -23)
+
+[node name="SpawningPositionFlyingRight" type="Marker2D" parent="SheepSpawnManager/Balloon"]
+position = Vector2(-170, -23)
 
 [node name="BalloonPosX" type="Node" parent="SheepSpawnManager"]
 
@@ -254,7 +257,7 @@ position = Vector2(119, -36)
 position = Vector2(446, 600)
 
 [node name="Marker2DRight" type="Marker2D" parent="SheepSpawnManager/BalloonPosX"]
-position = Vector2(1687, 600)
+position = Vector2(1423, 600)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_ptiwi")
@@ -335,9 +338,15 @@ offset_bottom = 63.0
 theme_override_font_sizes/font_size = 41
 text = "Lorem IPSUM"
 
+[node name="HSlider" type="HSlider" parent="CanvasLayer"]
+offset_right = 128.0
+offset_bottom = 16.0
+theme = SubResource("Theme_k884u")
+value = 50.0
+
 [connection signal="timeout" from="cosmonautespawner/Timer" to="cosmonautespawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="MongolfiereSpawner/Timer" to="MongolfiereSpawner" method="_on_timer_timeout"]
 [connection signal="body_entered" from="GluingZone" to="GluingZone" method="_on_body_entered"]
 [connection signal="body_exited" from="GluingZone" to="GluingZone" method="_on_body_exited"]
-[connection signal="body_entered" from="SheepSpawnManager/GoalPositionWalkingRight/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_body_entered"]
-[connection signal="body_entered" from="SheepSpawnManager/GoalPositionWalkingLeft/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_body_entered"]
+[connection signal="body_entered" from="SheepSpawnManager/GoalPositionWalkingRight/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_body_entered_right"]
+[connection signal="body_entered" from="SheepSpawnManager/GoalPositionWalkingLeft/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_body_entered_left"]
