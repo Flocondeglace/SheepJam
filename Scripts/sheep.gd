@@ -37,7 +37,7 @@ var mouse_hovering : bool = false
 var is_hold : bool = false
 var time_sickness : float = 5.0
 var max_time_sickness : float = 5
-var is_pickable : bool = false
+@export var is_pickable : bool = false
 var is_in_screen : bool = true
 
 
@@ -126,6 +126,7 @@ func free_sheep():
 			joint.queue_free()
 	
 func is_under_mouse():
+	print(mouse_hovering,is_pickable,!have_collided)
 	return mouse_hovering && is_pickable && !have_collided
 
 func _on_mouse_entered() -> void:
