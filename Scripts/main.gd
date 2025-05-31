@@ -24,6 +24,9 @@ var progress_percentage = 0
 @onready var score: Label = $CanvasLayer/Score
 @onready var ground_marker: Marker2D = $GroundMarker
 
+@onready var dialogue_manager: Control = $DialogueManager
+var has_game_ended = false
+
 @export var loosing_height: float = 100
 
 
@@ -45,7 +48,7 @@ func _process(_delta):
 		#	
 		#else:
 		#	camera_2d.position.y = lerp(camera_2d.position.y, initial_camera_y, 0.1)
-		if highest_sheep_y != 9999:
+	if highest_sheep_y != 9999:
 			sheeps_container.freeze_sheep_under_height(current_highest_sheep_y+camera_freeze_height)
 			update_score()
 			update_camera_zoom_and_y_pos()
@@ -54,14 +57,21 @@ func _process(_delta):
 func update_progress_percentage():
 	var progress_distance = current_highest_sheep_y - ground_y
 	progress_percentage = progress_distance / max_height
+	progress_percentage = clamp(progress_percentage, 0, 1)
+
+	print("Current progress percentage: ", progress_percentage)
 
 
 func update_camera_zoom_and_y_pos():
 
 
-	if progress_percentage > 1 :
-		camera_2d.zoom = lerp(camera_2d.zoom, Vector2(1,1), 0.1)
-		camera_2d.position.y = lerp(camera_2d.position.y, -3280.0, 0.1)
+	if progress_percentage >= 1 :
+		if camera_2d.zoom.x < 0.99:
+			camera_2d.zoom = lerp(camera_2d.zoom, Vector2(1,1), 0.1)
+			camera_2d.position.y = lerp(camera_2d.position.y, -3280.0, 0.1)
+			print(camera_2d.zoom)
+		else:
+			end_game()
 		return
 
 	var center_pos = (current_highest_sheep_y - 150 + ground_y + 20) / 2
@@ -89,6 +99,7 @@ func update_camera_zoom_and_y_pos():
 		camera_2d.position.y = lerp(camera_2d.position.y, current_highest_sheep_y+150, 0.1)
 
 
+
 func update_score():
 	var score_meters = 0
 	if highest_sheep_y == 9999:
@@ -111,6 +122,12 @@ func is_loosing():
 		return true
 	else:
 		return false
+
+func end_game():
+	if not has_game_ended:
+		has_game_ended = true
+		dialogue_manager.startDialogue()
+	
 
 func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseButton:
