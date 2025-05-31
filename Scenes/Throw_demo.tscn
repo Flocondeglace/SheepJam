@@ -251,6 +251,7 @@ position = Vector2(95, 268)
 position = Vector2(-170, 268)
 
 [node name="BalloonDisappear" type="Sprite2D" parent="SheepSpawnManager"]
+position = Vector2(-4852, -513)
 texture = ExtResource("8_6bgn6")
 flip_h = true
 script = ExtResource("19_djyfy")

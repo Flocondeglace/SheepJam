@@ -44,7 +44,7 @@ var color_balloon
 
 func _process(_delta: float) -> void:
 	if !using_balloon:
-		if camera_2d.position.y < 200 :
+		if camera_2d.position.y < -200 :
 			print("Switch to balloon")
 			using_balloon = true
 	
