@@ -4,9 +4,10 @@ const SHEEP = preload("res://Scenes/sheep.tscn")
 
 @export var sheeps_container: Node2D
 @export var goal_pos_balloon : float = 100
-@export var start_pos_balloon : float = -100
+@export var start_pos_balloon : float = -200
 @export var epsilon_pos : float = 1
 @export var speed_balloon : float = 2
+@export var speed_walking_sheep : float = 2
 @export var colors_balloon : Array[Color] = []
 @export var space_between_spawned_sheep : float = 20
 @export var number_spawn_sheep_walking : int = 4
@@ -26,15 +27,19 @@ const SHEEP = preload("res://Scenes/sheep.tscn")
 @onready var sprites: Node2D = $Balloon/Sprites
 @onready var back_balloon_sprite: Sprite2D = $Balloon/Sprites/Back
 
-var spawning_positions : Array[Node]
+# var spawning_positions : Array[Node]
 var sheep_in_spawning_area : Array[Sheep] = []
 var sheeps_arrived : bool = false
 var camera_left : bool = true
 var using_balloon : bool = false
+var respawning_position : Vector2
 
 func _ready() -> void:
 	# spawning_positions = spawning_positions_walking_sheep_container.get_children()
-	sheep_walking_appear()
+	if using_balloon:
+		balloon_appear()
+	else:
+		sheep_walking_appear()
 
 
 func _process(_delta: float) -> void:
@@ -81,7 +86,7 @@ func balloon_appear():
 		balloon.position.x = marker_2d_left.position.x
 	else:
 		balloon.position.x = marker_2d_right.position.x
-	balloon.position.y = camera_2d.get_screen_center_position().y + camera_2d.get_viewport_rect().size.y/2 - start_pos_balloon
+	balloon.position.y = camera_2d.get_screen_center_position().y - camera_2d.get_viewport_rect().size.y/2 + start_pos_balloon
 	# Sheep appear
 	spawn_sheeps(number_spawn_sheep_flying, spawning_position_flying.position)
 
@@ -103,22 +108,22 @@ func spawn_sheeps(number_sheep :int, spawn_position: Vector2, dir: int = 1, is_w
 func move_balloon():
 	var pos_cam : Vector2 = camera_2d.get_screen_center_position()
 	var size_viewport : Vector2 = camera_2d.get_viewport_rect().size
-	var goal_pos_balloon_global = pos_cam.y + size_viewport.y/2 - goal_pos_balloon
+	var goal_pos_balloon_global = pos_cam.y - size_viewport.y/2 + goal_pos_balloon
 	if abs(goal_pos_balloon_global - balloon.position.y) < epsilon_pos:
 		sheeps_arrived = true
 		
 	if sheeps_arrived:
 		balloon.position.y = lerp(balloon.position.y, goal_pos_balloon_global, 0.1)
 	else:
-		balloon.position.y -= speed_balloon
+		balloon.position.y += speed_balloon
 
 func move_walking():
 	if !sheeps_arrived:
 		for s in sheep_in_spawning_area:
 			if camera_left:
-				s.force_position(s.position + Vector2(1,0))
+				s.force_position(s.position + Vector2(speed_walking_sheep,0))
 			else:
-				s.force_position(s.position + Vector2(-1,0))
+				s.force_position(s.position + Vector2(-speed_walking_sheep,0))
 
 func _on_sheep_should_respawn(sheep:Sheep):
 	if sheeps_arrived:
@@ -131,12 +136,13 @@ func _on_sheep_should_respawn(sheep:Sheep):
 				if using_balloon:
 					sheep.force_position(spawning_position_flying.position + dir*Vector2(i*space_between_spawned_sheep,0))
 				else:
-					sheep.force_position(goal_position_walking_left.position + dir*Vector2(i*space_between_spawned_sheep,0))
+					sheep.force_position(respawning_position + dir*Vector2(i*space_between_spawned_sheep,0))
 					
 				
 func _on_area_goal_pos_w_body_entered(body: Node2D) -> void:
 	if body is Sheep:
 		sheeps_arrived = true
 		print("Arrived")
+		respawning_position = body.position
 		for sheep in sheep_in_spawning_area:
 			sheep.on_arrived()

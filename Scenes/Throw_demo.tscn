@@ -40,7 +40,7 @@ size = Vector2(363.5, 6426)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g068"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptiwi"]
-size = Vector2(246, 20)
+size = Vector2(411, 24)
 
 [sub_resource type="Theme" id="Theme_jpea4"]
 
@@ -228,10 +228,10 @@ position = Vector2(636, 556)
 shape = SubResource("RectangleShape2D_5g068")
 
 [node name="Balloon" type="StaticBody2D" parent="SheepSpawnManager"]
-position = Vector2(8, -90)
+position = Vector2(495, 399)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SheepSpawnManager/Balloon"]
-position = Vector2(104, 0)
+position = Vector2(-13.5, 63)
 shape = SubResource("RectangleShape2D_ptiwi")
 
 [node name="Sprites" type="Node2D" parent="SheepSpawnManager/Balloon"]
@@ -246,12 +246,12 @@ texture = ExtResource("8_6bgn6")
 flip_h = true
 
 [node name="SpawningPositionFlying" type="Marker2D" parent="SheepSpawnManager/Balloon"]
-position = Vector2(151, -25)
+position = Vector2(119, -36)
 
 [node name="BalloonPosX" type="Node" parent="SheepSpawnManager"]
 
 [node name="Marker2DLeft" type="Marker2D" parent="SheepSpawnManager/BalloonPosX"]
-position = Vector2(0, 600)
+position = Vector2(446, 600)
 
 [node name="Marker2DRight" type="Marker2D" parent="SheepSpawnManager/BalloonPosX"]
 position = Vector2(1687, 600)
