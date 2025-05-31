@@ -3,9 +3,9 @@ extends Node
 const SHEEP = preload("res://Scenes/sheep.tscn")
 
 @export var sheeps_container: Node2D
-@export var goal_pos_balloon : float = 100
+@export var goal_pos_balloon : float = 0.1
 @export var start_pos_balloon : float = 200
-@export var epsilon_pos : float = 1
+@export var epsilon_pos : float = 50
 @export var speed_balloon : float = 2
 @export var speed_walking_sheep : float = 2
 @export var colors_balloon : Array[Color] = []
@@ -30,14 +30,16 @@ const SHEEP = preload("res://Scenes/sheep.tscn")
 @onready var marker_2d_right: Marker2D = $BalloonPosX/Marker2DRight
 @onready var sprites: Node2D = $Balloon/Sprites
 @onready var back_balloon_sprite: Sprite2D = $Balloon/Sprites/Back
+@onready var balloon_disappear: BalloonDisappear = $BalloonDisappear
 
 # var spawning_positions : Array[Node]
 var sheep_in_spawning_area : Array[Sheep] = []
 var sheeps_arrived : bool = true
-var is_spawning_left : bool = true
+var is_spawning_left : bool = false
 var using_balloon : bool = false
 var respawning_position : Vector2
 var main
+var color_balloon
 
 
 func _process(_delta: float) -> void:
@@ -48,8 +50,9 @@ func _process(_delta: float) -> void:
 	
 	if sheeps_arrived && !check_still_sheep_in_spawn():
 		is_spawning_left = !is_spawning_left
-		print("Spawn")
+		print("New Spawn")
 		if using_balloon:
+			make_balloon_disappear()
 			balloon_appear()
 		else:
 			sheep_walking_appear()
@@ -67,16 +70,21 @@ func check_still_sheep_in_spawn():
 	return false
 
 func sheep_walking_appear():
-	print("Sheep Comming !")
 	sheeps_arrived = false
 	if is_spawning_left:
 		spawn_sheeps(number_spawn_sheep_walking, spawning_position_walking_left.position, -1, true)
 	else:
 		spawn_sheeps(number_spawn_sheep_walking, spawning_position_walking_right.position, 1, true)
-	
+
+func make_balloon_disappear():
+	if color_balloon:
+		balloon_disappear.self_modulate = color_balloon
+		balloon_disappear.position = balloon.position
+		balloon_disappear.go_away(speed_balloon)
 
 func balloon_appear():
-	back_balloon_sprite.modulate = colors_balloon.pick_random()
+	color_balloon = colors_balloon.pick_random()
+	back_balloon_sprite.modulate = color_balloon
 	sheeps_arrived = false
 	print("Balloon appear")
 	if is_spawning_left:
@@ -109,6 +117,8 @@ func move_balloon():
 	var pos_cam : Vector2 = camera_2d.get_screen_center_position()
 	var size_viewport : Vector2 = camera_2d.get_viewport_rect().size
 	var goal_pos_balloon_global = pos_cam.y - size_viewport.y/2 + goal_pos_balloon
+	print(pos_cam.y)
+	print(balloon.position.y)
 	if !sheeps_arrived:
 		if abs(goal_pos_balloon_global - balloon.position.y) < epsilon_pos:
 			sheeps_arrived = true
@@ -149,7 +159,6 @@ func _on_area_goal_pos_w_body_entered_left(body: Node2D) -> void:
 	if is_spawning_left:
 		if body is Sheep:
 			sheeps_arrived = true
-			print("Arrived")
 			respawning_position = body.position
 			for sheep in sheep_in_spawning_area:
 				sheep.on_arrived()
@@ -158,7 +167,6 @@ func _on_area_goal_pos_w_body_entered_right(body: Node2D) -> void:
 	if !is_spawning_left:
 		if body is Sheep:
 			sheeps_arrived = true
-			print("Arrived")
 			respawning_position = body.position
 			for sheep in sheep_in_spawning_area:
 				sheep.on_arrived()
