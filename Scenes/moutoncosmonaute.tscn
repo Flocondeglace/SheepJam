@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b0tg6yyakhtqw"]
 
 [ext_resource type="Texture2D" uid="uid://cqjkwb7qkradg" path="res://Sprites/Cosmouton.png" id="1_8uh7m"]
-[ext_resource type="Script" uid="uid://c23lu8ygtr0po" path="res://Scenes/moutoncosmonaute.gd" id="2_6uqi0"]
+[ext_resource type="Script" uid="uid://c23lu8ygtr0po" path="res://Scripts/moutoncosmonaute.gd" id="2_6uqi0"]
 
 [sub_resource type="Animation" id="Animation_q6r6c"]
 resource_local_to_scene = true
