@@ -16,7 +16,6 @@ func read_color_palette_from_texture():
 			palette_colors.append(color)
 		color_palette_list.append(palette_colors.duplicate())
 		palette_colors.clear()
-		print(color_palette_list)
 
 func _ready() -> void:
 	read_color_palette_from_texture()
@@ -36,7 +35,6 @@ func _ready() -> void:
 	
 	#randomly select color from the palette
 	var random_color = color_palette_list.pick_random()
-	print(random_color)
 	material.set_shader_parameter("pal_swap_1", random_color[0])
 	material.set_shader_parameter("pal_swap_2", random_color[1])
 	material.set_shader_parameter("pal_swap_3", random_color[2])
