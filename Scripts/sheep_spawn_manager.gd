@@ -13,6 +13,7 @@ const SHEEP = preload("res://Scenes/sheep.tscn")
 @export var number_spawn_sheep_walking : int = 4
 @export var number_spawn_sheep_flying : int = 3
 @export var space_border_balloon : float = 20
+@export var proba_big_sheep : float = 0
 
 @onready var spawning_position_walking_right: Marker2D = $SpawningPositionWalkingRight
 @onready var goal_position_walking_right: Marker2D = $GoalPositionWalkingRight
@@ -102,8 +103,15 @@ func balloon_appear():
 
 func spawn_sheeps(number_sheep :int, spawn_position: Vector2, dir: int = 1, is_walking = false):
 	sheep_in_spawning_area = []
+	var big_sheep = false
+	if randf() < proba_big_sheep:
+		big_sheep = true
+		number_sheep = 1
+	
 	for i in range(number_sheep):
 		var sheep = SHEEP.instantiate()
+		if big_sheep:
+			sheep.is_big_sheep = true
 		sheep.position = spawn_position + dir*Vector2(i*space_between_spawned_sheep,0)
 		sheeps_container.add_child(sheep)
 		sheep_in_spawning_area.append(sheep)
@@ -111,6 +119,7 @@ func spawn_sheeps(number_sheep :int, spawn_position: Vector2, dir: int = 1, is_w
 		sheep.look_left(!is_spawning_left)
 		if is_walking:
 			sheep.animation_player_sprite.play("Walking")
+		
 
 
 func move_balloon():
