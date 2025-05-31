@@ -259,4 +259,5 @@ func on_arrived():
 	
 func play_animation_count():
 	print("Sheep counting !")
-	counting_effect.emitting = true
+	self.animation_effect_mouton.play("Counting")
+	# counting_effect.emitting = true

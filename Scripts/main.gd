@@ -128,10 +128,13 @@ func spawn_sheep(spawn_position: Vector2):
 		printerr("Sheep scene not loaded!")
 
 func _input(event: InputEvent) -> void:
-	if event.is_action("ui_accept"):
+	if event.is_action_pressed("ui_accept"):
 		_on_game_finished()
 
 func _on_game_finished():
+	print("Game finished")
 	var sheeps = sheeps_container.get_children()
-	for i in range(sheeps.size(),-1):
+	sheeps.reverse()
+	for i in range(0,sheeps.size()):
 		sheeps[i].play_animation_count()
+		await get_tree().create_timer(1).timeout
