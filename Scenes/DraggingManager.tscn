@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ch03ash5egwme" path="res://Scripts/draggingmanager.gd" id="1_rpqav"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upyao"]
-size = Vector2(3455, 28731.5)
+size = Vector2(9514, 28731.5)
 
 [sub_resource type="Gradient" id="Gradient_upyao"]
 offsets = PackedFloat32Array(0)
@@ -13,7 +13,7 @@ colors = PackedColorArray(0, 0, 0, 0.501961)
 gradient = SubResource("Gradient_upyao")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rpqav"]
-size = Vector2(726, 29036)
+size = Vector2(8489.5, 29036)
 
 [node name="DraggingManager" type="Node2D"]
 script = ExtResource("1_rpqav")
@@ -21,33 +21,33 @@ script = ExtResource("1_rpqav")
 [node name="ThrowingZone" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ThrowingZone"]
-position = Vector2(-1384.5, -3576.25)
+position = Vector2(-4414, -3576.25)
 shape = SubResource("RectangleShape2D_upyao")
 debug_color = Color(0.848153, 0.258465, 0.684285, 0.42)
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.447059)
-position = Vector2(-58, -3685)
+position = Vector2(-4443, -3685)
 rotation = 1.5708
 texture = SubResource("GradientTexture1D_gyuvk")
 region_enabled = true
-region_rect = Rect2(0, 0, 29036, 726)
+region_rect = Rect2(0, 0, 29036, 9514)
 
 [node name="ThrowingZone2" type="Area2D" parent="."]
 position = Vector2(1174, 11)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ThrowingZone2"]
-position = Vector2(-27.5, 315)
+position = Vector2(3854.25, 315)
 shape = SubResource("RectangleShape2D_rpqav")
 debug_color = Color(0.848153, 0.258465, 0.684285, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.447059)
-position = Vector2(1138, 11)
+position = Vector2(5012, 11)
 rotation = 1.5708
 texture = SubResource("GradientTexture1D_gyuvk")
 region_enabled = true
-region_rect = Rect2(0, 0, 29036, 726)
+region_rect = Rect2(0, 0, 29036, 8489.5)
 
 [connection signal="mouse_exited" from="ThrowingZone" to="." method="_on_throwing_zone_mouse_exited"]
 [connection signal="mouse_exited" from="ThrowingZone2" to="." method="_on_throwing_zone_mouse_exited"]

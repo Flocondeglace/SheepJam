@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var animation_transition: AnimationPlayer = $Transition/AnimationPlayer
+
 @onready var sheeps_container: Node2D = $SheepsContainer
 
 const sheep_scene = preload("res://Scenes/sheep.tscn") # Ensure path is correct
@@ -28,6 +30,7 @@ var progress_percentage = 0
 func _ready():
 	initial_camera_y = camera_2d.position.y
 	ground_y = ground_marker.position.y
+	animation_transition.play("transition")
 
 
 func _process(_delta):

@@ -110,9 +110,11 @@ func spawn_sheeps(number_sheep :int, spawn_position: Vector2, dir: int = 1, is_w
 	
 	for i in range(number_sheep):
 		var sheep = SHEEP.instantiate()
+		sheep.position = spawn_position + dir*Vector2(i*space_between_spawned_sheep,0) + Vector2(0,-30)
 		if big_sheep:
 			sheep.is_big_sheep = true
-		sheep.position = spawn_position + dir*Vector2(i*space_between_spawned_sheep,0)
+			sheep.position.y += -25
+			sheep.position.x += dir*50
 		sheeps_container.add_child(sheep)
 		sheep_in_spawning_area.append(sheep)
 		sheep.should_respawn.connect(_on_sheep_should_respawn)

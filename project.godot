@@ -15,10 +15,6 @@ run/main_scene="res://Scenes/Game.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Sprites/icon.svg"
 
-[autoload]
-
-IndieBlueprintSceneTransitioner="*res://addons/ninetailsrabbit.indie_blueprint_scene_transition/src/scene_transitioner.tscn"
-
 [display]
 
 window/size/viewport_width=1280
@@ -28,7 +24,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ninetailsrabbit.indie_blueprint_scene_transition/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 
