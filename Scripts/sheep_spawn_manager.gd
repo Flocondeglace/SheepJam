@@ -71,9 +71,9 @@ func check_still_sheep_in_spawn():
 func sheep_walking_appear():
 	sheeps_arrived = false
 	if camera_left:
-		spawn_sheeps(number_spawn_sheep_walking, spawning_position_walking_left.position, -1)
+		spawn_sheeps(number_spawn_sheep_walking, spawning_position_walking_left.position, -1, true)
 	else:
-		spawn_sheeps(number_spawn_sheep_walking, spawning_position_walking_right.position, 1)
+		spawn_sheeps(number_spawn_sheep_walking, spawning_position_walking_right.position, 1, true)
 	
 
 func balloon_appear():
@@ -88,7 +88,7 @@ func balloon_appear():
 	# Sheep appear
 	spawn_sheeps(number_spawn_sheep_flying, spawning_position_flying.position)
 
-func spawn_sheeps(number_sheep :int, spawn_position: Vector2, dir: int = 1):
+func spawn_sheeps(number_sheep :int, spawn_position: Vector2, dir: int = 1, is_walking = false):
 	sheep_in_spawning_area = []
 	for i in range(number_sheep):
 		var sheep = SHEEP.instantiate()
@@ -99,6 +99,8 @@ func spawn_sheeps(number_sheep :int, spawn_position: Vector2, dir: int = 1):
 		sheep_in_spawning_area.append(sheep)
 		sheep.should_respawn.connect(_on_sheep_should_respawn)
 		sheep.look_left(!camera_left)
+		if is_walking:
+			sheep.animation_player_sprite.play("Walking")
 
 
 func move_balloon():
@@ -138,7 +140,6 @@ func _on_sheep_should_respawn(sheep:Sheep):
 func _on_area_goal_pos_w_body_entered(body: Node2D) -> void:
 	if body is Sheep:
 		sheeps_arrived = true
-
-func _on_area_goal_pos_f_body_entered(body: Node2D) -> void:
-	if body is Sheep:
-		sheeps_arrived = true
+		print("Arrived")
+		for sheep in sheep_in_spawning_area:
+			sheep.animation_player_sprite.play("Idle")
