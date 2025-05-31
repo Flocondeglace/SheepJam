@@ -31,6 +31,7 @@ func _process(_delta: float) -> void:
 func select_sheep() -> Node2D:
 	var sheeps = sheeps_container.get_children()
 	for sheep : Sheep in sheeps:
+		print(sheep,sheep.is_under_mouse(),not sheep.can_be_glued)
 		if sheep.is_under_mouse() and not sheep.can_be_glued:
 			sheep.start_player_holding()
 			return sheep

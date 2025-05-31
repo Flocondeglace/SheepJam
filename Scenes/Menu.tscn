@@ -1,0 +1,423 @@
+[gd_scene load_steps=32 format=3 uid="uid://bryh2isf13noa"]
+
+[ext_resource type="Texture2D" uid="uid://75px3fbphgn0" path="res://Sprites/Background_0.png" id="10_2grpp"]
+[ext_resource type="Texture2D" uid="uid://dpwxyj87g6ig4" path="res://Sprites/Background_4.png" id="11_2nbq4"]
+[ext_resource type="Texture2D" uid="uid://cgj2b6a0ly8ov" path="res://Sprites/Background_3.png" id="12_jmv5b"]
+[ext_resource type="Texture2D" uid="uid://pghyxw5ftdi6" path="res://Sprites/Background_2.png" id="13_dml4c"]
+[ext_resource type="Texture2D" uid="uid://7jjm88e2rq3t" path="res://Sprites/Cible.png" id="14_dsmso"]
+[ext_resource type="Texture2D" uid="uid://10d7ndfe2535" path="res://Sprites/Background_1.png" id="14_mcql4"]
+[ext_resource type="Script" uid="uid://cgvjpn6btim8h" path="res://Scripts/sheep.gd" id="15_t8p2w"]
+[ext_resource type="Texture2D" uid="uid://cg40vgqvisog5" path="res://Sprites/Background_6.png" id="15_tx335"]
+[ext_resource type="Texture2D" uid="uid://dd7qd4e4b14n1" path="res://Sprites/Background_5.png" id="16_usc8s"]
+[ext_resource type="PackedScene" uid="uid://c0tqb21y7mr1e" path="res://Scenes/DraggingManager.tscn" id="19_5hcs0"]
+[ext_resource type="Script" uid="uid://dluh6uggtp7mr" path="res://Scripts/sheeps_container.gd" id="20_1o7pl"]
+[ext_resource type="Script" uid="uid://d1d1cxst2asrv" path="res://Scripts/camera_2d.gd" id="22_1uil2"]
+[ext_resource type="Script" uid="uid://siey8tpwfjar" path="res://Scripts/gluing_zone.gd" id="23_1mb1m"]
+[ext_resource type="AudioStream" uid="uid://nwwhfjl3lma0" path="res://Sounds/background_music.mp3" id="27_241l0"]
+[ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="31_186vx"]
+
+[sub_resource type="Gradient" id="Gradient_38qqd"]
+offsets = PackedFloat32Array(0, 0.541667, 0.809524, 1)
+colors = PackedColorArray(0.286488, 0.498043, 0.989517, 1, 0.169946, 0.100255, 0.734897, 1, 0.175923, 0.000173752, 0.561247, 1, 0.176419, 0.176419, 0.176419, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u4wn8"]
+gradient = SubResource("Gradient_38qqd")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_35w1j"]
+friction = 0.8
+bounce = 0.22
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35w1j"]
+radius = 65.0
+height = 132.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_veubm"]
+radius = 80.0999
+
+[sub_resource type="Animation" id="Animation_0hol4"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mouton:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [80]
+}
+
+[sub_resource type="Animation" id="Animation_epypp"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mouton:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15, 0.225, 0.3, 0.375, 0.45, 0.525),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [72, 73, 74, 75, 76, 77, 78, 79]
+}
+
+[sub_resource type="Animation" id="Animation_wtcfe"]
+length = 6.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mouton:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6, 6.1, 6.2, 6.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]
+}
+
+[sub_resource type="Animation" id="Animation_0e48y"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mouton:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [64, 65, 66, 67, 68, 69, 70, 71]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q6r6c"]
+_data = {
+&"Dead": SubResource("Animation_0hol4"),
+&"Dragged": SubResource("Animation_epypp"),
+&"Idle": SubResource("Animation_wtcfe"),
+&"Walking": SubResource("Animation_0e48y")
+}
+
+[sub_resource type="Animation" id="Animation_dlixe"]
+resource_name = "Coming"
+
+[sub_resource type="Animation" id="Animation_okt0m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_35w1j"]
+resource_name = "Sickness"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0.831373, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dlixe"]
+_data = {
+&"Coming": SubResource("Animation_dlixe"),
+&"RESET": SubResource("Animation_okt0m"),
+&"Sickness": SubResource("Animation_35w1j")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qy3sg"]
+size = Vector2(3000, 27.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12shr"]
+size = Vector2(363.5, 6426)
+
+[node name="ThrowDemo" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -4216.0
+offset_top = -95.0
+offset_right = -642.0
+offset_bottom = 10302.0
+rotation = -1.5708
+texture = SubResource("GradientTexture1D_u4wn8")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.8, 0.8)
+scroll_offset = Vector2(9, 6)
+repeat_size = Vector2(1067, 0)
+repeat_times = 6
+
+[node name="Background0" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(1779, -1211)
+scale = Vector2(2, 2)
+texture = ExtResource("10_2grpp")
+
+[node name="Parallax2D5" type="Parallax2D" parent="."]
+scroll_offset = Vector2(9, 6)
+repeat_size = Vector2(1024, 0)
+repeat_times = 5
+
+[node name="Background4" type="Sprite2D" parent="Parallax2D5"]
+position = Vector2(673, -4)
+scale = Vector2(2, 2)
+texture = ExtResource("11_2nbq4")
+
+[node name="Parallax2D4" type="Parallax2D" parent="."]
+scroll_offset = Vector2(9, 6)
+repeat_size = Vector2(1024, 0)
+repeat_times = 5
+
+[node name="Background3" type="Sprite2D" parent="Parallax2D4"]
+position = Vector2(920, 115)
+scale = Vector2(2, 2)
+texture = ExtResource("12_jmv5b")
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-4, -149)
+repeat_size = Vector2(1024, 0)
+repeat_times = 5
+
+[node name="Background2" type="Sprite2D" parent="Parallax2D2"]
+position = Vector2(642, 380)
+scale = Vector2(2, 2)
+texture = ExtResource("13_dml4c")
+
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.9, 0.9)
+scroll_offset = Vector2(9, 6)
+repeat_size = Vector2(1024, 0)
+repeat_times = 5
+
+[node name="Background1" type="Sprite2D" parent="Parallax2D3"]
+position = Vector2(41, 350)
+scale = Vector2(2, 2)
+texture = ExtResource("14_mcql4")
+
+[node name="Parallax2D8" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.81, 0.81)
+scroll_offset = Vector2(-743, -417)
+repeat_size = Vector2(1024, 0)
+autoscroll = Vector2(75, 0)
+repeat_times = 10
+
+[node name="Background6" type="Sprite2D" parent="Parallax2D8"]
+modulate = Color(0.556863, 0.556863, 0.556863, 0.772549)
+position = Vector2(2175, -1465)
+scale = Vector2(2, 2)
+texture = ExtResource("15_tx335")
+
+[node name="Parallax2D7" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.9, 0.9)
+scroll_offset = Vector2(25.685, 6)
+repeat_size = Vector2(1024, 0)
+autoscroll = Vector2(100, 0)
+repeat_times = 10
+
+[node name="Background6" type="Sprite2D" parent="Parallax2D7"]
+position = Vector2(1986, -1287)
+scale = Vector2(2, 2)
+texture = ExtResource("15_tx335")
+
+[node name="Parallax2D6" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-21, -112)
+repeat_size = Vector2(1067, 0)
+repeat_times = 6
+
+[node name="Background5" type="Sprite2D" parent="Parallax2D6"]
+texture_filter = 1
+position = Vector2(1193, -1162)
+scale = Vector2(2, 2)
+texture = ExtResource("16_usc8s")
+
+[node name="DraggingManager" parent="." node_paths=PackedStringArray("sheeps_container") instance=ExtResource("19_5hcs0")]
+position = Vector2(414, 3)
+sheeps_container = NodePath("../SheepsContainer")
+
+[node name="Cible" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(959, 362)
+scale = Vector2(4, 4)
+texture = ExtResource("14_dsmso")
+
+[node name="Sheep" type="RigidBody2D" parent="."]
+position = Vector2(959, 384)
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_35w1j")
+freeze = true
+contact_monitor = true
+max_contacts_reported = 4
+script = ExtResource("15_t8p2w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sheep"]
+position = Vector2(0, -25)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_35w1j")
+
+[node name="spheredetection" type="Area2D" parent="Sheep"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sheep/spheredetection"]
+position = Vector2(0, -23)
+shape = SubResource("CircleShape2D_veubm")
+
+[node name="Mouton" type="Sprite2D" parent="Sheep"]
+visible = false
+texture_filter = 1
+position = Vector2(1, -89)
+scale = Vector2(4, 4)
+texture = ExtResource("31_186vx")
+hframes = 81
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Mouton/AnimationPlayer",
+"slice": "",
+"source": "res://Mouton.aseprite",
+"source_uid": 5591409678646711431
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a651a94b4d889d5aaaf4312c673a2447"
+
+[node name="AnimationSpriteMouton" type="AnimationPlayer" parent="Sheep/Mouton"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_q6r6c")
+}
+
+[node name="AnimationEffectMouton" type="AnimationPlayer" parent="Sheep/Mouton"]
+libraries = {
+&"": SubResource("AnimationLibrary_dlixe")
+}
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Sheep"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(272, 600)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(594, 12)
+shape = SubResource("RectangleShape2D_qy3sg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-279, -124)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_qy3sg")
+
+[node name="SheepsContainer" type="Node2D" parent="."]
+script = ExtResource("20_1o7pl")
+
+[node name="Sheep2" type="RigidBody2D" parent="SheepsContainer"]
+position = Vector2(564, 488)
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_35w1j")
+contact_monitor = true
+max_contacts_reported = 4
+script = ExtResource("15_t8p2w")
+is_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SheepsContainer/Sheep2"]
+position = Vector2(0, -25)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_35w1j")
+
+[node name="spheredetection" type="Area2D" parent="SheepsContainer/Sheep2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SheepsContainer/Sheep2/spheredetection"]
+position = Vector2(0, -23)
+shape = SubResource("CircleShape2D_veubm")
+
+[node name="Mouton" type="Sprite2D" parent="SheepsContainer/Sheep2"]
+texture_filter = 1
+position = Vector2(1, -89)
+scale = Vector2(4, 4)
+texture = ExtResource("31_186vx")
+hframes = 81
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "Mouton/AnimationPlayer",
+"slice": "",
+"source": "res://Mouton.aseprite",
+"source_uid": 5591409678646711431
+}
+metadata/_aseprite_wizard_source_file_hash_ = "a651a94b4d889d5aaaf4312c673a2447"
+
+[node name="AnimationSpriteMouton" type="AnimationPlayer" parent="SheepsContainer/Sheep2/Mouton"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_q6r6c")
+}
+
+[node name="AnimationEffectMouton" type="AnimationPlayer" parent="SheepsContainer/Sheep2/Mouton"]
+libraries = {
+&"": SubResource("AnimationLibrary_dlixe")
+}
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="SheepsContainer/Sheep2"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(956, 363)
+script = ExtResource("22_1uil2")
+
+[node name="GluingZone" type="Area2D" parent="."]
+script = ExtResource("23_1mb1m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GluingZone"]
+position = Vector2(963, -2572)
+shape = SubResource("RectangleShape2D_12shr")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_241l0")
+autoplay = true
+
+[node name="GroundMarker" type="Marker2D" parent="."]
+position = Vector2(536, 602)
+
+[connection signal="mouse_entered" from="Sheep" to="Sheep" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Sheep" to="Sheep" method="_on_mouse_exited"]
+[connection signal="area_entered" from="Sheep/spheredetection" to="Sheep" method="_on_spheredetection_area_entered"]
+[connection signal="screen_exited" from="Sheep/VisibleOnScreenNotifier2D" to="Sheep" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="mouse_entered" from="SheepsContainer/Sheep2" to="SheepsContainer/Sheep2" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SheepsContainer/Sheep2" to="SheepsContainer/Sheep2" method="_on_mouse_exited"]
+[connection signal="area_entered" from="SheepsContainer/Sheep2/spheredetection" to="SheepsContainer/Sheep2" method="_on_spheredetection_area_entered"]
+[connection signal="screen_exited" from="SheepsContainer/Sheep2/VisibleOnScreenNotifier2D" to="SheepsContainer/Sheep2" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="GluingZone" to="GluingZone" method="_on_body_entered"]
+[connection signal="body_exited" from="GluingZone" to="GluingZone" method="_on_body_exited"]
