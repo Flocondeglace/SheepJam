@@ -228,7 +228,7 @@ position = Vector2(636, 556)
 shape = SubResource("RectangleShape2D_5g068")
 
 [node name="Balloon" type="StaticBody2D" parent="SheepSpawnManager"]
-position = Vector2(495, 399)
+position = Vector2(498, -129)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SheepSpawnManager/Balloon"]
 position = Vector2(-13.5, 63)
