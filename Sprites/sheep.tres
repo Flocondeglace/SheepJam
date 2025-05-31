@@ -1,4 +1,4 @@
-[gd_resource type="PortableCompressedTexture2D" format=3 uid="uid://s172isnk31y2"]
+[gd_resource type="PortableCompressedTexture2D" load_steps=0 format=3 uid="uid://s172isnk31y2"]
 
 [resource]
 size_override = Vector2(5184, 64)

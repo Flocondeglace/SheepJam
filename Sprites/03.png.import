@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kr1u01c5yy6m"
-path="res://.godot/imported/Mongolfiere_Back.png-3284822a8b94c315e099a2777a791cf4.ctex"
+uid="uid://cw4lcwt06y62s"
+path="res://.godot/imported/03.png-ab3b0c546859e42fd32783f8a871f9a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Mongolfiere_Back.png"
-dest_files=["res://.godot/imported/Mongolfiere_Back.png-3284822a8b94c315e099a2777a791cf4.ctex"]
+source_file="res://Sprites/03.png"
+dest_files=["res://.godot/imported/03.png-ab3b0c546859e42fd32783f8a871f9a2.ctex"]
 
 [params]
 
