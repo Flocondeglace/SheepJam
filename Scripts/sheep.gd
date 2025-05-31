@@ -40,6 +40,8 @@ var max_time_sickness : float = 5
 @export var is_pickable : bool = false
 var is_in_screen : bool = true
 
+@onready var splat: AudioStreamPlayer = $Splat
+@onready var meh: AudioStreamPlayer = $Meh
 
 
 func _ready():
@@ -112,6 +114,7 @@ func _process(delta: float) -> void:
 		
 
 func launch(direction: Vector2):
+	meh.play()
 	self.apply_impulse(direction)
 	end_player_holding()
 
@@ -165,6 +168,8 @@ func _on_spheredetection_area_entered(area: Area2D) -> void:
 	# Check if we've already created a joint with this other_sphere
 	if other_sphere in jointed_bodies:
 		return
+
+	splat.play()
 
 	# Calculate the intersection point between the sheep
 	var intersection_point = calculate_intersection_point(other_sphere)

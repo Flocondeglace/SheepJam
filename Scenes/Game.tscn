@@ -1,7 +1,7 @@
 [gd_scene load_steps=765 format=3 uid="uid://b3wtsk3ghnykj"]
 
 [ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_4f4ik"]
-[ext_resource type="PackedScene" uid="uid://b2ik8irb8x17y" path="res://Scenes/mouton_master.tscn" id="2_0iyqm"]
+[ext_resource type="PackedScene" path="res://Scenes/mouton_master.tscn" id="2_0iyqm"]
 [ext_resource type="Texture2D" uid="uid://cl3mb5867hh1n" path="res://Sprites/Sun.png" id="2_khs3t"]
 [ext_resource type="Texture2D" uid="uid://c3qgwjslx41vu" path="res://Sprites/Dieu_Mouton.png" id="3_0iyqm"]
 [ext_resource type="Texture2D" uid="uid://c1a8sqxk5pv5i" path="res://Sprites/Planet_1.png" id="4_jn8rg"]
@@ -27,7 +27,7 @@
 [ext_resource type="Script" uid="uid://cpp8bwic6stw8" path="res://Scripts/sheep_spawn_manager.gd" id="24_jamva"]
 [ext_resource type="Texture2D" uid="uid://gjtt7l5abf4d" path="res://Sprites/Mongolfiere_Front.png" id="25_m15vq"]
 [ext_resource type="Texture2D" uid="uid://kr1u01c5yy6m" path="res://Sprites/Mongolfiere_Back.png" id="26_a05uw"]
-[ext_resource type="Script" uid="uid://dl0jyqc4qj0n3" path="res://Scripts/balloon_disappear.gd" id="27_n2ugt"]
+[ext_resource type="Script" path="res://Scripts/balloon_disappear.gd" id="27_n2ugt"]
 [ext_resource type="AudioStream" uid="uid://nwwhfjl3lma0" path="res://Sounds/background_music.mp3" id="28_n24vg"]
 [ext_resource type="Script" uid="uid://bykhpgeyvwslo" path="res://Scenes/control.gd" id="29_ym08v"]
 [ext_resource type="Texture2D" uid="uid://c5sbgbunrllf4" path="res://Sprites/00.png" id="30_8ekww"]
@@ -5286,7 +5286,6 @@ libraries = {
 autoplay = "hover"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Dieu"]
-bus = &"SFX"
 
 [node name="Planete1" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.695503, 0.695503, 0.695503, 1)

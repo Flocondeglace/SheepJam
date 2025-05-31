@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c1m7xa56kaexk"]
+[gd_scene load_steps=25 format=3 uid="uid://c1m7xa56kaexk"]
 
 [ext_resource type="Script" uid="uid://cgvjpn6btim8h" path="res://Scripts/sheep.gd" id="1_35w1j"]
 [ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="3_okt0m"]
@@ -6,7 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://b7texl3we8t82" path="res://Sounds/grabbed.mp3" id="5_bvhs2"]
 [ext_resource type="Texture2D" uid="uid://cx7nbef4uiqn7" path="res://Sprites/Palettes.png" id="5_nqg6p"]
 [ext_resource type="AudioStream" uid="uid://bpope83rgb6xn" path="res://Sounds/sheep1.mp3" id="6_jgge2"]
-[ext_resource type="AudioStream" uid="uid://c3wjx663g66da" path="res://Sounds/sheep2.mp3" id="7_isq17"]
 [ext_resource type="AudioStream" uid="uid://bglcs2gxqcsfn" path="res://Sounds/sheep3.mp3" id="8_c2gec"]
 [ext_resource type="AudioStream" uid="uid://dfwj5jfpc6t84" path="res://Sounds/sheep4.mp3" id="9_0qsrn"]
 [ext_resource type="AudioStream" uid="uid://ce7vsiad44com" path="res://Sounds/splat.mp3" id="10_8x3hd"]
@@ -95,6 +94,21 @@ tracks/1/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_fsh87"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Grab:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_0e48y"]
 length = 0.8
 loop_mode = 1
@@ -109,21 +123,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [64, 65, 66, 67, 68, 69, 70, 71]
-}
-
-[sub_resource type="Animation" id="Animation_fsh87"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Grab:playing")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q6r6c"]
@@ -175,6 +174,18 @@ _data = {
 &"RESET": SubResource("Animation_okt0m"),
 &"Sickness": SubResource("Animation_35w1j")
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_45la8"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("10_8x3hd")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jgge2"]
+random_pitch = 1.62
+streams_count = 3
+stream_0/stream = ExtResource("6_jgge2")
+stream_1/stream = ExtResource("8_c2gec")
+stream_2/stream = ExtResource("9_0qsrn")
 
 [node name="Sheep" type="RigidBody2D"]
 input_pickable = true
@@ -240,27 +251,12 @@ rect = Rect2(0, 0, 20, 20)
 
 [node name="Grab" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_bvhs2")
-bus = &"SFX"
-
-[node name="Meh1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_jgge2")
-bus = &"SFX"
-
-[node name="Meh2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_isq17")
-bus = &"SFX"
-
-[node name="Meh3" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_c2gec")
-bus = &"SFX"
-
-[node name="Meh4" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_0qsrn")
-bus = &"SFX"
 
 [node name="Splat" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_8x3hd")
-bus = &"SFX"
+stream = SubResource("AudioStreamRandomizer_45la8")
+
+[node name="Meh" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_jgge2")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

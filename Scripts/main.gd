@@ -79,7 +79,7 @@ func update_camera_zoom_and_y_pos():
 	elif zoom < 1 :
 		zoom = max_zoom
 		camera_2d.zoom = Vector2(zoom,zoom) 
-		camera_2d.position.y = lerp(camera_2d.position.y, current_highest_sheep_y+550, 0.1)
+		camera_2d.position.y = lerp(camera_2d.position.y, current_highest_sheep_y-250, 0.1)
 
 
 
