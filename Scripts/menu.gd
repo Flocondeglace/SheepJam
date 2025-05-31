@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var sheep: Sheep = $SheepsContainer/Sheep2
+@onready var sheep: Sheep = $SheepsContainer/Sheep
 @onready var animation_transition: AnimationPlayer = $Transition/AnimationPlayer
 var transition : bool = false
 

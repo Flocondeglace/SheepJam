@@ -121,3 +121,12 @@ func spawn_sheep(spawn_position: Vector2):
 		print("Spawned sheep at: ", spawn_position)
 	else:
 		printerr("Sheep scene not loaded!")
+
+func _input(event: InputEvent) -> void:
+	if event.is_action("ui_accept"):
+		_on_game_finished()
+
+func _on_game_finished():
+	var sheeps = sheeps_container.get_children()
+	for i in range(sheeps.size(),-1):
+		sheeps[i].play_animation_count()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c1m7xa56kaexk"]
+[gd_scene load_steps=27 format=3 uid="uid://c1m7xa56kaexk"]
 
 [ext_resource type="Script" uid="uid://cgvjpn6btim8h" path="res://Scripts/sheep.gd" id="1_35w1j"]
 [ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="3_okt0m"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bglcs2gxqcsfn" path="res://Sounds/sheep3.mp3" id="8_c2gec"]
 [ext_resource type="AudioStream" uid="uid://dfwj5jfpc6t84" path="res://Sounds/sheep4.mp3" id="9_0qsrn"]
 [ext_resource type="AudioStream" uid="uid://ce7vsiad44com" path="res://Sounds/splat.mp3" id="10_8x3hd"]
+[ext_resource type="Texture2D" uid="uid://rx5y8efmr1y5" path="res://Sprites/Mouton_Cosmique.png" id="10_jgge2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_35w1j"]
 friction = 0.8
@@ -175,6 +176,8 @@ _data = {
 &"Sickness": SubResource("Animation_35w1j")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c2gec"]
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_45la8"]
 random_pitch = 1.2
 streams_count = 1
@@ -211,7 +214,7 @@ position = Vector2(8, -64)
 scale = Vector2(4, 4)
 texture = ExtResource("3_okt0m")
 hframes = 81
-frame = 1
+frame = 80
 script = ExtResource("4_dlixe")
 palette_texture = ExtResource("5_nqg6p")
 metadata/_aseprite_wizard_interface_config_ = {
@@ -243,6 +246,21 @@ libraries = {
 libraries = {
 &"": SubResource("AnimationLibrary_dlixe")
 }
+
+[node name="CountingEffect" type="CPUParticles2D" parent="Mouton"]
+material = SubResource("CanvasItemMaterial_c2gec")
+position = Vector2(-2, 16)
+scale = Vector2(0.25, 0.25)
+emitting = false
+texture = ExtResource("10_jgge2")
+one_shot = true
+explosiveness = 0.04
+randomness = 0.08
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-23, -47)

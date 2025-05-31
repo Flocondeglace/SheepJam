@@ -23,6 +23,7 @@ var normal_sheep_col_glue_size = Vector2(8,-64)
 @onready var sprite_2d: Sprite2D = $Mouton
 @onready var animation_player_sprite: AnimationPlayer = $Mouton/AnimationSpriteMouton
 @onready var animation_effect_mouton: AnimationPlayer = $Mouton/AnimationEffectMouton
+@onready var counting_effect: CPUParticles2D = $Mouton/CountingEffect
 
 
 # Dictionary to keep track of bodies we've already created a joint with
@@ -129,7 +130,7 @@ func free_sheep():
 			joint.queue_free()
 	
 func is_under_mouse():
-	print(mouse_hovering,is_pickable,!have_collided)
+	# print(mouse_hovering,is_pickable,!have_collided)
 	return mouse_hovering && is_pickable && !have_collided
 
 func _on_mouse_entered() -> void:
@@ -255,3 +256,7 @@ func look_left(b:bool):
 func on_arrived():
 	self.animation_player_sprite.play("Idle")
 	self.is_pickable = true
+	
+func play_animation_count():
+	print("Sheep counting !")
+	counting_effect.emitting = true
