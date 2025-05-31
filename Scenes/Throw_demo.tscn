@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3wtsk3ghnykj"]
+[gd_scene load_steps=14 format=3 uid="uid://b3wtsk3ghnykj"]
 
 [ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_d0d3y"]
 [ext_resource type="PackedScene" uid="uid://c0tqb21y7mr1e" path="res://Scenes/DraggingManager.tscn" id="1_qy3sg"]
@@ -11,10 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://bv8u2rpk2cbyr" path="res://Sprites/Mongolfiere_Back.png" id="8_6bgn6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qy3sg"]
-size = Vector2(796, 27)
+size = Vector2(1979, 27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12shr"]
 size = Vector2(363.5, 652)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5g068"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptiwi"]
 size = Vector2(246, 20)
@@ -30,12 +32,7 @@ sheeps_container = NodePath("../SheepsContainer")
 position = Vector2(275, 632)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(480, 3.5)
-shape = SubResource("RectangleShape2D_qy3sg")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-279, -124)
-rotation = 1.5708
+position = Vector2(702.5, 3.5)
 shape = SubResource("RectangleShape2D_qy3sg")
 
 [node name="SheepsContainer" type="Node2D" parent="."]
@@ -55,25 +52,41 @@ shape = SubResource("RectangleShape2D_12shr")
 [node name="SheepSpawnManager" type="Node" parent="." node_paths=PackedStringArray("sheeps_container")]
 script = ExtResource("6_12shr")
 sheeps_container = NodePath("../SheepsContainer")
+start_pos_balloon = 0.0
+goal_pos_walk = 50.0
+start_pos_walk = -500.0
 colors_balloon = Array[Color]([Color(1, 0.387955, 0.319725, 1), Color(0.286691, 0.501014, 1, 1), Color(0.223491, 1, 0.201554, 1)])
+space_between_spawned_sheep = 100.0
+number_spawn_sheep_walking = 2.0
+
+[node name="SpawningPositionWalkingRight" type="Marker2D" parent="SheepSpawnManager"]
+position = Vector2(1931, 601)
+
+[node name="GoalPositionWalkingRight" type="Marker2D" parent="SheepSpawnManager"]
+position = Vector2(1669, 601)
+
+[node name="AreaGoalPosW" type="Area2D" parent="SheepSpawnManager/GoalPositionWalkingRight"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SheepSpawnManager/GoalPositionWalkingRight/AreaGoalPosW"]
+shape = SubResource("RectangleShape2D_5g068")
+
+[node name="SpawningPositionWalkingLeft" type="Marker2D" parent="SheepSpawnManager"]
+position = Vector2(-49, 601)
+
+[node name="GoalPositionWalkingLeft" type="Marker2D" parent="SheepSpawnManager"]
+position = Vector2(171, 601)
+
+[node name="AreaGoalPosW" type="Area2D" parent="SheepSpawnManager/GoalPositionWalkingLeft"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SheepSpawnManager/GoalPositionWalkingLeft/AreaGoalPosW"]
+shape = SubResource("RectangleShape2D_5g068")
 
 [node name="Balloon" type="StaticBody2D" parent="SheepSpawnManager"]
-position = Vector2(14, 820)
+position = Vector2(8, -90)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SheepSpawnManager/Balloon"]
 position = Vector2(104, 0)
 shape = SubResource("RectangleShape2D_ptiwi")
-
-[node name="SpawningPositionsContainer" type="Node2D" parent="SheepSpawnManager/Balloon"]
-
-[node name="Marker2D" type="Marker2D" parent="SheepSpawnManager/Balloon/SpawningPositionsContainer"]
-position = Vector2(25, -51)
-
-[node name="Marker2D2" type="Marker2D" parent="SheepSpawnManager/Balloon/SpawningPositionsContainer"]
-position = Vector2(89, -51)
-
-[node name="Marker2D3" type="Marker2D" parent="SheepSpawnManager/Balloon/SpawningPositionsContainer"]
-position = Vector2(150, -51)
 
 [node name="Sprites" type="Node2D" parent="SheepSpawnManager/Balloon"]
 position = Vector2(-11, -286)
@@ -85,6 +98,9 @@ flip_h = true
 [node name="Back" type="Sprite2D" parent="SheepSpawnManager/Balloon/Sprites"]
 texture = ExtResource("8_6bgn6")
 flip_h = true
+
+[node name="SpawningPositionFlying" type="Marker2D" parent="SheepSpawnManager/Balloon"]
+position = Vector2(151, -25)
 
 [node name="BalloonPosX" type="Node" parent="SheepSpawnManager"]
 
@@ -100,3 +116,5 @@ autoplay = true
 parameters/looping = true
 
 [connection signal="body_entered" from="GluingZone" to="GluingZone" method="_on_body_entered"]
+[connection signal="body_entered" from="SheepSpawnManager/GoalPositionWalkingRight/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_body_entered"]
+[connection signal="body_entered" from="SheepSpawnManager/GoalPositionWalkingLeft/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_body_entered"]

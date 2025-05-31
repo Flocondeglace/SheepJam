@@ -143,7 +143,7 @@ texture_filter = 1
 position = Vector2(0, -23.275)
 texture = ExtResource("3_okt0m")
 hframes = 81
-frame = 72
+frame = 80
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }

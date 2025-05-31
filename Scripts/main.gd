@@ -14,7 +14,7 @@ var initial_camera_y = 0
 func _ready():
 	initial_camera_y = camera_2d.position.y
 
-func _process(delta):
+func _process(_delta):
 	if sheep_count > 0:
 		highest_sheep_y = sheeps_container.get_highest_sheep_y()
 		if highest_sheep_y < initial_camera_y:

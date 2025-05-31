@@ -7,7 +7,7 @@ var tween_duration = 0.5
 func _ready():
 	camera_third_width = get_viewport_rect().size.x / 3
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func swipe_right():

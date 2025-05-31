@@ -25,8 +25,6 @@ var have_collided = false
 
 # Sheep throwing logic
 
-signal behh
-
 var mouse_hovering : bool = false
 var is_hold : bool = false
 var time_sickness : float = 5.0
@@ -185,14 +183,15 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 		should_respawn.emit(self)
 
 func force_position(pos: Vector2):
+	# Reset Force
+	self.linear_velocity = Vector2.ZERO
+	self.angular_velocity = 0.0
 	PhysicsServer2D.body_set_state(
 		self.get_rid(),
 		PhysicsServer2D.BODY_STATE_TRANSFORM,
 		Transform2D.IDENTITY.translated(pos)
 	)
-	# Reset Force
-	self.linear_velocity = Vector2.ZERO
-	self.angular_velocity = 0.0
+	
 
 func look_left(b:bool):
 	sprite_2d.flip_h = b
