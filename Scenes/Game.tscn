@@ -5281,10 +5281,10 @@ final_score_meters = 10000.0
 loosing_height = 350.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -4216.0
-offset_top = -95.0
-offset_right = -642.0
-offset_bottom = 10302.0
+offset_left = -3987.0
+offset_top = -91.0
+offset_right = -413.0
+offset_bottom = 10306.0
 rotation = -1.5708
 mouse_filter = 2
 texture = SubResource("GradientTexture1D_u4wn8")
@@ -5398,6 +5398,7 @@ repeat_size = Vector2(1024, 0)
 repeat_times = 5
 
 [node name="Background4" type="Sprite2D" parent="Parallax2D5"]
+texture_filter = 1
 position = Vector2(673, -4)
 scale = Vector2(2, 2)
 texture = ExtResource("11_7av8l")
@@ -5408,6 +5409,7 @@ repeat_size = Vector2(1024, 0)
 repeat_times = 5
 
 [node name="Background3" type="Sprite2D" parent="Parallax2D4"]
+texture_filter = 1
 position = Vector2(920, 115)
 scale = Vector2(2, 2)
 texture = ExtResource("12_dctr5")
@@ -5418,6 +5420,7 @@ repeat_size = Vector2(1024, 0)
 repeat_times = 5
 
 [node name="Background2" type="Sprite2D" parent="Parallax2D2"]
+texture_filter = 1
 position = Vector2(642, 380)
 scale = Vector2(2, 2)
 texture = ExtResource("13_mi7vx")
@@ -5429,14 +5432,16 @@ repeat_size = Vector2(1024, 0)
 repeat_times = 5
 
 [node name="Background1" type="Sprite2D" parent="Parallax2D3"]
+texture_filter = 1
 position = Vector2(41, 350)
 scale = Vector2(2, 2)
 texture = ExtResource("14_t2joc")
 
 [node name="Parallax2D8" type="Parallax2D" parent="."]
+texture_filter = 1
 scroll_scale = Vector2(0.81, 0.81)
 scroll_offset = Vector2(-743, -417)
-repeat_size = Vector2(1024, 0)
+repeat_size = Vector2(1067, 0)
 autoscroll = Vector2(75, 0)
 repeat_times = 10
 
@@ -5447,9 +5452,10 @@ scale = Vector2(2, 2)
 texture = ExtResource("15_audqb")
 
 [node name="Parallax2D7" type="Parallax2D" parent="."]
+texture_filter = 1
 scroll_scale = Vector2(0.9, 0.9)
 scroll_offset = Vector2(25.685, 6)
-repeat_size = Vector2(1024, 0)
+repeat_size = Vector2(1067, 0)
 autoscroll = Vector2(100, 0)
 repeat_times = 10
 
@@ -5504,6 +5510,7 @@ shape = SubResource("RectangleShape2D_upyao")
 debug_color = Color(0.848153, 0.258465, 0.684285, 0.42)
 
 [node name="Sprite2D2" type="Sprite2D" parent="DraggingManager"]
+texture_filter = 1
 position = Vector2(910.5, -1663.6)
 scale = Vector2(0.847656, -17.9266)
 texture = SubResource("GradientTexture1D_gyuvk")
@@ -5511,6 +5518,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 256, 256)
 
 [node name="Sprite2D3" type="Sprite2D" parent="DraggingManager"]
+texture_filter = 1
 position = Vector2(359, -1624)
 scale = Vector2(0.847656, -17.9266)
 texture = SubResource("GradientTexture1D_gyuvk")
@@ -5602,10 +5610,12 @@ shape = SubResource("RectangleShape2D_ptiwi")
 [node name="Sprites" type="Node2D" parent="SheepSpawnManager/Balloon"]
 
 [node name="Front" type="Sprite2D" parent="SheepSpawnManager/Balloon/Sprites"]
+texture_filter = 1
 texture = ExtResource("25_m15vq")
 flip_h = true
 
 [node name="Back" type="Sprite2D" parent="SheepSpawnManager/Balloon/Sprites"]
+texture_filter = 1
 texture = ExtResource("26_a05uw")
 flip_h = true
 
@@ -5616,12 +5626,14 @@ position = Vector2(68, 268)
 position = Vector2(-111, 268)
 
 [node name="BalloonDisappear" type="Sprite2D" parent="SheepSpawnManager"]
+texture_filter = 1
 position = Vector2(-4852, -513)
 texture = ExtResource("26_a05uw")
 flip_h = true
 script = ExtResource("27_n2ugt")
 
 [node name="Sprite2D" type="Sprite2D" parent="SheepSpawnManager/BalloonDisappear"]
+texture_filter = 1
 texture = ExtResource("25_m15vq")
 flip_h = true
 
@@ -5803,11 +5815,11 @@ horizontal_alignment = 1
 script = ExtResource("40_dctr5")
 messages = Array[String](["[snd 0]
 Bleatings of Glory!
-[wait 120]", "I salute you, architects of fleece and faith, for you have reached my cosmic realm.
-[wait 120]", "With nothing but your dreams, you stacked yourselves up in tower worthy of the heavens!
-[wait 120]", "Rejoice, my brethren, for I shall grant you infinite grass as a reward for your unwavering will!
-[wait 120]", "May the sound of your hooves and bleats echo forever as an inspiration to the earthly flocks!
-[wait 120]"])
+[wait 200]", "I salute you, architects of fleece and faith, for you have reached my cosmic realm.
+[wait 350]", "With nothing but your dreams, you stacked yourselves up in tower worthy of the heavens!
+[wait 350]", "Rejoice, my brethren, for I shall grant you infinite grass as a reward for your unwavering will!
+[wait 350]", "May the sound of your hooves and bleats echo forever as an inspiration to the earthly flocks!
+[wait 350]"])
 sound_files = Array[AudioStream]([ExtResource("5_4eqlp")])
 text_speed = 0.2
 

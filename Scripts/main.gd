@@ -26,6 +26,7 @@ var progress_percentage = 0
 @onready var score: Label = $CanvasLayer/Score
 @onready var ground_marker: Marker2D = $GroundMarker
 var have_loosed = false
+var has_reached_end = false
 
 @onready var dialogue_manager: Control = $DialogueManager
 var has_game_ended = false
@@ -62,6 +63,9 @@ func _process(_delta):
 			update_progress_percentage()
 
 func update_progress_percentage():
+	if has_reached_end :
+		progress_percentage = 1
+		return
 	var progress_distance = current_highest_sheep_y - ground_y
 	progress_percentage = progress_distance / max_height
 	progress_percentage = clamp(progress_percentage, 0, 1)
@@ -70,8 +74,9 @@ func update_progress_percentage():
 
 func update_camera_zoom_and_y_pos():
 		
-
+	print(has_reached_end, progress_percentage)
 	if progress_percentage >= 1 and not has_game_ended:
+		has_reached_end = true
 		if camera_2d.zoom.x < 0.99:
 			camera_2d.zoom = lerp(camera_2d.zoom, Vector2(1,1), 0.1)
 			camera_2d.position.y = lerp(camera_2d.position.y, -3280.0, 0.1)
@@ -106,7 +111,7 @@ func update_camera_zoom_and_y_pos():
 
 
 func update_score():
-	if have_loosed:
+	if have_loosed or has_reached_end:
 		return
 	var score_meters = 0
 	if highest_sheep_y == 9999:
