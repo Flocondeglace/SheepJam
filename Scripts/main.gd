@@ -164,9 +164,9 @@ func spawn_sheep(spawn_position: Vector2):
 	else:
 		printerr("Sheep scene not loaded!")
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		play_end_cinematic()
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("ui_accept"):
+		#play_end_cinematic()
 
 func play_end_cinematic():
 	print("Game finished")
@@ -194,5 +194,5 @@ func play_end_cinematic():
 	
 	# count_sheep_end.add_theme_color_override("font_color", Color.WHITE)
 	# count_sheep_end.position = pos_text
-	count_sheep_end.text = str(sheeps.size()) + " sheeps !"
+	count_sheep_end.text = "Nice work ! You threw " + str(sheeps.size()) + " sheeps !"
 		
