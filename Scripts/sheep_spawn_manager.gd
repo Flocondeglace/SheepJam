@@ -112,7 +112,7 @@ func balloon_appear():
 func spawn_sheeps(number_sheep :int, spawn_position: Vector2, dir: int = 1, is_walking = false):
 	sheep_in_spawning_area = []
 	var big_sheep = false
-	if randf() < proba_big_sheep and game.progress_percentage > 0.15:
+	if randf() < clamp(game.progress_percentage,0,0.8) :
 		big_sheep = true
 		number_sheep = 1
 	
