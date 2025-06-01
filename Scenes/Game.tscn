@@ -5305,7 +5305,6 @@ camera_freeze_height = 1200.0
 max_height = -3580
 final_score_meters = 10000.0
 loosing_height = 350.0
-is_debug_mode = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -3987.0
