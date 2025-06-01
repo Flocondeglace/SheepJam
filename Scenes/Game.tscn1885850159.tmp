@@ -1,4 +1,4 @@
-[gd_scene load_steps=789 format=3 uid="uid://b3wtsk3ghnykj"]
+[gd_scene load_steps=788 format=3 uid="uid://b3wtsk3ghnykj"]
 
 [ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_4f4ik"]
 [ext_resource type="PackedScene" uid="uid://b2ik8irb8x17y" path="res://Scenes/mouton_master.tscn" id="2_0iyqm"]
@@ -5226,10 +5226,7 @@ size = Vector2(3000, 50.75)
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_t2joc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12shr"]
-size = Vector2(358.75, 5961)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2joc"]
-size = Vector2(206, 357)
+size = Vector2(363.5, 6426)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g068"]
 size = Vector2(20, 511)
@@ -5309,7 +5306,7 @@ script = ExtResource("1_4f4ik")
 camera_freeze_height = 1200.0
 max_height = -3580
 final_score_meters = 10000.0
-loosing_height = 250.0
+loosing_height = 350.0
 is_debug_mode = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -5577,12 +5574,9 @@ freeze = true
 position = Vector2(1034, 534)
 freeze = true
 
-[node name="Sheep3" parent="SheepsContainer" instance=ExtResource("21_lkuj1")]
-position = Vector2(957, 403)
-freeze = true
-
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(956, 363)
+position = Vector2(1087, -1236)
+zoom = Vector2(0.19, 0.19)
 script = ExtResource("22_lklsk")
 noise = SubResource("FastNoiseLite_t2joc")
 
@@ -5590,12 +5584,8 @@ noise = SubResource("FastNoiseLite_t2joc")
 script = ExtResource("23_34hf4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GluingZone"]
-position = Vector2(960.625, -2804.5)
+position = Vector2(963, -2572)
 shape = SubResource("RectangleShape2D_12shr")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="GluingZone"]
-position = Vector2(961, 345)
-shape = SubResource("RectangleShape2D_t2joc")
 
 [node name="SheepSpawnManager" type="Node" parent="." node_paths=PackedStringArray("sheeps_container")]
 script = ExtResource("24_jamva")

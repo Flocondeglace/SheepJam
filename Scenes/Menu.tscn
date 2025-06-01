@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://bryh2isf13noa"]
+[gd_scene load_steps=66 format=4 uid="uid://bryh2isf13noa"]
 
 [ext_resource type="Script" uid="uid://27af8i7jt4w4" path="res://Scripts/menu.gd" id="1_dsmso"]
 [ext_resource type="Script" uid="uid://ch03ash5egwme" path="res://Scripts/draggingmanager.gd" id="9_o00om"]
@@ -291,6 +291,8 @@ size = Vector2(1270, 455.688)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qwkn0"]
 size = Vector2(213, 314)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o00om"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12shr"]
 size = Vector2(222, 209)
@@ -645,6 +647,7 @@ is_pickable = true
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(956, 363)
 script = ExtResource("22_1uil2")
+noise = SubResource("FastNoiseLite_o00om")
 
 [node name="GluingZone" type="Area2D" parent="."]
 script = ExtResource("23_1mb1m")
