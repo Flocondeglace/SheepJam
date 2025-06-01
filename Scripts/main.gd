@@ -74,7 +74,6 @@ func update_progress_percentage():
 
 func update_camera_zoom_and_y_pos():
 		
-	print(has_reached_end, progress_percentage)
 	if progress_percentage >= 1 and not has_game_ended:
 		has_reached_end = true
 		if camera_2d.zoom.x < 0.99:

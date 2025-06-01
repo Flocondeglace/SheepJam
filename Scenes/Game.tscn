@@ -1,4 +1,4 @@
-[gd_scene load_steps=780 format=3 uid="uid://b3wtsk3ghnykj"]
+[gd_scene load_steps=783 format=3 uid="uid://b3wtsk3ghnykj"]
 
 [ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_4f4ik"]
 [ext_resource type="PackedScene" uid="uid://b2ik8irb8x17y" path="res://Scenes/mouton_master.tscn" id="2_0iyqm"]
@@ -5164,12 +5164,55 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_upyao"]
 size = Vector2(9514, 28731.5)
 
-[sub_resource type="Gradient" id="Gradient_upyao"]
-offsets = PackedFloat32Array(0, 0.136905, 0.85119, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.25098, 0, 0, 0, 0.25098, 0, 0, 0, 0)
+[sub_resource type="Shader" id="Shader_7av8l"]
+code = "shader_type canvas_item;
+
+uniform float size : hint_range(1.0, 100.0) = 25.0;
+uniform vec4 color1 : source_color = vec4(1.0, 1.0, 1.0, 1.0); 
+uniform vec4 color2 : source_color = vec4(0.7, 0.7, 0.7, 1.0);
+uniform float speed : hint_range(0.0, 10.0) = 1.0;
+uniform float direction_x : hint_range(-1.0, 1.0) = 1.0; // Horizontal movement
+uniform float direction_y : hint_range(-1.0, 1.0) = 1.0; // Vertical movement
+
+void fragment() {
+    vec2 pos = FRAGCOORD.xy / size;
+    float time_offset = TIME * speed;
+
+    // Use the slider values for direction and normalize them
+    vec2 direction = normalize(vec2(direction_x, direction_y));
+    vec2 movement = direction * time_offset;
+
+    pos -= movement;
+    pos = floor(pos);
+
+    float pattern_mask = mod(pos.x + mod(pos.y, 2.0), 2.0);
+    COLOR = mix(color1, color2, pattern_mask);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7av8l"]
+shader = SubResource("Shader_7av8l")
+shader_parameter/size = 25.0
+shader_parameter/color1 = Color(1, 1, 1, 0.168627)
+shader_parameter/color2 = Color(0.701961, 0.701961, 0.701961, 0)
+shader_parameter/speed = 0.73
+shader_parameter/direction_x = 1.0
+shader_parameter/direction_y = 1.0
+
+[sub_resource type="Gradient" id="Gradient_mi7vx"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_gyuvk"]
-gradient = SubResource("Gradient_upyao")
+gradient = SubResource("Gradient_mi7vx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t2joc"]
+shader = SubResource("Shader_7av8l")
+shader_parameter/size = 25.0
+shader_parameter/color1 = Color(1, 1, 1, 0.168627)
+shader_parameter/color2 = Color(0.701961, 0.701961, 0.701961, 0)
+shader_parameter/speed = 0.73
+shader_parameter/direction_x = -1.0
+shader_parameter/direction_y = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rpqav"]
 size = Vector2(8489.5, 29036)
@@ -5503,16 +5546,18 @@ position = Vector2(-4414, -3576.25)
 shape = SubResource("RectangleShape2D_upyao")
 debug_color = Color(0.848153, 0.258465, 0.684285, 0.42)
 
-[node name="Sprite2D2" type="Sprite2D" parent="DraggingManager"]
-position = Vector2(910.5, -1663.6)
-scale = Vector2(0.847656, -17.9266)
+[node name="Sprite2D3" type="Sprite2D" parent="DraggingManager"]
+material = SubResource("ShaderMaterial_7av8l")
+position = Vector2(368.5, -1009.5)
+scale = Vector2(0.644531, -12.7773)
 texture = SubResource("GradientTexture1D_gyuvk")
 region_enabled = true
 region_rect = Rect2(0, 0, 256, 256)
 
-[node name="Sprite2D3" type="Sprite2D" parent="DraggingManager"]
-position = Vector2(359, -1624)
-scale = Vector2(0.847656, -17.9266)
+[node name="Sprite2D4" type="Sprite2D" parent="DraggingManager"]
+material = SubResource("ShaderMaterial_t2joc")
+position = Vector2(907.375, -1015)
+scale = Vector2(0.692382, -12.7422)
 texture = SubResource("GradientTexture1D_gyuvk")
 region_enabled = true
 region_rect = Rect2(0, 0, 256, 256)

@@ -17,7 +17,6 @@ func _process(_delta):
 
 	if current_progress_percentage > 0.8:
 		var volume_percent = (current_progress_percentage - 0.8)/(0.9-0.8)
-		print(volume_percent)
 		var volume_music_1 = min_volume + volume_percent * volume_distance
 		var volume_music_0 = max_volume - volume_percent * volume_distance
 	

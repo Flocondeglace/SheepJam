@@ -47,8 +47,13 @@ var spawn_start_time : float = 0.0  # Track when sheep start moving
 
 func _process(_delta: float) -> void:
 	if !using_balloon:
-		if camera_2d.position.y < -200 :
+		if camera_2d.position.y < -200:
 			using_balloon = true
+			# Reset sheep states when transitioning to balloon mode
+			sheeps_arrived = true
+			for sheep in sheep_in_spawning_area:
+				sheep.queue_free()
+			sheep_in_spawning_area.clear()
 	
 	if sheeps_arrived && !check_still_sheep_in_spawn():
 		is_spawning_left = !is_spawning_left
