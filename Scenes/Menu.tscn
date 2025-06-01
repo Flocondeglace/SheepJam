@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=4 uid="uid://bryh2isf13noa"]
+[gd_scene load_steps=65 format=4 uid="uid://bryh2isf13noa"]
 
 [ext_resource type="Script" uid="uid://27af8i7jt4w4" path="res://Scripts/menu.gd" id="1_dsmso"]
 [ext_resource type="Script" uid="uid://ch03ash5egwme" path="res://Scripts/draggingmanager.gd" id="9_o00om"]
@@ -278,13 +278,19 @@ stream_1/stream = ExtResource("18_ckbj2")
 stream_2/stream = ExtResource("19_nuh2c")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o00om"]
-size = Vector2(843, 66.7531)
+size = Vector2(1509, 452.377)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdx8w"]
-size = Vector2(1270, 189.377)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fp51"]
+size = Vector2(1270, 384)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_08kpj"]
-size = Vector2(931.75, 66.7531)
+size = Vector2(1479, 461.377)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdx8w"]
+size = Vector2(1270, 455.688)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwkn0"]
+size = Vector2(213, 314)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12shr"]
 size = Vector2(222, 209)
@@ -608,22 +614,26 @@ stream = SubResource("AudioStreamRandomizer_jgge2")
 position = Vector2(272, 600)
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1344, -384.5)
+position = Vector2(1536.81, -377.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_o00om")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(677, 58.3118)
-shape = SubResource("RectangleShape2D_cdx8w")
+position = Vector2(677, 174)
+shape = SubResource("RectangleShape2D_4fp51")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(12.0004, -340.125)
+position = Vector2(-185.311, -392.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_08kpj")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(679, -769)
+position = Vector2(679, -902.156)
 shape = SubResource("RectangleShape2D_cdx8w")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1169.5, -143)
+shape = SubResource("RectangleShape2D_qwkn0")
 
 [node name="SheepsContainer" type="Node2D" parent="."]
 script = ExtResource("20_1o7pl")

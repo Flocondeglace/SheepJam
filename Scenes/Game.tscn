@@ -1,4 +1,4 @@
-[gd_scene load_steps=780 format=3 uid="uid://b3wtsk3ghnykj"]
+[gd_scene load_steps=784 format=3 uid="uid://b3wtsk3ghnykj"]
 
 [ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_4f4ik"]
 [ext_resource type="PackedScene" uid="uid://b2ik8irb8x17y" path="res://Scenes/mouton_master.tscn" id="2_0iyqm"]
@@ -38,10 +38,13 @@
 [ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="32_nojon"]
 [ext_resource type="Shader" uid="uid://06goe1dyyb13" path="res://Shaders/Menu.gdshader" id="33_khs3t"]
 [ext_resource type="Theme" uid="uid://ufalnbio1xiu" path="res://theme.tres" id="34_jn8rg"]
+[ext_resource type="Script" uid="uid://coheci2u1pkyy" path="res://Scripts/ui_manager.gd" id="34_t2joc"]
 [ext_resource type="Script" uid="uid://bvfqwe15668jk" path="res://Scripts/dialoguemanager.gd" id="37_pti6k"]
 [ext_resource type="FontFile" uid="uid://bi0a5ceiekjjy" path="res://Font/Early GameBoy.ttf" id="38_khy6b"]
 [ext_resource type="Script" uid="uid://euf82q7wsykq" path="res://addons/dialogue_label/src/DialogueLabel.gd" id="40_dctr5"]
+[ext_resource type="Texture2D" uid="uid://bh3hys3cpomwq" path="res://Sprites/home.png" id="41_audqb"]
 [ext_resource type="Texture2D" uid="uid://ulf7retoyftc" path="res://Sprites/S001_nyknck.png" id="42_7av8l"]
+[ext_resource type="Texture2D" uid="uid://baksbcf7munfv" path="res://Sprites/Arrow.png" id="42_7w24h"]
 
 [sub_resource type="Gradient" id="Gradient_38qqd"]
 offsets = PackedFloat32Array(0, 0.541667, 0.809524, 1)
@@ -5207,6 +5210,10 @@ colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_epud0"]
 gradient = SubResource("Gradient_jpea4")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2joc"]
+atlas = ExtResource("32_nojon")
+region = Rect2(0, 24, 64, 40)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_krje8"]
 shader = ExtResource("33_khs3t")
 shader_parameter/circle_size = 0.0
@@ -5647,6 +5654,7 @@ position = Vector2(536, 602)
 position = Vector2(131, 448)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("34_t2joc")
 
 [node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -5730,9 +5738,9 @@ position = Vector2(1230, 21)
 
 [node name="Score" type="Label" parent="CanvasLayer"]
 offset_left = 36.0
-offset_top = 32.0
+offset_top = 87.0
 offset_right = 632.0
-offset_bottom = 89.0
+offset_bottom = 144.0
 theme = ExtResource("34_jn8rg")
 text = "Launch a sheep !"
 vertical_alignment = 1
@@ -5745,6 +5753,67 @@ offset_right = 206.0
 offset_bottom = 389.0
 theme = ExtResource("34_jn8rg")
 text = "0"
+
+[node name="Buttons" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -13.0
+offset_right = 27.0
+offset_bottom = 40.0
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Buttons"]
+texture_filter = 1
+offset_left = 92.0
+offset_right = 156.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_t2joc")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Buttons"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 11.0
+offset_right = 75.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_t2joc")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HomeButton" type="Button" parent="CanvasLayer/Buttons"]
+modulate = Color(0.136826, 0.136826, 0.136826, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 34.0
+offset_top = 29.0
+offset_right = 106.0
+offset_bottom = 69.0
+size_flags_vertical = 4
+mouse_filter = 1
+theme = ExtResource("34_jn8rg")
+theme_override_font_sizes/font_size = 16
+icon = ExtResource("41_audqb")
+flat = true
+icon_alignment = 1
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/Buttons"]
+modulate = Color(0.137255, 0.137255, 0.137255, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 189.0
+offset_top = 29.0
+offset_right = 229.0
+offset_bottom = 101.0
+rotation = 1.5708
+size_flags_vertical = 4
+mouse_filter = 1
+theme = ExtResource("34_jn8rg")
+theme_override_font_sizes/font_size = 16
+icon = ExtResource("42_7w24h")
+flat = true
+icon_alignment = 1
 
 [node name="Transition" type="ColorRect" parent="CanvasLayer"]
 visible = false
@@ -5827,5 +5896,7 @@ text_speed = 0.2
 [connection signal="body_entered" from="SheepSpawnManager/GoalPositionWalkingRight/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_body_entered_right"]
 [connection signal="area_entered" from="SheepSpawnManager/GoalPositionWalkingLeft/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_area_entered_left"]
 [connection signal="body_entered" from="SheepSpawnManager/GoalPositionWalkingLeft/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_body_entered_left"]
+[connection signal="pressed" from="CanvasLayer/Buttons/HomeButton" to="CanvasLayer" method="_on_home_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Buttons/RestartButton" to="CanvasLayer" method="_on_restart_button_pressed"]
 [connection signal="dialogue_ended" from="DialogueManager/Dialogue" to="DialogueManager" method="onDialogueEnded"]
 [connection signal="message_finished" from="DialogueManager/Dialogue" to="DialogueManager" method="onMessageFinished"]
