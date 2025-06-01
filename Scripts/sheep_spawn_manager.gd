@@ -14,6 +14,7 @@ const SHEEP = preload("res://Scenes/sheep.tscn")
 @export var number_spawn_sheep_flying : int = 3
 @export var space_border_balloon : float = 20
 @export var proba_big_sheep : float = 0
+@export var failsafe_timeout : float = 2.0  # Time in seconds before forcing respawn
 
 @onready var spawning_position_walking_right: Marker2D = $SpawningPositionWalkingRight
 @onready var goal_position_walking_right: Marker2D = $GoalPositionWalkingRight
@@ -42,7 +43,7 @@ var using_balloon : bool = false
 var respawning_position : Vector2
 var main
 var color_balloon
-
+var spawn_start_time : float = 0.0  # Track when sheep start moving
 
 func _process(_delta: float) -> void:
 	if !using_balloon:
@@ -62,6 +63,10 @@ func _process(_delta: float) -> void:
 	else:
 		move_walking()
 	
+	# Check for failsafe timeout
+	if !sheeps_arrived and spawn_start_time > 0:
+		if Time.get_ticks_msec() / 1000.0 - spawn_start_time > failsafe_timeout:
+			force_respawn_sheep()
 
 func check_still_sheep_in_spawn():
 	for sheep in sheep_in_spawning_area:
@@ -105,6 +110,8 @@ func spawn_sheeps(number_sheep :int, spawn_position: Vector2, dir: int = 1, is_w
 	if randf() < proba_big_sheep and game.progress_percentage > 0.15:
 		big_sheep = true
 		number_sheep = 1
+	
+	spawn_start_time = Time.get_ticks_msec() / 1000.0  # Start the timer when spawning sheep
 	
 	for i in range(number_sheep):
 		var sheep = SHEEP.instantiate()
@@ -189,3 +196,26 @@ func _on_area_goal_pos_w_area_entered_left(area: Area2D) -> void:
 					for sheep in sheep_in_spawning_area:
 						sheep.on_arrived()
 					return
+
+func force_respawn_sheep():
+	var spawn_pos = Vector2.ZERO
+	var dir = 1
+	if is_spawning_left:
+		dir = -1
+		if using_balloon:
+			spawn_pos = spawning_position_flying_left.position + balloon.position
+		else:
+			spawn_pos = spawning_position_walking_left.position
+	else:
+		if using_balloon:
+			spawn_pos = spawning_position_flying_right.position + balloon.position
+		else:
+			spawn_pos = spawning_position_walking_right.position
+	
+	# Queue free all current sheep
+	for sheep in sheep_in_spawning_area:
+		sheep.queue_free()
+	
+	# Spawn new sheep
+	sheeps_arrived = false
+	spawn_sheeps(number_spawn_sheep_walking, spawn_pos, dir, true)

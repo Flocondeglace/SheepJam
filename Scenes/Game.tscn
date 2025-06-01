@@ -5165,8 +5165,8 @@ _data = {
 size = Vector2(9514, 28731.5)
 
 [sub_resource type="Gradient" id="Gradient_upyao"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 0.34902)
+offsets = PackedFloat32Array(0, 0.136905, 0.85119, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.25098, 0, 0, 0, 0.25098, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_gyuvk"]
 gradient = SubResource("Gradient_upyao")
@@ -5275,7 +5275,7 @@ _data = {
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_4f4ik")
-camera_freeze_height = 999.0
+camera_freeze_height = 600.0
 max_height = -3580
 final_score_meters = 10000.0
 loosing_height = 200.0
@@ -5477,7 +5477,7 @@ texture = ExtResource("17_6okg5")
 
 [node name="Professeur" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(1335, 485)
+position = Vector2(1335, 472)
 scale = Vector2(4, 4)
 texture = ExtResource("18_e2w45")
 flip_h = true
@@ -5495,6 +5495,7 @@ script = ExtResource("22_7av8l")
 sheeps_container = NodePath("../SheepsContainer")
 
 [node name="ThrowingZone" type="Area2D" parent="DraggingManager"]
+visible = false
 position = Vector2(-24.9473, -20.9824)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DraggingManager/ThrowingZone"]
@@ -5503,12 +5504,18 @@ shape = SubResource("RectangleShape2D_upyao")
 debug_color = Color(0.848153, 0.258465, 0.684285, 0.42)
 
 [node name="Sprite2D2" type="Sprite2D" parent="DraggingManager"]
-modulate = Color(1, 1, 1, 0.447059)
-position = Vector2(-4467.95, -3705.98)
-rotation = 1.5708
+position = Vector2(910.5, -1663.6)
+scale = Vector2(0.847656, -17.9266)
 texture = SubResource("GradientTexture1D_gyuvk")
 region_enabled = true
-region_rect = Rect2(0, 0, 29036, 9514)
+region_rect = Rect2(0, 0, 256, 256)
+
+[node name="Sprite2D3" type="Sprite2D" parent="DraggingManager"]
+position = Vector2(359, -1624)
+scale = Vector2(0.847656, -17.9266)
+texture = SubResource("GradientTexture1D_gyuvk")
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 256)
 
 [node name="ThrowingZone2" type="Area2D" parent="DraggingManager"]
 position = Vector2(1385.55, -21.9844)
@@ -5517,14 +5524,6 @@ position = Vector2(1385.55, -21.9844)
 position = Vector2(3854.25, 315)
 shape = SubResource("RectangleShape2D_rpqav")
 debug_color = Color(0.848153, 0.258465, 0.684285, 0.42)
-
-[node name="Sprite2D" type="Sprite2D" parent="DraggingManager"]
-modulate = Color(1, 1, 1, 0.447059)
-position = Vector2(5223.55, -21.9844)
-rotation = 1.5708
-texture = SubResource("GradientTexture1D_gyuvk")
-region_enabled = true
-region_rect = Rect2(0, 0, 29036, 8489.5)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(272, 600)
@@ -5567,6 +5566,7 @@ number_spawn_sheep_walking = 2
 number_spawn_sheep_flying = 2
 space_border_balloon = 0.9
 proba_big_sheep = 0.3
+failsafe_timeout = 5.0
 
 [node name="SpawningPositionWalkingRight" type="Marker2D" parent="SheepSpawnManager"]
 position = Vector2(1694, 556)
@@ -5635,6 +5635,7 @@ position = Vector2(1423, 600)
 
 [node name="musicplayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamSynchronized_lmarx")
+volume_db = -9.286
 autoplay = true
 bus = &"Music"
 script = ExtResource("32_lmarx")
@@ -5801,13 +5802,14 @@ scroll_following = true
 horizontal_alignment = 1
 script = ExtResource("40_dctr5")
 messages = Array[String](["[snd 0]
-🐏✨ BLEATINGS OF GLORY! ✨🐏
-[wait 120]", "You, the wool-bound architects of fleece and faith... have raised a tower worthy of the clouds!
-[wait 120]", "You have stacked dreams into the heavens themselves.
-[wait 120]", "May your hooves stay sure, your fluff forever plush,
-and your tower echo the might of your bleats across the realms.
+Bleatings of Glory!
+[wait 120]", "I salute you, architects of fleece and faith, for you have reached my cosmic realm.
+[wait 120]", "With nothing but your dreams, you stacked yourselves up in tower worthy of the heavens!
+[wait 120]", "Rejoice, my brethren, for I shall grant you infinite grass as a reward for your unwavering will!
+[wait 120]", "May the sound of your hooves and bleats echo forever as an inspiration to the earthly flocks!
 [wait 120]"])
 sound_files = Array[AudioStream]([ExtResource("5_4eqlp")])
+text_speed = 0.2
 
 [connection signal="timeout" from="cosmonautespawner/Timer" to="cosmonautespawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="MongolfiereSpawner/Timer" to="MongolfiereSpawner" method="_on_timer_timeout"]

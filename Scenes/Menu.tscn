@@ -645,6 +645,7 @@ shape = SubResource("RectangleShape2D_12shr")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("27_241l0")
+volume_db = -9.286
 autoplay = true
 bus = &"Music"
 
@@ -852,8 +853,16 @@ text = "Credit"
 
 [node name="Label2" type="Label" parent="CanvasLayer/OtherWindows/Credit/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "Game created by Neother, Lighar and Flocondeglace !"
+theme_override_font_sizes/font_size = 12
+text = "Game created by Neother, Lighar and Flocondeglace !
+Mountain clipart : creazilla.com
+Pixel art background components by Gandalf Hardcore on itch.io
+Sheep sound effects from Freesound.org : Esperar, Milkotz, Qubodup
+Splat sound effect by Sebastien Tate on Freesound.org
+Sheep skittering sound effect by Pablobd on Freesound.org
+Animated Planet Generator by Deep-Fold on Itch.io
+Star Animation by NYKNCK
+Pixel Health bar and Scroll bar by BDragon1727"
 
 [node name="Back" type="Button" parent="CanvasLayer/OtherWindows/Credit/PanelContainer/VBoxContainer"]
 layout_mode = 2

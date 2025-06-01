@@ -61,6 +61,7 @@ func _on_background_music_slider_value_changed(value: float) -> void:
 
 func _on_sound_effect_slider_value_changed(value: float) -> void:
 	var bus_index = AudioServer.get_bus_index("SFX")
+	sheep.meh.play()
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
 
 

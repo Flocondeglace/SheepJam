@@ -25,6 +25,7 @@ var progress_percentage = 0
 @export var final_score_meters: float = 1000
 @onready var score: Label = $CanvasLayer/Score
 @onready var ground_marker: Marker2D = $GroundMarker
+var have_loosed = false
 
 @onready var dialogue_manager: Control = $DialogueManager
 var has_game_ended = false
@@ -42,6 +43,7 @@ func _ready():
 
 
 func _process(_delta):
+
 	current_highest_sheep_y = sheeps_container.get_current_highest_sheep_y()
 	if current_highest_sheep_y < highest_sheep_y:
 		highest_sheep_y = current_highest_sheep_y
@@ -104,6 +106,8 @@ func update_camera_zoom_and_y_pos():
 
 
 func update_score():
+	if have_loosed:
+		return
 	var score_meters = 0
 	if highest_sheep_y == 9999:
 		score_meters = 0
@@ -117,8 +121,9 @@ func update_score():
 		score.text = str("%d" % (score_progress_to_meters)," m")
 	
 	if is_loosing():
-		score.text = "You are losing"
+		score.text = "Your tower has fallen \n Sheeps are on the ground \n But they will try again \n You reached " + str(int(highest_score)) + " meters \n Right click to restart"
 		sheeps_container.free_all_sheep()
+		have_loosed = true
 
 
 #Test if the player is loosing by testing if the highest sheep is lower than highest_sheep_y + loosing_height
@@ -135,9 +140,13 @@ func end_game():
 	
 
 func _unhandled_input(event: InputEvent):
+
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			spawn_sheep(get_global_mouse_position())
+			if have_loosed:
+				get_tree().reload_current_scene()
+			else:
+				spawn_sheep(get_global_mouse_position())
 
 func spawn_sheep(spawn_position: Vector2):
 	sheep_count += 1

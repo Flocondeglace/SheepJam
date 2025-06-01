@@ -3,7 +3,7 @@ extends AudioStreamPlayer
 
 @onready var game: Node2D = $".."
 var current_progress_percentage = 0
-var min_volume = -20
+var min_volume = -60
 var max_volume = 0
 var volume_distance
 

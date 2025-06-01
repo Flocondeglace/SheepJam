@@ -22,3 +22,4 @@ func free_all_sheep():
 	for sheep in get_children():
 		if sheep is Sheep:
 			sheep.free_sheep()
+			sheep.animation_player_sprite.play("Dead")
