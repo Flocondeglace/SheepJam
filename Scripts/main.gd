@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var animation_transition: AnimationPlayer = $CanvasLayer/Transition/AnimationPlayer
+@onready var loosing_text: RichTextLabel = $CanvasLayer/LoosingText
 
 @onready var sheeps_container: Node2D = $SheepsContainer
 
@@ -39,6 +40,7 @@ var end_cinematic_playing = false
 @export var is_debug_mode = false
 
 func _ready():
+	loosing_text.visible = false
 	initial_camera_y = camera_2d.position.y
 	ground_y = ground_marker.position.y
 	animation_transition.play("transition")
@@ -126,7 +128,8 @@ func update_score():
 		score.text = str("%d" % (score_progress_to_meters)," m")
 	
 	if is_loosing():
-		score.text = "Your tower has fallen \n Sheeps are on the ground \n But they will try again \n You reached " + str(int(highest_score)) + " meters \n Right click to restart"
+		loosing_text.visible = true
+		loosing_text.text = "Your tower has fallen \n Sheeps are on the ground \n But they will try again \n You reached [color=wheat]" + str(int(highest_score)) + " meters[/color] \n Right click to restart"
 		sheeps_container.free_all_sheep()
 		have_loosed = true
 

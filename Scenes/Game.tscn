@@ -5304,7 +5304,7 @@ script = ExtResource("1_4f4ik")
 camera_freeze_height = 1200.0
 max_height = -3580
 final_score_meters = 10000.0
-loosing_height = 350.0
+loosing_height = 250.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -3987.0
@@ -5756,6 +5756,19 @@ position = Vector2(1231, 569)
 
 [node name="hautslider" type="Marker2D" parent="CanvasLayer/Control"]
 position = Vector2(1230, 21)
+
+[node name="LoosingText" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -129.0
+offset_bottom = -129.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("34_jn8rg")
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Score" type="Label" parent="CanvasLayer"]
 offset_left = 36.0
