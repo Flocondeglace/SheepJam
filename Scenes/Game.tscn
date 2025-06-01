@@ -5768,12 +5768,14 @@ vertical_alignment = 1
 
 [node name="CountSheepEnd" type="Label" parent="CanvasLayer"]
 visible = false
-offset_left = 166.0
-offset_top = 366.0
-offset_right = 206.0
-offset_bottom = 389.0
+offset_left = 39.0
+offset_top = 649.0
+offset_right = 79.0
+offset_bottom = 689.0
 theme = ExtResource("34_jn8rg")
 text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Buttons" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -5838,6 +5840,7 @@ flat = true
 icon_alignment = 1
 
 [node name="Transition" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_krje8")
 offset_left = -200.0
 offset_top = -162.0

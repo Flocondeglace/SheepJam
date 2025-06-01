@@ -164,9 +164,9 @@ func spawn_sheep(spawn_position: Vector2):
 	else:
 		printerr("Sheep scene not loaded!")
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		play_end_cinematic()
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("ui_accept"):
+		#play_end_cinematic()
 
 func play_end_cinematic():
 	print("Game finished")
@@ -184,10 +184,15 @@ func play_end_cinematic():
 	var tween = create_tween()
 	tween.tween_property(camera_2d, "position:y", initial_camera_y, total_time)
 	
-	
+	#var pos_text = count_sheep_end.position
+	#count_sheep_end.add_theme_color_override("font_color", Color.BLACK)
 	for i in range(0,end_cinematic_sheep_count):
+		# count_sheep_end.global_position = sheeps[i].global_position + Vector2(-390,-30)
 		count_sheep_end.text = str(i+1)
 		sheeps[i].play_animation_count()
 		await get_tree().create_timer(min(0.5-float(i)/(2*end_cinematic_sheep_count),0.3)).timeout
+	
+	# count_sheep_end.add_theme_color_override("font_color", Color.WHITE)
+	# count_sheep_end.position = pos_text
 	count_sheep_end.text = str(sheeps.size()) + " sheeps !"
 		
