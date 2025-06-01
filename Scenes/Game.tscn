@@ -5398,7 +5398,6 @@ repeat_size = Vector2(1024, 0)
 repeat_times = 5
 
 [node name="Background4" type="Sprite2D" parent="Parallax2D5"]
-texture_filter = 1
 position = Vector2(673, -4)
 scale = Vector2(2, 2)
 texture = ExtResource("11_7av8l")
@@ -5409,7 +5408,6 @@ repeat_size = Vector2(1024, 0)
 repeat_times = 5
 
 [node name="Background3" type="Sprite2D" parent="Parallax2D4"]
-texture_filter = 1
 position = Vector2(920, 115)
 scale = Vector2(2, 2)
 texture = ExtResource("12_dctr5")
@@ -5420,7 +5418,6 @@ repeat_size = Vector2(1024, 0)
 repeat_times = 5
 
 [node name="Background2" type="Sprite2D" parent="Parallax2D2"]
-texture_filter = 1
 position = Vector2(642, 380)
 scale = Vector2(2, 2)
 texture = ExtResource("13_mi7vx")
@@ -5432,13 +5429,11 @@ repeat_size = Vector2(1024, 0)
 repeat_times = 5
 
 [node name="Background1" type="Sprite2D" parent="Parallax2D3"]
-texture_filter = 1
 position = Vector2(41, 350)
 scale = Vector2(2, 2)
 texture = ExtResource("14_t2joc")
 
 [node name="Parallax2D8" type="Parallax2D" parent="."]
-texture_filter = 1
 scroll_scale = Vector2(0.81, 0.81)
 scroll_offset = Vector2(-743, -417)
 repeat_size = Vector2(1067, 0)
@@ -5452,7 +5447,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("15_audqb")
 
 [node name="Parallax2D7" type="Parallax2D" parent="."]
-texture_filter = 1
 scroll_scale = Vector2(0.9, 0.9)
 scroll_offset = Vector2(25.685, 6)
 repeat_size = Vector2(1067, 0)
@@ -5510,7 +5504,6 @@ shape = SubResource("RectangleShape2D_upyao")
 debug_color = Color(0.848153, 0.258465, 0.684285, 0.42)
 
 [node name="Sprite2D2" type="Sprite2D" parent="DraggingManager"]
-texture_filter = 1
 position = Vector2(910.5, -1663.6)
 scale = Vector2(0.847656, -17.9266)
 texture = SubResource("GradientTexture1D_gyuvk")
@@ -5518,7 +5511,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 256, 256)
 
 [node name="Sprite2D3" type="Sprite2D" parent="DraggingManager"]
-texture_filter = 1
 position = Vector2(359, -1624)
 scale = Vector2(0.847656, -17.9266)
 texture = SubResource("GradientTexture1D_gyuvk")
@@ -5610,12 +5602,10 @@ shape = SubResource("RectangleShape2D_ptiwi")
 [node name="Sprites" type="Node2D" parent="SheepSpawnManager/Balloon"]
 
 [node name="Front" type="Sprite2D" parent="SheepSpawnManager/Balloon/Sprites"]
-texture_filter = 1
 texture = ExtResource("25_m15vq")
 flip_h = true
 
 [node name="Back" type="Sprite2D" parent="SheepSpawnManager/Balloon/Sprites"]
-texture_filter = 1
 texture = ExtResource("26_a05uw")
 flip_h = true
 
@@ -5626,14 +5616,12 @@ position = Vector2(68, 268)
 position = Vector2(-111, 268)
 
 [node name="BalloonDisappear" type="Sprite2D" parent="SheepSpawnManager"]
-texture_filter = 1
 position = Vector2(-4852, -513)
 texture = ExtResource("26_a05uw")
 flip_h = true
 script = ExtResource("27_n2ugt")
 
 [node name="Sprite2D" type="Sprite2D" parent="SheepSpawnManager/BalloonDisappear"]
-texture_filter = 1
 texture = ExtResource("25_m15vq")
 flip_h = true
 
