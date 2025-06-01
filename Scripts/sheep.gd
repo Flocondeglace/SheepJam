@@ -272,3 +272,7 @@ func on_inside_throwing_zone():
 func _on_timer_outside_timeout() -> void:
 	if not have_collided and not is_in_an_area:
 		should_respawn.emit(self)
+func play_animation_count():
+	print("Sheep counting !")
+	self.animation_effect_mouton.play("Counting")
+	# counting_effect.emitting = true

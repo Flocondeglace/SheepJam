@@ -146,6 +146,7 @@ func _unhandled_input(event: InputEvent):
 			if have_loosed:
 				get_tree().reload_current_scene()
 			else:
+				camera_freeze_height = 0
 				spawn_sheep(get_global_mouse_position())
 
 func spawn_sheep(spawn_position: Vector2):
