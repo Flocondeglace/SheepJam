@@ -31,6 +31,7 @@ var jointed_bodies: Dictionary = {}
 var can_be_glued = false
 var have_collided = false
 var is_free = false
+var is_in_an_area = true
 
 # Sheep throwing logic
 var mouse_hovering : bool = false
@@ -129,7 +130,6 @@ func free_sheep():
 			joint.queue_free()
 	
 func is_under_mouse():
-	# print(mouse_hovering,is_pickable,!have_collided)
 	return mouse_hovering && is_pickable && !have_collided
 
 func _on_mouse_entered() -> void:
@@ -242,21 +242,33 @@ func force_position(pos: Vector2):
 	# Reset Force
 	self.linear_velocity = Vector2.ZERO
 	self.angular_velocity = 0.0
+	collision_shape.disabled = true
 	PhysicsServer2D.body_set_state(
 		self.get_rid(),
 		PhysicsServer2D.BODY_STATE_TRANSFORM,
 		Transform2D.IDENTITY.translated(pos)
 	)
+	collision_shape.disabled = false
 	
 
 func look_left(b:bool):
 	sprite_2d.flip_h = b
 
 func on_arrived():
+	print("arzrezrrived")
 	self.animation_player_sprite.play("Idle")
 	self.is_pickable = true
-	
-func play_animation_count():
-	print("Sheep counting !")
-	self.animation_effect_mouton.play("Counting")
-	# counting_effect.emitting = true
+
+func on_outside_throwing_zone():
+	self.is_in_an_area = false
+	print("on_outside_throwing_zone")
+	$TimerOutside.start()
+
+func on_inside_throwing_zone():
+	self.is_in_an_area = true
+	print("on_inside_throwing_zone")
+	$TimerOutside.stop()
+
+func _on_timer_outside_timeout() -> void:
+	if not have_collided and not is_in_an_area:
+		should_respawn.emit(self)

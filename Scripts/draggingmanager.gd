@@ -11,10 +11,11 @@ var mouse_positions : Array[Vector2] = []
 func _physics_process(_delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
 	if holding_sheep:
+		var pos_to_mouse= lerp(holding_sheep.position, mouse_pos, 0.1)
 		PhysicsServer2D.body_set_state(
 			holding_sheep.get_rid(),
 			PhysicsServer2D.BODY_STATE_TRANSFORM,
-			Transform2D.IDENTITY.translated(mouse_pos)
+			Transform2D.IDENTITY.translated(pos_to_mouse)
 		)
 		mouse_positions.append(mouse_pos)
 
@@ -33,7 +34,7 @@ func select_sheep() -> Node2D:
 	var sheeps = sheeps_container.get_children()
 	for sheep : Sheep in sheeps:
 		print(sheep,sheep.is_under_mouse(),not sheep.can_be_glued)
-		if sheep.is_under_mouse() and not sheep.can_be_glued:
+		if sheep.is_under_mouse() and not sheep.can_be_glued and sheep.is_in_an_area:
 			sheep.start_player_holding()
 			return sheep
 	return null
@@ -64,7 +65,15 @@ func launch_sheep():
 	holding_sheep = null
 
 
-func _on_throwing_zone_mouse_exited() -> void:
-	if holding_sheep:
-		print("Launching sheep due to mouse exited the throwing zone")
-		launch_sheep()
+
+func _on_throwing_zone_area_entered(area: Area2D) -> void:
+	if area.is_in_group("outside") :
+		area.get_parent().on_inside_throwing_zone()
+
+
+func _on_throwing_zone_area_exited(area: Area2D) -> void:
+	if area.is_in_group("outside") :
+		area.get_parent().on_outside_throwing_zone()
+		if holding_sheep:
+			print("Launching sheep due to mouse exited the throwing zone")
+			launch_sheep()

@@ -54,7 +54,6 @@ func _process(_delta):
 		#else:
 		#	camera_2d.position.y = lerp(camera_2d.position.y, initial_camera_y, 0.1)
 	if highest_sheep_y != 9999:
-			print("logic")
 			sheeps_container.freeze_sheep_under_height(current_highest_sheep_y+camera_freeze_height)
 			update_score()
 			update_camera_zoom_and_y_pos()
@@ -65,7 +64,6 @@ func update_progress_percentage():
 	progress_percentage = progress_distance / max_height
 	progress_percentage = clamp(progress_percentage, 0, 1)
 
-	print("Current progress percentage: ", progress_percentage)
 
 
 func update_camera_zoom_and_y_pos():
@@ -75,7 +73,6 @@ func update_camera_zoom_and_y_pos():
 		if camera_2d.zoom.x < 0.99:
 			camera_2d.zoom = lerp(camera_2d.zoom, Vector2(1,1), 0.1)
 			camera_2d.position.y = lerp(camera_2d.position.y, -3280.0, 0.1)
-			print(camera_2d.zoom)
 		else:
 			end_game()
 		return
@@ -117,7 +114,6 @@ func update_score():
 		highest_score = score_meters
 		#exponential function to convert progress percentage to meters
 		var score_progress_to_meters = progress_percentage**2 * final_score_meters 
-		print("Update progress percentage: ", progress_percentage)
 		score.text = str("%d" % (score_progress_to_meters)," m")
 	
 	if is_loosing():

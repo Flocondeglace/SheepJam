@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c1m7xa56kaexk"]
+[gd_scene load_steps=29 format=3 uid="uid://c1m7xa56kaexk"]
 
 [ext_resource type="Script" uid="uid://cgvjpn6btim8h" path="res://Scripts/sheep.gd" id="1_35w1j"]
 [ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="3_okt0m"]
@@ -249,6 +249,9 @@ stream_0/stream = ExtResource("6_jgge2")
 stream_1/stream = ExtResource("8_c2gec")
 stream_2/stream = ExtResource("9_0qsrn")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_45la8"]
+radius = 7.07107
+
 [node name="Sheep" type="RigidBody2D"]
 input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_35w1j")
@@ -327,8 +330,17 @@ bus = &"SFX"
 stream = SubResource("AudioStreamRandomizer_jgge2")
 bus = &"SFX"
 
+[node name="TimerOutside" type="Timer" parent="."]
+one_shot = true
+
+[node name="OutsideLaunchDetect" type="Area2D" parent="." groups=["outside"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutsideLaunchDetect"]
+shape = SubResource("CircleShape2D_45la8")
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="area_entered" from="spheredetection" to="." method="_on_spheredetection_area_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="TimerOutside" to="." method="_on_timer_outside_timeout"]

@@ -19,6 +19,7 @@ size = Vector2(8489.5, 29036)
 script = ExtResource("1_rpqav")
 
 [node name="ThrowingZone" type="Area2D" parent="."]
+position = Vector2(-99.9473, -9.98242)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ThrowingZone"]
 position = Vector2(-4414, -3576.25)
@@ -27,14 +28,14 @@ debug_color = Color(0.848153, 0.258465, 0.684285, 0.42)
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.447059)
-position = Vector2(-4443, -3685)
+position = Vector2(-4542.95, -3694.98)
 rotation = 1.5708
 texture = SubResource("GradientTexture1D_gyuvk")
 region_enabled = true
 region_rect = Rect2(0, 0, 29036, 9514)
 
 [node name="ThrowingZone2" type="Area2D" parent="."]
-position = Vector2(1174, 11)
+position = Vector2(1415.55, 1.01563)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ThrowingZone2"]
 position = Vector2(3854.25, 315)
@@ -43,7 +44,7 @@ debug_color = Color(0.848153, 0.258465, 0.684285, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.447059)
-position = Vector2(5012, 11)
+position = Vector2(5253.55, 1.01563)
 rotation = 1.5708
 texture = SubResource("GradientTexture1D_gyuvk")
 region_enabled = true

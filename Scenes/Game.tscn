@@ -1,4 +1,4 @@
-[gd_scene load_steps=776 format=3 uid="uid://b3wtsk3ghnykj"]
+[gd_scene load_steps=780 format=3 uid="uid://b3wtsk3ghnykj"]
 
 [ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_4f4ik"]
 [ext_resource type="PackedScene" uid="uid://b2ik8irb8x17y" path="res://Scenes/mouton_master.tscn" id="2_0iyqm"]
@@ -20,9 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://dd7qd4e4b14n1" path="res://Sprites/Background_5.png" id="16_7w24h"]
 [ext_resource type="Texture2D" uid="uid://cuakw62bb1uy7" path="res://Sprites/Tableau.png" id="17_6okg5"]
 [ext_resource type="Texture2D" uid="uid://c2mm0ml5o4vbc" path="res://Sprites/Prof_Mouton.png" id="18_e2w45"]
-[ext_resource type="PackedScene" uid="uid://c0tqb21y7mr1e" path="res://Scenes/DraggingManager.tscn" id="19_oo65k"]
 [ext_resource type="Script" uid="uid://dluh6uggtp7mr" path="res://Scripts/sheeps_container.gd" id="20_smnwb"]
 [ext_resource type="PackedScene" uid="uid://c1m7xa56kaexk" path="res://Scenes/sheep.tscn" id="21_lkuj1"]
+[ext_resource type="Script" uid="uid://ch03ash5egwme" path="res://Scripts/draggingmanager.gd" id="22_7av8l"]
 [ext_resource type="Script" uid="uid://d1d1cxst2asrv" path="res://Scripts/camera_2d.gd" id="22_lklsk"]
 [ext_resource type="Script" uid="uid://siey8tpwfjar" path="res://Scripts/gluing_zone.gd" id="23_34hf4"]
 [ext_resource type="Script" uid="uid://cpp8bwic6stw8" path="res://Scripts/sheep_spawn_manager.gd" id="24_jamva"]
@@ -5161,6 +5161,19 @@ _data = {
 &"prof_idle": SubResource("Animation_y5ryy")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upyao"]
+size = Vector2(9514, 28731.5)
+
+[sub_resource type="Gradient" id="Gradient_upyao"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 0.34902)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gyuvk"]
+gradient = SubResource("Gradient_upyao")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpqav"]
+size = Vector2(8489.5, 29036)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qy3sg"]
 size = Vector2(3000, 50.75)
 
@@ -5168,6 +5181,7 @@ size = Vector2(3000, 50.75)
 size = Vector2(363.5, 6426)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g068"]
+size = Vector2(20, 511)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptiwi"]
 size = Vector2(411, 52)
@@ -5261,10 +5275,10 @@ _data = {
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_4f4ik")
-camera_freeze_height = 50.0
+camera_freeze_height = 999.0
 max_height = -3580
 final_score_meters = 10000.0
-loosing_height = 999.0
+loosing_height = 200.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -4216.0
@@ -5475,9 +5489,42 @@ libraries = {
 }
 autoplay = "prof_idle"
 
-[node name="DraggingManager" parent="." node_paths=PackedStringArray("sheeps_container") instance=ExtResource("19_oo65k")]
-position = Vector2(415, 3)
+[node name="DraggingManager" type="Node2D" parent="." node_paths=PackedStringArray("sheeps_container")]
+position = Vector2(326, -27)
+script = ExtResource("22_7av8l")
 sheeps_container = NodePath("../SheepsContainer")
+
+[node name="ThrowingZone" type="Area2D" parent="DraggingManager"]
+position = Vector2(-24.9473, -20.9824)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DraggingManager/ThrowingZone"]
+position = Vector2(-4414, -3576.25)
+shape = SubResource("RectangleShape2D_upyao")
+debug_color = Color(0.848153, 0.258465, 0.684285, 0.42)
+
+[node name="Sprite2D2" type="Sprite2D" parent="DraggingManager"]
+modulate = Color(1, 1, 1, 0.447059)
+position = Vector2(-4467.95, -3705.98)
+rotation = 1.5708
+texture = SubResource("GradientTexture1D_gyuvk")
+region_enabled = true
+region_rect = Rect2(0, 0, 29036, 9514)
+
+[node name="ThrowingZone2" type="Area2D" parent="DraggingManager"]
+position = Vector2(1385.55, -21.9844)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DraggingManager/ThrowingZone2"]
+position = Vector2(3854.25, 315)
+shape = SubResource("RectangleShape2D_rpqav")
+debug_color = Color(0.848153, 0.258465, 0.684285, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="DraggingManager"]
+modulate = Color(1, 1, 1, 0.447059)
+position = Vector2(5223.55, -21.9844)
+rotation = 1.5708
+texture = SubResource("GradientTexture1D_gyuvk")
+region_enabled = true
+region_rect = Rect2(0, 0, 29036, 8489.5)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(272, 600)
@@ -5525,7 +5572,7 @@ proba_big_sheep = 0.3
 position = Vector2(1694, 556)
 
 [node name="GoalPositionWalkingRight" type="Marker2D" parent="SheepSpawnManager"]
-position = Vector2(1267, 556)
+position = Vector2(1389, 525)
 
 [node name="AreaGoalPosW" type="Area2D" parent="SheepSpawnManager/GoalPositionWalkingRight"]
 
@@ -5539,8 +5586,10 @@ position = Vector2(-92, 556)
 position = Vector2(636, 556)
 
 [node name="AreaGoalPosW" type="Area2D" parent="SheepSpawnManager/GoalPositionWalkingLeft"]
+position = Vector2(-87, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SheepSpawnManager/GoalPositionWalkingLeft/AreaGoalPosW"]
+position = Vector2(0, -137.5)
 shape = SubResource("RectangleShape2D_5g068")
 
 [node name="Balloon" type="StaticBody2D" parent="SheepSpawnManager"]
@@ -5762,9 +5811,19 @@ sound_files = Array[AudioStream]([ExtResource("5_4eqlp")])
 
 [connection signal="timeout" from="cosmonautespawner/Timer" to="cosmonautespawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="MongolfiereSpawner/Timer" to="MongolfiereSpawner" method="_on_timer_timeout"]
+[connection signal="area_entered" from="DraggingManager/ThrowingZone" to="DraggingManager" method="_on_throwing_zone_area_entered"]
+[connection signal="area_exited" from="DraggingManager/ThrowingZone" to="DraggingManager" method="_on_throwing_zone_area_exited"]
+[connection signal="mouse_exited" from="DraggingManager/ThrowingZone" to="DraggingManager" method="_on_throwing_zone_mouse_exited"]
+[connection signal="area_entered" from="DraggingManager/ThrowingZone2" to="DraggingManager" method="_on_throwing_zone_area_entered"]
+[connection signal="area_exited" from="DraggingManager/ThrowingZone2" to="DraggingManager" method="_on_throwing_zone_area_exited"]
+[connection signal="mouse_exited" from="DraggingManager/ThrowingZone2" to="DraggingManager" method="_on_throwing_zone_mouse_exited"]
+[connection signal="area_entered" from="GluingZone" to="GluingZone" method="_on_area_entered"]
+[connection signal="area_exited" from="GluingZone" to="GluingZone" method="_on_area_exited"]
 [connection signal="body_entered" from="GluingZone" to="GluingZone" method="_on_body_entered"]
 [connection signal="body_exited" from="GluingZone" to="GluingZone" method="_on_body_exited"]
+[connection signal="area_entered" from="SheepSpawnManager/GoalPositionWalkingRight/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_area_entered_right"]
 [connection signal="body_entered" from="SheepSpawnManager/GoalPositionWalkingRight/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_body_entered_right"]
+[connection signal="area_entered" from="SheepSpawnManager/GoalPositionWalkingLeft/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_area_entered_left"]
 [connection signal="body_entered" from="SheepSpawnManager/GoalPositionWalkingLeft/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_body_entered_left"]
 [connection signal="dialogue_ended" from="DialogueManager/Dialogue" to="DialogueManager" method="onDialogueEnded"]
 [connection signal="message_finished" from="DialogueManager/Dialogue" to="DialogueManager" method="onMessageFinished"]

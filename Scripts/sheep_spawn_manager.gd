@@ -150,6 +150,7 @@ func _on_sheep_should_respawn(sheep:Sheep):
 		# print("Should respawn")
 		for i in range(sheep_in_spawning_area.size()):
 			if sheep_in_spawning_area[i] == sheep:
+				#desactive collision shape
 				var dir = 1
 				var spawning_position_flying = spawning_position_flying_right
 				if is_spawning_left:
@@ -157,26 +158,34 @@ func _on_sheep_should_respawn(sheep:Sheep):
 					spawning_position_flying = spawning_position_flying_left
 				if using_balloon:
 					sheep.force_position(spawning_position_flying.position + balloon.position + dir*Vector2(i*space_between_spawned_sheep,0))
+					sheep.on_inside_throwing_zone()
 				else:
 					sheep.force_position(respawning_position + dir*Vector2(i*space_between_spawned_sheep,0))
+					sheep.on_inside_throwing_zone()
 					
 				
-func _on_area_goal_pos_w_body_entered_left(body: Node2D) -> void:
-	if is_spawning_left:
-		for s in sheep_in_spawning_area:
-			if s == body:
-				sheeps_arrived = true
-				respawning_position = body.position
-				for sheep in sheep_in_spawning_area:
-					sheep.on_arrived()
-				return
 
-func _on_area_goal_pos_w_body_entered_right(body: Node2D) -> void:
-	if !is_spawning_left:
-		for s in sheep_in_spawning_area:
-			if s == body:
-				sheeps_arrived = true
-				respawning_position = body.position
-				for sheep in sheep_in_spawning_area:
-					sheep.on_arrived()
-				return
+
+func _on_area_goal_pos_w_area_entered_right(area: Area2D) -> void:
+	if area.is_in_group("outside"):
+		var body = area.get_parent()
+		if !is_spawning_left:
+			for s in sheep_in_spawning_area:
+				if s == body :
+					sheeps_arrived = true
+					respawning_position = body.position
+					for sheep in sheep_in_spawning_area:
+						sheep.on_arrived()
+					return
+
+func _on_area_goal_pos_w_area_entered_left(area: Area2D) -> void:
+	if area.is_in_group("outside"):
+		if is_spawning_left:
+			var body = area.get_parent()
+			for s in sheep_in_spawning_area:
+				if s == body :
+					sheeps_arrived = true
+					respawning_position = body.position
+					for sheep in sheep_in_spawning_area:
+						sheep.on_arrived()
+					return
