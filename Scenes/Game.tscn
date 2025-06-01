@@ -5275,10 +5275,10 @@ _data = {
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_4f4ik")
-camera_freeze_height = 600.0
+camera_freeze_height = 800.0
 max_height = -3580
 final_score_meters = 10000.0
-loosing_height = 200.0
+loosing_height = 350.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -4216.0
