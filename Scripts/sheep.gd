@@ -23,6 +23,7 @@ var normal_sheep_col_glue_size = Vector2(8,-64)
 @onready var sprite_2d: Sprite2D = $Mouton
 @onready var animation_player_sprite: AnimationPlayer = $Mouton/AnimationSpriteMouton
 @onready var animation_effect_mouton: AnimationPlayer = $Mouton/AnimationEffectMouton
+@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 
 
 # Dictionary to keep track of bodies we've already created a joint with
@@ -274,6 +275,7 @@ func _on_timer_outside_timeout() -> void:
 		should_respawn.emit(self)
 func play_animation_count():
 	print("Sheep counting !")
-	self.animation_effect_mouton.play("Counting")
+	# self.animation_effect_mouton.play("Counting")
 	meh.play()
+	cpu_particles_2d.emitting = true
 	# counting_effect.emitting = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c1m7xa56kaexk"]
+[gd_scene load_steps=30 format=3 uid="uid://c1m7xa56kaexk"]
 
 [ext_resource type="Script" uid="uid://cgvjpn6btim8h" path="res://Scripts/sheep.gd" id="1_35w1j"]
 [ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="3_okt0m"]
@@ -21,6 +21,11 @@ height = 78.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nqg6p"]
 radius = 78.9999
 height = 158.0
+
+[sub_resource type="Curve" id="Curve_45la8"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="Animation" id="Animation_0hol4"]
 length = 0.1
@@ -269,6 +274,23 @@ shape = SubResource("CapsuleShape2D_dlixe")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spheredetection"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_nqg6p")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(1, -1)
+scale = Vector2(1.2, 1.2)
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 0.9
+direction = Vector2(0, -1)
+initial_velocity_min = 300.0
+initial_velocity_max = 500.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color = Color(0.144857, 0.747665, 0.583134, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_45la8")
 
 [node name="Mouton" type="Sprite2D" parent="."]
 texture_filter = 1
