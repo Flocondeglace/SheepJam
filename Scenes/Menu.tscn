@@ -27,7 +27,6 @@
 [ext_resource type="Script" uid="uid://d1d1cxst2asrv" path="res://Scripts/camera_2d.gd" id="22_1uil2"]
 [ext_resource type="Script" uid="uid://siey8tpwfjar" path="res://Scripts/gluing_zone.gd" id="23_1mb1m"]
 [ext_resource type="AudioStream" uid="uid://bfh36owiv2tau" path="res://Sounds/mouton jam chill.mp3" id="24_ka6xg"]
-[ext_resource type="Texture2D" uid="uid://dwamkn3ssaefd" path="res://Sprites/New Piskel-1.png.png" id="28_ka6xg"]
 
 [sub_resource type="Gradient" id="Gradient_38qqd"]
 offsets = PackedFloat32Array(0, 0.541667, 0.809524, 1)
@@ -866,6 +865,8 @@ text = "Credit"
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Game created by Neother, Lighar and Flocondeglace !
+
+
 Mountain clipart : creazilla.com
 Pixel art background components by Gandalf Hardcore on itch.io
 Sheep sound effects from Freesound.org : Esperar, Milkotz, Qubodup
@@ -977,7 +978,6 @@ flat = true
 texture_filter = 1
 points = PackedVector2Array(223, 116, 19, 4)
 width = 19.16
-texture = ExtResource("28_ka6xg")
 texture_mode = 1
 
 [connection signal="mouse_exited" from="DraggingManager/ThrowingZone" to="DraggingManager" method="_on_throwing_zone_mouse_exited"]
