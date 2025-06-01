@@ -255,18 +255,18 @@ func look_left(b:bool):
 	sprite_2d.flip_h = b
 
 func on_arrived():
-	print("arzrezrrived")
+	# print("arzrezrrived")
 	self.animation_player_sprite.play("Idle")
 	self.is_pickable = true
 
 func on_outside_throwing_zone():
 	self.is_in_an_area = false
-	print("on_outside_throwing_zone")
+	# print("on_outside_throwing_zone")
 	$TimerOutside.start()
 
 func on_inside_throwing_zone():
 	self.is_in_an_area = true
-	print("on_inside_throwing_zone")
+	# print("on_inside_throwing_zone")
 	$TimerOutside.stop()
 
 func _on_timer_outside_timeout() -> void:
