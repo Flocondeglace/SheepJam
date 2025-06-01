@@ -76,6 +76,8 @@ func update_progress_percentage():
 
 
 func update_camera_zoom_and_y_pos():
+	if end_cinematic_playing:
+		return
 		
 	if progress_percentage >= 1 and not has_game_ended:
 		has_reached_end = true
@@ -167,9 +169,11 @@ func spawn_sheep(spawn_position: Vector2):
 	else:
 		printerr("Sheep scene not loaded!")
 
-#func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("ui_accept"):
-		#play_end_cinematic()
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept") and is_debug_mode:
+		has_game_ended = true
+		end_cinematic_playing = true
+		play_end_cinematic()
 
 func play_end_cinematic():
 	print("Game finished")
@@ -198,4 +202,11 @@ func play_end_cinematic():
 	# count_sheep_end.add_theme_color_override("font_color", Color.WHITE)
 	# count_sheep_end.position = pos_text
 	count_sheep_end.text = "Nice work ! You threw " + str(sheeps.size()) + " sheeps !"
-		
+
+	camera_2d.add_trauma(1)
+	var end_camera_pos = Vector2(1087.0,-1236.0)
+	var end_camera_zoom = Vector2(0.19,0.19)
+	#square tween
+	var tween2 = create_tween()
+	tween2.tween_property(camera_2d, "position", end_camera_pos, 1)
+	tween2.tween_property(camera_2d, "zoom", end_camera_zoom, 1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN_OUT)

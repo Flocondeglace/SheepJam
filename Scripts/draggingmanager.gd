@@ -7,17 +7,24 @@ var mouse_positions : Array[Vector2] = []
 @export var throwing_force : float = 20.0
 @export var max_force : float = 500
 @export var number_mouse_positions_considered : int = 10
+@export var max_mouse_movement : float = 50.0  # Maximum allowed movement per frame
 
 func _physics_process(_delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
 	if holding_sheep:
-		var pos_to_mouse= lerp(holding_sheep.position, mouse_pos, 0.1)
+		var pos_to_mouse = lerp(holding_sheep.position, mouse_pos, 0.1)
+		# Clamp the movement to prevent sudden large jumps
+		var movement = pos_to_mouse - holding_sheep.position
+		if movement.length() > max_mouse_movement:
+			movement = movement.normalized() * max_mouse_movement
+			pos_to_mouse = holding_sheep.position + movement
+			
 		PhysicsServer2D.body_set_state(
 			holding_sheep.get_rid(),
 			PhysicsServer2D.BODY_STATE_TRANSFORM,
 			Transform2D.IDENTITY.translated(pos_to_mouse)
 		)
-		mouse_positions.append(mouse_pos)
+		mouse_positions.append(pos_to_mouse)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("click") and holding_sheep == null:

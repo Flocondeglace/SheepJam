@@ -160,8 +160,8 @@ func _on_spheredetection_area_entered(area: Area2D) -> void:
 	if not other_sphere is Sheep:
 		return
 	
-	if not other_sphere.can_be_glued:
-		return
+	#if not other_sphere.can_be_glued:
+	#	return
 
 	have_collided = true
 
