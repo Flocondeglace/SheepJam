@@ -27,6 +27,7 @@ const SHEEP = preload("res://Scenes/sheep.tscn")
 
 @onready var balloon: StaticBody2D = $Balloon
 @onready var camera_2d: Camera2D = $"../Camera2D"
+@onready var game : Node2D = $".."
 @onready var marker_2d_left: Marker2D = $BalloonPosX/Marker2DLeft
 @onready var marker_2d_right: Marker2D = $BalloonPosX/Marker2DRight
 @onready var sprites: Node2D = $Balloon/Sprites
@@ -101,7 +102,7 @@ func balloon_appear():
 func spawn_sheeps(number_sheep :int, spawn_position: Vector2, dir: int = 1, is_walking = false):
 	sheep_in_spawning_area = []
 	var big_sheep = false
-	if randf() < proba_big_sheep:
+	if randf() < proba_big_sheep and game.progress_percentage > 0.15:
 		big_sheep = true
 		number_sheep = 1
 	

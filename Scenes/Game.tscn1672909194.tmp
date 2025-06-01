@@ -5263,7 +5263,7 @@ _data = {
 script = ExtResource("1_4f4ik")
 camera_freeze_height = 50.0
 max_height = -3580
-final_score_meters = 10000.0
+score_to_meters = 50.0
 loosing_height = 999.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -5519,7 +5519,7 @@ space_between_spawned_sheep = 150.0
 number_spawn_sheep_walking = 2
 number_spawn_sheep_flying = 2
 space_border_balloon = 0.9
-proba_big_sheep = 0.3
+proba_big_sheep = 0.9
 
 [node name="SpawningPositionWalkingRight" type="Marker2D" parent="SheepSpawnManager"]
 position = Vector2(1694, 556)
@@ -5736,7 +5736,6 @@ offset_right = 571.0
 offset_bottom = -3286.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("38_khy6b")
 theme_override_fonts/mono_font = ExtResource("38_khy6b")
 theme_override_fonts/bold_font = ExtResource("38_khy6b")

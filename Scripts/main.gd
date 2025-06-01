@@ -10,9 +10,11 @@ var current_highest_sheep_y = 9999
 var highest_sheep_y = 9999
 
 var sheep_count = 0
+var end_cinematic_sheep_count = 0
 
 @onready var camera_2d: Camera2D = $Camera2D
 @export var camera_freeze_height: float = 100
+@export var camera_height_margin: float = 300
 var initial_camera_y = 0
 var ground_y = 0
 var max_zoom=0.4
@@ -20,12 +22,13 @@ var max_zoom=0.4
 var highest_score = 0
 var progress_percentage = 0
 @export var max_height = -2000
-@export var score_to_meters: float = 100
+@export var final_score_meters: float = 1000
 @onready var score: Label = $CanvasLayer/Score
 @onready var ground_marker: Marker2D = $GroundMarker
 
 @onready var dialogue_manager: Control = $DialogueManager
 var has_game_ended = false
+var end_cinematic_playing = false
 
 @export var loosing_height: float = 100
 
@@ -51,6 +54,7 @@ func _process(_delta):
 		#else:
 		#	camera_2d.position.y = lerp(camera_2d.position.y, initial_camera_y, 0.1)
 	if highest_sheep_y != 9999:
+			print("logic")
 			sheeps_container.freeze_sheep_under_height(current_highest_sheep_y+camera_freeze_height)
 			update_score()
 			update_camera_zoom_and_y_pos()
@@ -65,9 +69,9 @@ func update_progress_percentage():
 
 
 func update_camera_zoom_and_y_pos():
+		
 
-
-	if progress_percentage >= 1 :
+	if progress_percentage >= 1 and not has_game_ended:
 		if camera_2d.zoom.x < 0.99:
 			camera_2d.zoom = lerp(camera_2d.zoom, Vector2(1,1), 0.1)
 			camera_2d.position.y = lerp(camera_2d.position.y, -3280.0, 0.1)
@@ -76,13 +80,13 @@ func update_camera_zoom_and_y_pos():
 			end_game()
 		return
 
-	var center_pos = (current_highest_sheep_y - 150 + ground_y + 20) / 2
+	var center_pos = (current_highest_sheep_y - camera_height_margin + ground_y + 20) / 2
 	var camera_view_size = camera_2d.get_viewport_rect().size
 
 	#calculate the zoom to fit the camera view between up_pos and down_pos
 	# we know that camera_real_size = camera_view_size / camera_zoom 
 	
-	var zoom = camera_view_size.y / (ground_y+ 20-(current_highest_sheep_y-150))
+	var zoom = camera_view_size.y / (ground_y+ 20-(current_highest_sheep_y-camera_height_margin))
 
 	if zoom < 1 and zoom > max_zoom :
 
@@ -98,7 +102,7 @@ func update_camera_zoom_and_y_pos():
 	elif zoom < 1 and progress_percentage < 1 :
 		zoom = max_zoom
 		camera_2d.zoom = lerp(camera_2d.zoom, Vector2(zoom,zoom), 0.1)
-		camera_2d.position.y = lerp(camera_2d.position.y, current_highest_sheep_y+150, 0.1)
+		camera_2d.position.y = lerp(camera_2d.position.y, current_highest_sheep_y+camera_height_margin, 0.1)
 
 
 
@@ -111,7 +115,10 @@ func update_score():
 	
 	if score_meters > highest_score:
 		highest_score = score_meters
-		score.text = str("%0.2f" % (highest_score / score_to_meters)," m")
+		#exponential function to convert progress percentage to meters
+		var score_progress_to_meters = progress_percentage**2 * final_score_meters 
+		print("Update progress percentage: ", progress_percentage)
+		score.text = str("%d" % (score_progress_to_meters)," m")
 	
 	if is_loosing():
 		score.text = "You are losing"
@@ -148,16 +155,28 @@ func spawn_sheep(spawn_position: Vector2):
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		_on_game_finished()
+		play_end_cinematic()
 
-func _on_game_finished():
+func play_end_cinematic():
 	print("Game finished")
+	end_cinematic_playing = true
 	var sheeps = sheeps_container.get_children()
+	end_cinematic_sheep_count = sheeps.size()
 	sheeps.reverse()
 	count_sheep_end.visible = true
-	for i in range(0,sheeps.size()):
+
+
+	var total_time = 0
+	for i in range(0,end_cinematic_sheep_count):
+		total_time += min(0.5-float(i)/(2*end_cinematic_sheep_count),0.3)
+	#tween camera y pos to initial_camera_y
+	var tween = create_tween()
+	tween.tween_property(camera_2d, "position:y", initial_camera_y, total_time)
+	
+	
+	for i in range(0,end_cinematic_sheep_count):
 		count_sheep_end.text = str(i+1)
 		sheeps[i].play_animation_count()
-		await get_tree().create_timer(min(0.5-float(i)/(2*sheeps.size()),0.3)).timeout
+		await get_tree().create_timer(min(0.5-float(i)/(2*end_cinematic_sheep_count),0.3)).timeout
 	count_sheep_end.text = str(sheeps.size()) + " sheeps !"
 		

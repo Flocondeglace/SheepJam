@@ -3,7 +3,7 @@ extends Control
 @onready var dialogue = $Dialogue
 
 @onready var animation_player: AnimationPlayer = $"../Dieu/AnimationPlayer"
-
+@onready var game : Node2D = $".."
 
 func _process(_delta):
 	if dialogue.message_id in [2,4,6,12]:
@@ -26,3 +26,4 @@ func onMessageFinished():
 func onDialogueEnded():
 	animation_player.stop()
 	print("end")
+	game.play_end_cinematic()	
