@@ -36,6 +36,7 @@ var end_cinematic_playing = false
 
 @onready var count_sheep_end: Label = $CanvasLayer/CountSheepEnd
 
+@export var is_debug_mode = false
 
 func _ready():
 	initial_camera_y = camera_2d.position.y
@@ -74,7 +75,6 @@ func update_progress_percentage():
 
 func update_camera_zoom_and_y_pos():
 		
-	print(has_reached_end, progress_percentage)
 	if progress_percentage >= 1 and not has_game_ended:
 		has_reached_end = true
 		if camera_2d.zoom.x < 0.99:
@@ -150,7 +150,7 @@ func _unhandled_input(event: InputEvent):
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			if have_loosed:
 				get_tree().reload_current_scene()
-			else:
+			elif is_debug_mode :
 				camera_freeze_height = 0
 				spawn_sheep(get_global_mouse_position())
 
