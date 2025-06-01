@@ -164,9 +164,9 @@ func spawn_sheep(spawn_position: Vector2):
 	else:
 		printerr("Sheep scene not loaded!")
 
-#func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("ui_accept"):
-		#play_end_cinematic()
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		play_end_cinematic()
 
 func play_end_cinematic():
 	print("Game finished")

@@ -275,4 +275,5 @@ func _on_timer_outside_timeout() -> void:
 func play_animation_count():
 	print("Sheep counting !")
 	self.animation_effect_mouton.play("Counting")
+	meh.play()
 	# counting_effect.emitting = true
