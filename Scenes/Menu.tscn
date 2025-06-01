@@ -867,7 +867,7 @@ text = "Credit"
 [node name="Label2" type="Label" parent="CanvasLayer/OtherWindows/Credit/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "Game created by Neother, Lighar and Flocondeglace !
+text = "Game created by Neother, Lighar and Flocondeglace during the Pursuing Pixels James Jam Game Gam #4 !
 
 
 Mountain clipart : creazilla.com

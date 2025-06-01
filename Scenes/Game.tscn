@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="32_nojon"]
 [ext_resource type="Shader" uid="uid://06goe1dyyb13" path="res://Shaders/Menu.gdshader" id="33_khs3t"]
 [ext_resource type="Theme" uid="uid://ufalnbio1xiu" path="res://theme.tres" id="34_jn8rg"]
-[ext_resource type="Script" path="res://Scripts/ui_manager.gd" id="34_t2joc"]
+[ext_resource type="Script" uid="uid://coheci2u1pkyy" path="res://Scripts/ui_manager.gd" id="34_t2joc"]
 [ext_resource type="Script" uid="uid://bvfqwe15668jk" path="res://Scripts/dialoguemanager.gd" id="37_pti6k"]
 [ext_resource type="FontFile" uid="uid://bi0a5ceiekjjy" path="res://Font/Early GameBoy.ttf" id="38_khy6b"]
 [ext_resource type="Script" uid="uid://euf82q7wsykq" path="res://addons/dialogue_label/src/DialogueLabel.gd" id="40_dctr5"]
