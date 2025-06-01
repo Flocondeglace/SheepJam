@@ -18,6 +18,9 @@ var end_cinematic_sheep_count = 0
 var initial_camera_y = 0
 var ground_y = 0
 var max_zoom=0.4
+@onready var sheep_spawn_e_nd: Node2D = $SheepSpawnENd
+@onready var thanks: Label = $THANKS
+@onready var thanks_2: Label = $THANKS2
 
 var highest_score = 0
 var progress_percentage = 0
@@ -163,8 +166,10 @@ func spawn_sheep(spawn_position: Vector2):
 		sheeps_container.add_child(sheep_instance) # Add to scene tree BEFORE setting global_position for RigidBody2D
 		sheep_instance.global_position = spawn_position
 		print("Spawned sheep at: ", spawn_position)
+		return sheep_instance
 	else:
 		printerr("Sheep scene not loaded!")
+	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and is_debug_mode:
@@ -201,9 +206,13 @@ func play_end_cinematic():
 	count_sheep_end.text = str(sheeps.size()) + " sheeps !"
 
 	camera_2d.add_trauma(1)
-	var end_camera_pos = Vector2(1087.0,-1236.0)
-	var end_camera_zoom = Vector2(0.19,0.19)
+	var end_camera_pos = Vector2(1036.0,-1486.0)
+	var end_camera_zoom = Vector2(0.17,0.17)
 	#square tween
 	var tween2 = create_tween()
 	tween2.tween_property(camera_2d, "position", end_camera_pos, 1)
 	tween2.tween_property(camera_2d, "zoom", end_camera_zoom, 1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN_OUT)
+	thanks.visible=true
+	thanks_2.visible=true
+	sheep_spawn_e_nd.timer.start()
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=789 format=3 uid="uid://b3wtsk3ghnykj"]
+[gd_scene load_steps=790 format=3 uid="uid://b3wtsk3ghnykj"]
 
 [ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_4f4ik"]
 [ext_resource type="PackedScene" uid="uid://b2ik8irb8x17y" path="res://Scenes/mouton_master.tscn" id="2_0iyqm"]
@@ -41,6 +41,7 @@
 [ext_resource type="Script" path="res://Scripts/ui_manager.gd" id="34_t2joc"]
 [ext_resource type="Script" uid="uid://bvfqwe15668jk" path="res://Scripts/dialoguemanager.gd" id="37_pti6k"]
 [ext_resource type="FontFile" uid="uid://bi0a5ceiekjjy" path="res://Font/Early GameBoy.ttf" id="38_khy6b"]
+[ext_resource type="Script" uid="uid://cgutyf0crgcrk" path="res://Scenes/sheep_spawn_e_nd.gd" id="40_audqb"]
 [ext_resource type="Script" uid="uid://euf82q7wsykq" path="res://addons/dialogue_label/src/DialogueLabel.gd" id="40_dctr5"]
 [ext_resource type="Texture2D" uid="uid://bh3hys3cpomwq" path="res://Sprites/home.png" id="41_audqb"]
 [ext_resource type="Texture2D" uid="uid://ulf7retoyftc" path="res://Sprites/S001_nyknck.png" id="42_7av8l"]
@@ -5417,7 +5418,7 @@ autostart = true
 scroll_scale = Vector2(0.8, 0.8)
 scroll_offset = Vector2(9, 6)
 repeat_size = Vector2(1067, 0)
-repeat_times = 6
+repeat_times = 8
 
 [node name="Background0" type="Sprite2D" parent="Parallax2D"]
 position = Vector2(1779, -1211)
@@ -5427,7 +5428,7 @@ texture = ExtResource("10_lmarx")
 [node name="Parallax2D5" type="Parallax2D" parent="."]
 scroll_offset = Vector2(9, 6)
 repeat_size = Vector2(1024, 0)
-repeat_times = 5
+repeat_times = 8
 
 [node name="Background4" type="Sprite2D" parent="Parallax2D5"]
 position = Vector2(673, -4)
@@ -5437,7 +5438,7 @@ texture = ExtResource("11_7av8l")
 [node name="Parallax2D4" type="Parallax2D" parent="."]
 scroll_offset = Vector2(9, 6)
 repeat_size = Vector2(1024, 0)
-repeat_times = 5
+repeat_times = 8
 
 [node name="Background3" type="Sprite2D" parent="Parallax2D4"]
 position = Vector2(920, 115)
@@ -5447,7 +5448,7 @@ texture = ExtResource("12_dctr5")
 [node name="Parallax2D2" type="Parallax2D" parent="."]
 scroll_offset = Vector2(-4, -149)
 repeat_size = Vector2(1024, 0)
-repeat_times = 5
+repeat_times = 8
 
 [node name="Background2" type="Sprite2D" parent="Parallax2D2"]
 position = Vector2(642, 380)
@@ -5458,7 +5459,7 @@ texture = ExtResource("13_mi7vx")
 scroll_scale = Vector2(0.9, 0.9)
 scroll_offset = Vector2(9, 6)
 repeat_size = Vector2(1024, 0)
-repeat_times = 5
+repeat_times = 8
 
 [node name="Background1" type="Sprite2D" parent="Parallax2D3"]
 position = Vector2(41, 350)
@@ -5493,7 +5494,7 @@ texture = ExtResource("15_audqb")
 [node name="Parallax2D6" type="Parallax2D" parent="."]
 scroll_offset = Vector2(-21, -112)
 repeat_size = Vector2(1067, 0)
-repeat_times = 6
+repeat_times = 8
 
 [node name="Background5" type="Sprite2D" parent="Parallax2D6"]
 texture_filter = 1
@@ -5683,11 +5684,49 @@ autoplay = true
 bus = &"Music"
 script = ExtResource("32_lmarx")
 
+[node name="THANKS" type="Label" parent="."]
+visible = false
+offset_left = -3333.0
+offset_top = -1928.0
+offset_right = 367.0
+offset_bottom = -1425.0
+theme = ExtResource("34_jn8rg")
+theme_override_font_sizes/font_size = 200
+text = "THANKS FOR 
+PLAYING !"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="THANKS2" type="Label" parent="."]
+visible = false
+offset_left = 1456.0
+offset_top = -1986.0
+offset_right = 5156.0
+offset_bottom = -1483.0
+theme = ExtResource("34_jn8rg")
+theme_override_font_sizes/font_size = 200
+text = "WE HOPE YOU 
+HAD FUN !"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="GroundMarker" type="Marker2D" parent="."]
 position = Vector2(536, 602)
 
 [node name="Node2D2" type="Node2D" parent="."]
 position = Vector2(131, 448)
+
+[node name="SheepSpawnENd" type="Node2D" parent="."]
+position = Vector2(36, 87)
+script = ExtResource("40_audqb")
+
+[node name="Line2D" type="Line2D" parent="SheepSpawnENd"]
+visible = false
+position = Vector2(-36, -87)
+points = PackedVector2Array(-2437, -3131, 4296, -3104)
+
+[node name="Timer" type="Timer" parent="SheepSpawnENd"]
+wait_time = 0.5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("34_t2joc")
@@ -5935,6 +5974,7 @@ text_speed = 0.2
 [connection signal="body_entered" from="SheepSpawnManager/GoalPositionWalkingRight/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_body_entered_right"]
 [connection signal="area_entered" from="SheepSpawnManager/GoalPositionWalkingLeft/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_area_entered_left"]
 [connection signal="body_entered" from="SheepSpawnManager/GoalPositionWalkingLeft/AreaGoalPosW" to="SheepSpawnManager" method="_on_area_goal_pos_w_body_entered_left"]
+[connection signal="timeout" from="SheepSpawnENd/Timer" to="SheepSpawnENd" method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/Buttons/HomeButton" to="CanvasLayer" method="_on_home_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Buttons/RestartButton" to="CanvasLayer" method="_on_restart_button_pressed"]
 [connection signal="dialogue_ended" from="DialogueManager/Dialogue" to="DialogueManager" method="onDialogueEnded"]

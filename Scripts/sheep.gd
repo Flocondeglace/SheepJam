@@ -249,7 +249,10 @@ func force_position(pos: Vector2):
 		Transform2D.IDENTITY.translated(pos)
 	)
 	collision_shape.disabled = false
-	
+
+func kill_after_time(time: float):
+	await get_tree().create_timer(time).timeout
+	queue_free()
 
 func look_left(b:bool):
 	sprite_2d.flip_h = b
