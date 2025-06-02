@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cgvjpn6btim8h" path="res://Scripts/sheep.gd" id="11_o00om"]
 [ext_resource type="Texture2D" uid="uid://cgj2b6a0ly8ov" path="res://Sprites/Background_3.png" id="12_jmv5b"]
 [ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="12_ka6xg"]
-[ext_resource type="Script" uid="uid://bmuqxikw3aa4x" path="res://Scripts/spritesheep.gd" id="13_cdx8w"]
+[ext_resource type="Script" path="res://Scripts/spritesheep.gd" id="13_cdx8w"]
 [ext_resource type="Texture2D" uid="uid://pghyxw5ftdi6" path="res://Sprites/Background_2.png" id="13_dml4c"]
 [ext_resource type="Texture2D" uid="uid://cx7nbef4uiqn7" path="res://Sprites/Palettes.png" id="14_08kpj"]
 [ext_resource type="PackedScene" uid="uid://c1m7xa56kaexk" path="res://Scenes/sheep.tscn" id="14_dd46u"]

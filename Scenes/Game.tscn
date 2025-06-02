@@ -1,4 +1,4 @@
-[gd_scene load_steps=790 format=3 uid="uid://b3wtsk3ghnykj"]
+[gd_scene load_steps=789 format=3 uid="uid://b3wtsk3ghnykj"]
 
 [ext_resource type="Script" uid="uid://b0k5lugjkiaal" path="res://Scripts/main.gd" id="1_4f4ik"]
 [ext_resource type="PackedScene" uid="uid://b2ik8irb8x17y" path="res://Scenes/mouton_master.tscn" id="2_0iyqm"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://p8mkpxkb37w2" path="res://Sprites/Planet_5.png" id="6_4eqlp"]
 [ext_resource type="Texture2D" uid="uid://c0caog6cgiso1" path="res://Sprites/Galaxy.png" id="7_18uti"]
 [ext_resource type="Script" uid="uid://beyvq0jkoygay" path="res://Scripts/cosmonautespawner.gd" id="8_khy6b"]
-[ext_resource type="Script" uid="uid://c6b2heb0t0rs4" path="res://Scripts/mongolfiere_spawner.gd" id="9_pti6k"]
+[ext_resource type="Script" path="res://Scripts/mongolfiere_spawner.gd" id="9_pti6k"]
 [ext_resource type="Texture2D" uid="uid://75px3fbphgn0" path="res://Sprites/Background_0.png" id="10_lmarx"]
 [ext_resource type="Texture2D" uid="uid://dpwxyj87g6ig4" path="res://Sprites/Background_4.png" id="11_7av8l"]
 [ext_resource type="Texture2D" uid="uid://cgj2b6a0ly8ov" path="res://Sprites/Background_3.png" id="12_dctr5"]
@@ -28,9 +28,9 @@
 [ext_resource type="Script" uid="uid://cpp8bwic6stw8" path="res://Scripts/sheep_spawn_manager.gd" id="24_jamva"]
 [ext_resource type="Texture2D" uid="uid://gjtt7l5abf4d" path="res://Sprites/Mongolfiere_Front.png" id="25_m15vq"]
 [ext_resource type="Texture2D" uid="uid://kr1u01c5yy6m" path="res://Sprites/Mongolfiere_Back.png" id="26_a05uw"]
-[ext_resource type="Script" uid="uid://dl0jyqc4qj0n3" path="res://Scripts/balloon_disappear.gd" id="27_n2ugt"]
+[ext_resource type="Script" path="res://Scripts/balloon_disappear.gd" id="27_n2ugt"]
 [ext_resource type="AudioStream" uid="uid://nwwhfjl3lma0" path="res://Sounds/background_music.mp3" id="28_n24vg"]
-[ext_resource type="Script" uid="uid://bykhpgeyvwslo" path="res://Scripts/control.gd" id="29_ym08v"]
+[ext_resource type="Script" path="res://Scripts/control.gd" id="29_ym08v"]
 [ext_resource type="Texture2D" uid="uid://c5sbgbunrllf4" path="res://Sprites/00.png" id="30_8ekww"]
 [ext_resource type="Texture2D" uid="uid://cw4lcwt06y62s" path="res://Sprites/03.png" id="31_dwhu0"]
 [ext_resource type="AudioStream" uid="uid://bnar1soyo1n1e" path="res://Sounds/mouton jam epique.mp3" id="31_pti6k"]
@@ -38,10 +38,10 @@
 [ext_resource type="Texture2D" uid="uid://bv667oynci0c8" path="res://Sprites/Mouton.png" id="32_nojon"]
 [ext_resource type="Shader" uid="uid://06goe1dyyb13" path="res://Shaders/Menu.gdshader" id="33_khs3t"]
 [ext_resource type="Theme" uid="uid://ufalnbio1xiu" path="res://theme.tres" id="34_jn8rg"]
-[ext_resource type="Script" uid="uid://coheci2u1pkyy" path="res://Scripts/ui_manager.gd" id="34_t2joc"]
-[ext_resource type="Script" uid="uid://bvfqwe15668jk" path="res://Scripts/dialoguemanager.gd" id="37_pti6k"]
+[ext_resource type="Script" path="res://Scripts/ui_manager.gd" id="34_t2joc"]
+[ext_resource type="Script" path="res://Scripts/dialoguemanager.gd" id="37_pti6k"]
 [ext_resource type="FontFile" uid="uid://bi0a5ceiekjjy" path="res://Font/Early GameBoy.ttf" id="38_khy6b"]
-[ext_resource type="Script" uid="uid://cgutyf0crgcrk" path="res://Scenes/sheep_spawn_e_nd.gd" id="40_audqb"]
+[ext_resource type="Script" path="res://Scenes/sheep_spawn_e_nd.gd" id="40_audqb"]
 [ext_resource type="Script" uid="uid://euf82q7wsykq" path="res://addons/dialogue_label/src/DialogueLabel.gd" id="40_dctr5"]
 [ext_resource type="Texture2D" uid="uid://bh3hys3cpomwq" path="res://Sprites/home.png" id="41_audqb"]
 [ext_resource type="Texture2D" uid="uid://ulf7retoyftc" path="res://Sprites/S001_nyknck.png" id="42_7av8l"]
@@ -5238,13 +5238,6 @@ size = Vector2(20, 511)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptiwi"]
 size = Vector2(411, 52)
 
-[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_lmarx"]
-stream_count = 2
-stream_0/stream = ExtResource("28_n24vg")
-stream_0/volume = 0.0
-stream_1/stream = ExtResource("31_pti6k")
-stream_1/volume = 0.0
-
 [sub_resource type="Theme" id="Theme_jpea4"]
 
 [sub_resource type="Gradient" id="Gradient_epud0"]
@@ -5311,6 +5304,7 @@ camera_freeze_height = 1200.0
 max_height = -3580
 final_score_meters = 10000.0
 loosing_height = 250.0
+is_debug_mode = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -3987.0
@@ -5676,12 +5670,20 @@ position = Vector2(446, 600)
 [node name="Marker2DRight" type="Marker2D" parent="SheepSpawnManager/BalloonPosX"]
 position = Vector2(1423, 600)
 
-[node name="musicplayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamSynchronized_lmarx")
+[node name="Node" type="Node" parent="."]
+script = ExtResource("32_lmarx")
+
+[node name="epic" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("31_pti6k")
 volume_db = -9.286
 autoplay = true
 bus = &"Music"
-script = ExtResource("32_lmarx")
+
+[node name="normal" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("28_n24vg")
+volume_db = -9.286
+autoplay = true
+bus = &"Music"
 
 [node name="THANKS" type="Label" parent="."]
 visible = false
